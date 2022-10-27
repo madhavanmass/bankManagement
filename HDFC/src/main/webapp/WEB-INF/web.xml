@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+
+	<!-- ########################## lister class mapping #################### -->
+	<listener>
+		<listener-class>bank.hdfc.dao.ConnectionTool</listener-class>
+	</listener>
+
+
+	<!-- ########################## resource reference #################### -->
+	<resource-ref>
+		<res-ref-name>jdbc/postgres</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
+	<!-- ########################## servlet mapping #################### -->
+
+	<servlet>
+		<servlet-name>customerLogin</servlet-name>
+		<servlet-class>bank.hdfc.servlet.verification.CustomerLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>customerLogin</servlet-name>
+		<url-pattern>/customerVerify</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>changePassword</servlet-name>
+		<servlet-class>bank.hdfc.servlet.customer.ChangePassword</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>changePassword</servlet-name>
+		<url-pattern>/ChangePassword</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>logoutServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.customer.Logout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logoutServlet</servlet-name>
+		<url-pattern>/logoutServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>payBillServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.account.PayBill</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>payBillServlet</servlet-name>
+		<url-pattern>/payBillServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>transferServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.account.Transfer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>transferServlet</servlet-name>
+		<url-pattern>/transferServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>updateBeneficiary</servlet-name>
+		<servlet-class>bank.hdfc.servlet.account.UpdateBeneficiary</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateBeneficiary</servlet-name>
+		<url-pattern>/updateBeneficiary</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>addBeneficiary</servlet-name>
+		<servlet-class>bank.hdfc.servlet.account.AddBeneficiary</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addBeneficiary</servlet-name>
+		<url-pattern>/addBeneficiary</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>deleteBeneficiary</servlet-name>
+		<servlet-class>bank.hdfc.servlet.account.DeleteBeneficiary</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteBeneficiary</servlet-name>
+		<url-pattern>/deleteBeneficiary</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>changeMPin</servlet-name>
+		<servlet-class>bank.hdfc.servlet.account.ChangeMPin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>changeMPin</servlet-name>
+		<url-pattern>/changeMPin</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>changeStatus</servlet-name>
+		<servlet-class>bank.hdfc.servlet.account.ChangeStatus</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>changeStatus</servlet-name>
+		<url-pattern>/changeStatus</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>payLoanServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.loan.PayLoan</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>payLoanServlet</servlet-name>
+		<url-pattern>/payLoanServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>cancelDeposit</servlet-name>
+		<servlet-class>bank.hdfc.servlet.deposit.CancelDeposit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cancelDeposit</servlet-name>
+		<url-pattern>/cancelDeposit</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>openDepositServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.account.OpenDeposit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>openDepositServlet</servlet-name>
+		<url-pattern>/openDepositServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>verify</servlet-name>
+		<servlet-class>bank.hdfc.servlet.verification.EmployeeVerify</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>verify</servlet-name>
+		<url-pattern>/verify</url-pattern>
+	</servlet-mapping>
+
+	<!-- ########################## jsp file mapping #################### -->
+
+	<servlet>
+		<servlet-name>indexPage</servlet-name>
+		<jsp-file>/index.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>indexPage</servlet-name>
+		<url-pattern>/indexPage</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>logout</servlet-name>
+		<jsp-file>/CUSTOMER/logout.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>homePage</servlet-name>
+		<jsp-file>/CUSTOMER/home.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>homePage</servlet-name>
+		<url-pattern>/homePage</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>profilePage</servlet-name>
+		<jsp-file>/CUSTOMER/profile.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>profilePage</servlet-name>
+		<url-pattern>/profilePage</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>changePasswordPage</servlet-name>
+		<jsp-file>/CUSTOMER/changePassword.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>changePasswordPage</servlet-name>
+		<url-pattern>/changePasswordPage</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>accounts</servlet-name>
+		<jsp-file>/CUSTOMER/account.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>accounts</servlet-name>
+		<url-pattern>/accounts</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>accountDetail</servlet-name>
+		<jsp-file>/ACCOUNT/accountDetail.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>accountDetail</servlet-name>
+		<url-pattern>/accountDetail</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>transfer</servlet-name>
+		<jsp-file>/ACCOUNT/transfer.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>transfer</servlet-name>
+		<url-pattern>/transfer</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>payBill</servlet-name>
+		<jsp-file>/ACCOUNT/payBill.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>payBill</servlet-name>
+		<url-pattern>/payBill</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>transaction</servlet-name>
+		<jsp-file>/ACCOUNT/transaction.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>transaction</servlet-name>
+		<url-pattern>/transaction</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>customerErrorPage</servlet-name>
+		<jsp-file>/ERROR/customerErrorPage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>customerErrorPage</servlet-name>
+		<url-pattern>/customerErrorPage</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>beneficiary</servlet-name>
+		<jsp-file>/ACCOUNT/beneficiary.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>beneficiary</servlet-name>
+		<url-pattern>/beneficiary</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>debitCard</servlet-name>
+		<jsp-file>/ACCOUNT/debitCard.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>debitCard</servlet-name>
+		<url-pattern>/debitCard</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>loan</servlet-name>
+		<jsp-file>/CUSTOMER/loan.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loan</servlet-name>
+		<url-pattern>/loan</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>loanDetail</servlet-name>
+		<jsp-file>/LOAN/loanDetail.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loanDetail</servlet-name>
+		<url-pattern>/loanDetail</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>payLoan</servlet-name>
+		<jsp-file>/LOAN/payLoan.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>payLoan</servlet-name>
+		<url-pattern>/payLoan</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>loanTransaction</servlet-name>
+		<jsp-file>/LOAN/loanTransaction.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>loanTransaction</servlet-name>
+		<url-pattern>/loanTransaction</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>openDeposit</servlet-name>
+		<jsp-file>/ACCOUNT/openDeposit.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>openDeposit</servlet-name>
+		<url-pattern>/openDeposit</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>deposit</servlet-name>
+		<jsp-file>/CUSTOMER/deposit.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deposit</servlet-name>
+		<url-pattern>/deposit</url-pattern>
+	</servlet-mapping>
+
+	<!-- ########################## filter mapping #################### -->
+
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>bank.hdfc.filter.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/customerVerify</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>loginVerify</filter-name>
+		<filter-class>bank.hdfc.filter.LoginVerify</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>loginVerify</filter-name>
+		<url-pattern>/ChangePassword</url-pattern>
+		<url-pattern>/currentAccount</url-pattern>
+		<url-pattern>/savingAccount</url-pattern>
+		<url-pattern>/accounts</url-pattern>
+		<url-pattern>/changePasswordPage</url-pattern>
+		<url-pattern>/profilePage</url-pattern>
+		<url-pattern>/homePage</url-pattern>
+	</filter-mapping>
+
+</web-app>
