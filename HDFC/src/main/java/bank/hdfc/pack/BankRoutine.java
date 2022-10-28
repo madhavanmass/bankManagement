@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.TimerTask;
 
 import bank.hdfc.dao.BankDao;
 
@@ -19,7 +20,7 @@ class UpdateDates implements Serializable{
 	}
 	
 }
-public class BankRoutine {
+public class BankRoutine extends TimerTask  {
 	BankDao bankDao=new BankDao();
 	public void run() {
 		try {

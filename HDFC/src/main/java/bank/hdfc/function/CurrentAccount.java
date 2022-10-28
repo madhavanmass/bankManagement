@@ -57,7 +57,9 @@ public class CurrentAccount extends Account {
 	}
 	
 	
-	
+	public boolean resetUserLimt(int userLimit) {
+		return accountDao.changeUserSetLimit(getAccountNumber(),userLimit);
+	}
 	private int check(int amount) {
 		if(balance-amount < 0) {
 			return 1;
@@ -91,7 +93,7 @@ public class CurrentAccount extends Account {
 			return resultInt;
 		}
 	}
-	
+
 	
 	
 

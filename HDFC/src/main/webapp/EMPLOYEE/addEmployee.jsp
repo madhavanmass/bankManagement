@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>ADD CUSTOMER</title>
+<title>ADD EMPLOYEE</title>
 </head>
 <body>
-<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="addCustomerServlet" method="post">
-<jsp:include page="/COMMON/createperson.html"></jsp:include>
-<input type="submit" value="CREATE CUSTOMER">
 
+<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
+<form action="addEmployeeServlet" method="post">
+<jsp:include page="/COMMON/createperson.html"></jsp:include>
+<input type="submit" value="ADD EMPLOYEE">
 </form>
 <% if(session.getAttribute("message") !=null){
 	out.print(request.getAttribute("message")+"<br>");

@@ -41,12 +41,14 @@ public class VerifyDao {
             preparedStatement.setInt(1, Id);
             preparedStatement.setString(2, cipher.encrypt(password, password.charAt(0)));
             ResultSet resultset=preparedStatement.executeQuery();
+            Manager manager=null;
             if(resultset.next()){
-            	Manager manager=new Manager(resultset.getString(1),resultset.getInt(2) , resultset.getString(3), resultset.getString(4), resultset.getString(5), resultset.getString(6), resultset.getString(7), resultset.getString(8), resultset.getInt(9), resultset.getInt(10), resultset.getInt(11),resultset.getString(12),resultset.getString(13),resultset.getString(14));
-            	return manager;
+            	manager=new Manager(resultset.getString(1),resultset.getInt(2) , resultset.getString(3), resultset.getString(4), resultset.getString(5), resultset.getString(6), resultset.getString(7), resultset.getString(8), resultset.getInt(9), resultset.getInt(10), resultset.getInt(11),resultset.getString(12),resultset.getString(13),resultset.getString(14));
             }
             resultset.close();
             preparedStatement.close();
+            return manager;
+            
         } catch (Exception e) {
             System.out.println("Error in verifing the employee");
             e.printStackTrace();

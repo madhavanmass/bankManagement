@@ -25,6 +25,8 @@ public class OpenDeposit extends HttpServlet {
 			customer.getSavingAccounts().get(accountNumber).debitMoney(amount, "OPENED A DEPOSIT ");
 			customer.getSavingAccounts().get(accountNumber).openDeposit(type, amount, policy);
 		}
+		customer.setFixedDeposits(null);
+		customer.setRecurrsiveDeposits(null);
 		response.sendRedirect("openDeposit?accountNumber="+accountNumber);
 	}
 

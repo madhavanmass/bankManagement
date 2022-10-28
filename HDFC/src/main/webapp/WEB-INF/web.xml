@@ -34,7 +34,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>changePassword</servlet-name>
-		<url-pattern>/ChangePassword</url-pattern>
+		<url-pattern>/changePasswordServlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -140,7 +140,89 @@
 		<servlet-name>verify</servlet-name>
 		<url-pattern>/verify</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>userSetLimit</servlet-name>
+		<servlet-class>bank.hdfc.servlet.account.SetLimit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userSetLimit</servlet-name>
+		<url-pattern>/userSetLimit</url-pattern>
+	</servlet-mapping>
+	
+	
+		<servlet>
+		<servlet-name>addCustomerServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.employee.AddCustomer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addCustomerServlet</servlet-name>
+		<url-pattern>/addCustomerServlet</url-pattern>
+	</servlet-mapping>
 
+		<servlet>
+		<servlet-name>addEmployeeServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.employee.AddEmployee</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addEmployeeServlet</servlet-name>
+		<url-pattern>/addEmployeeServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>createAccountServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.employee.CreateAccount</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createAccountServlet</servlet-name>
+		<url-pattern>/createAccountServlet</url-pattern>
+	</servlet-mapping>
+
+		<servlet>
+		<servlet-name>depositMoneyServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.employee.DepositMoney</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>depositMoneyServlet</servlet-name>
+		<url-pattern>/depositMoneyServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>giveLoanServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.employee.GiveLoan</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>giveLoanServlet</servlet-name>
+		<url-pattern>/giveLoanServlet</url-pattern>
+	</servlet-mapping>
+
+		<servlet>
+		<servlet-name>issueDebitCardServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.employee.IssueDebitCard</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>issueDebitCardServlet</servlet-name>
+		<url-pattern>/issueDebitCardServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>viewCustomerServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.employee.ViewCustomer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>viewCustomerServlet</servlet-name>
+		<url-pattern>/viewCustomerServlet</url-pattern>
+	</servlet-mapping>
+
+
+		<servlet>
+		<servlet-name>viewEmployeeServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.employee.ViewEmployee</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>viewEmployeeServlet</servlet-name>
+		<url-pattern>/viewEmployeeServlet</url-pattern>
+	</servlet-mapping>
 	<!-- ########################## jsp file mapping #################### -->
 
 	<servlet>
@@ -172,21 +254,13 @@
 
 	<servlet>
 		<servlet-name>profilePage</servlet-name>
-		<jsp-file>/CUSTOMER/profile.jsp</jsp-file>
+		<jsp-file>/COMMON/profile.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>profilePage</servlet-name>
 		<url-pattern>/profilePage</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
-		<servlet-name>changePasswordPage</servlet-name>
-		<jsp-file>/CUSTOMER/changePassword.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>changePasswordPage</servlet-name>
-		<url-pattern>/changePasswordPage</url-pattern>
-	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>accounts</servlet-name>
@@ -309,6 +383,100 @@
 		<servlet-name>deposit</servlet-name>
 		<url-pattern>/deposit</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>employeeLogin</servlet-name>
+		<jsp-file>/employeeLogin.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>employeeLogin</servlet-name>
+		<url-pattern>/employeeLogin</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>addCustomer</servlet-name>
+		<jsp-file>/EMPLOYEE/addCustomer.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addCustomer</servlet-name>
+		<url-pattern>/addCustomer</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>addEmployee</servlet-name>
+		<jsp-file>/EMPLOYEE/addEmployee.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addEmployee</servlet-name>
+		<url-pattern>/addEmployee</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>createAccount</servlet-name>
+		<jsp-file>/EMPLOYEE/createAccount.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>createAccount</servlet-name>
+		<url-pattern>/createAccount</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>depositMoney</servlet-name>
+		<jsp-file>/EMPLOYEE/depositMoney.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>depositMoney</servlet-name>
+		<url-pattern>/depositMoney</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>employeeLogout</servlet-name>
+		<jsp-file>/EMPLOYEE/employeeLogout.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>employeeLogout</servlet-name>
+		<url-pattern>/employeeLogout</url-pattern>
+	</servlet-mapping>
+	
+
+		<servlet>
+		<servlet-name>giveLoan</servlet-name>
+		<jsp-file>/EMPLOYEE/giveLoan.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>giveLoan</servlet-name>
+		<url-pattern>/giveLoan</url-pattern>
+	</servlet-mapping>
+
+		<servlet>
+		<servlet-name>issueDebitCard</servlet-name>
+		<jsp-file>/EMPLOYEE/issueDebitCard.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>issueDebitCard</servlet-name>
+		<url-pattern>/issueDebitCard</url-pattern>
+	</servlet-mapping>
+
+		<servlet>
+		<servlet-name>viewCustomer</servlet-name>
+		<jsp-file>/EMPLOYEE/viewCustomer.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>viewCustomer</servlet-name>
+		<url-pattern>/viewCustomer</url-pattern>
+	</servlet-mapping>
+
+		<servlet>
+		<servlet-name>viewEmployee</servlet-name>
+		<jsp-file>/EMPLOYEE/viewEmployee.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>viewEmployee</servlet-name>
+		<url-pattern>/viewEmployee</url-pattern>
+	</servlet-mapping>
+
 
 	<!-- ########################## filter mapping #################### -->
 

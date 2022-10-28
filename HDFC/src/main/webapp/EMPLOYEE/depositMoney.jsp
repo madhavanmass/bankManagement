@@ -4,14 +4,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>ADD CUSTOMER</title>
+<title>DEPOSIT MONEY</title>
 </head>
 <body>
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="addCustomerServlet" method="post">
-<jsp:include page="/COMMON/createperson.html"></jsp:include>
-<input type="submit" value="CREATE CUSTOMER">
-
+<form action="depsoitMoneyServlet" method="post">
+ENTER THE CUSTOMER ID :<input type="text" name="customerId"><br>
+ENTER THE ACCOUNT NUMBER :<input type="text" name="accountNumber"><br>
+ENTER INITIAL DEPOSIT :<input type="number" name="initialDeposit"><br>
+<input type="submit" value="DEPOSIT MONEY"> 
 </form>
 <% if(session.getAttribute("message") !=null){
 	out.print(request.getAttribute("message")+"<br>");

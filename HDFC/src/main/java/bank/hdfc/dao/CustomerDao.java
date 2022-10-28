@@ -93,7 +93,7 @@ public class CustomerDao {
 			System.out.println("Error in getting fixed deposit");
 		}
 
-		return null;
+		return new HashMap<>();
 	}
 	
 	public HashMap<Integer, RecurssiveDeposit> getRecurringDeposits(int customerId) {
@@ -111,10 +111,11 @@ public class CustomerDao {
 			return recurrsiveDeposits;
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Error in getting recurssive deposit");
 		}
 
-		return null;
+		return new HashMap<>();
 	}
 	
 	

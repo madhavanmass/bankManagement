@@ -4,14 +4,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>ADD CUSTOMER</title>
+<title>ISSUE DEBIT CARD</title>
 </head>
 <body>
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="addCustomerServlet" method="post">
-<jsp:include page="/COMMON/createperson.html"></jsp:include>
-<input type="submit" value="CREATE CUSTOMER">
-
+<form action="issueDebitCardServlet" method="post">
+ENTER THE CUSTOMER ID :<input type="text" name="customerId"><br>
+ENTER THE ACCOUNT NUMBER :<input type="number" name="accountNumber"><br>
+ENTER THE mPin :<input type="number" name="amount"><br>
+<input type="submit" value="ISSUE DEBIT CARD"> 
 </form>
 <% if(session.getAttribute("message") !=null){
 	out.print(request.getAttribute("message")+"<br>");

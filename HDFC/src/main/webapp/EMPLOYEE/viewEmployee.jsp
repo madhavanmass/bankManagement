@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>ARE YOU SURE YOU WANT TO LOGOUT</h1>
-<form action="logoutServlet">
-  <input type="submit" value="LOGOUT">
-</form>
+
 </body>
 </html>

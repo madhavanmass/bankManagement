@@ -13,12 +13,12 @@ public class Manager extends Employee {
 		
 	}
 	public int giveLoan(int customerId,int amount,int accountNumber,int loanType) {
-		branch.loadCustomers();
+		getBranch().loadCustomers();
 		int resultInt=0;
-		if(Branch.customerDetails.containsKey(customerId)) {
-			if(Branch.customerDetails.get(customerId).getAccounts().containsKey(accountNumber)) {
+		if(Branch.getCustomerDetails().containsKey(customerId)) {
+			if(Branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
 				managerDao.giveLoan(customerId, accountNumber, amount,getBranchId(), loanType);
-				Branch.customerDetails.replace(customerId, branch.getCustomerDetail(customerId));
+				Branch.getCustomerDetails().replace(customerId, getBranch().getCustomerDetail(customerId));
 				resultInt=1;
 			}
 			else {

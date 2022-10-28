@@ -1,5 +1,4 @@
 <ul>
-<c:if test
   <li><a href="accountDetail?accountNumber=<%=request.getParameter("accountNumber")%>">ACCOUNT DETAIL</a></li>
   <li><a href="payBill?accountNumber=<%=request.getParameter("accountNumber")%>">PAY BILL</a></li>
   <li><a href="transfer?accountNumber=<%=request.getParameter("accountNumber")%>">TRANSFER</a></li>

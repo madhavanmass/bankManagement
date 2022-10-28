@@ -17,8 +17,8 @@ public class Branch {
 	private String addressLine2;
 	private String pinCode;
 	
-	public static ConcurrentHashMap<Integer, CustomerDetail> customerDetails = null;
-	public static ConcurrentHashMap<Integer, EmployeeDetail> employeeDetails = null;
+	private static ConcurrentHashMap<Integer, CustomerDetail> customerDetails = null;
+	private static ConcurrentHashMap<Integer, EmployeeDetail> employeeDetails = null;
 
 	public Branch(int branchId, String branchName, String ifscCode, String manager, String addressLine1,
 			String addressLine2, String pinCode) {
@@ -30,7 +30,20 @@ public class Branch {
 		this.addressLine2 = addressLine2;
 		this.pinCode = pinCode;
 	}
-
+	
+	
+	public static ConcurrentHashMap<Integer, CustomerDetail> getCustomerDetails() {
+		return customerDetails;
+	}
+	public static void setCustomerDetails(ConcurrentHashMap<Integer, CustomerDetail> customerDetails) {
+		Branch.customerDetails = customerDetails;
+	}
+	public static ConcurrentHashMap<Integer, EmployeeDetail> getEmployeeDetails() {
+		return employeeDetails;
+	}
+	public static void setEmployeeDetails(ConcurrentHashMap<Integer, EmployeeDetail> employeeDetails) {
+		Branch.employeeDetails = employeeDetails;
+	}
 	public int getBranchId() {
 		return branchId;
 	}

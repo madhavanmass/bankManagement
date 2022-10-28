@@ -12,7 +12,6 @@ import bank.hdfc.function.DebitCard;
 import bank.hdfc.function.Transaction;
 
 public class AccountDao {
-//Hey how are you
 	// getting BranchId
 	public Branch getBranch(int branchId) {
 		try (Connection connection = ConnectionTool.getConnection()) {
@@ -246,6 +245,22 @@ public class AccountDao {
 		return false;
 		
 		
+	}
+
+	public boolean changeUserSetLimit(int accountNumber, int userLimit) {
+		try (Connection connection = ConnectionTool.getConnection()) {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement(ConnectionTool.resourceBundle.getString("userSetLimit"));
+			preparedStatement.setInt(1, userLimit);
+			preparedStatement.setInt(2, accountNumber);
+			boolean checker = preparedStatement.execute();
+			preparedStatement.close();
+			return checker;
+		} catch (Exception e) {
+			System.out.println("there was an error recurrsive deposit");
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 
