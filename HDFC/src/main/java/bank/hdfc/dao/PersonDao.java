@@ -51,23 +51,23 @@ public class PersonDao {
         }
 		return 0;
 	}
-	private int getPersonId(String customerName, String password) {
-		try (Connection connection = ConnectionTool.getConnection()) {
-			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("getPersonId"));
-			preparedStatement.setString(1, customerName);
-			preparedStatement.setString(2,new CipherTextGenerator().encrypt(password,password.charAt(0)));
-			ResultSet resultset = preparedStatement.executeQuery();
-			resultset.next();
-			int Id = resultset.getInt(1);
-			resultset.close();
-			preparedStatement.close();
-			return Id;
-
-		} catch (Exception e) {
-			System.out.println("ERROR IN GETTING ID");
-			e.printStackTrace();
-		}
-		return 0;
-	}
+//	private int getPersonId(String customerName, String password) {
+//		try (Connection connection = ConnectionTool.getConnection()) {
+//			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("getPersonId"));
+//			preparedStatement.setString(1, customerName);
+//			preparedStatement.setString(2,new CipherTextGenerator().encrypt(password,password.charAt(0)));
+//			ResultSet resultset = preparedStatement.executeQuery();
+//			resultset.next();
+//			int Id = resultset.getInt(1);
+//			resultset.close();
+//			preparedStatement.close();
+//			return Id;
+//
+//		} catch (Exception e) {
+//			System.out.println("ERROR IN GETTING ID");
+//			e.printStackTrace();
+//		}
+//		return 0;
+//	}
 
 }

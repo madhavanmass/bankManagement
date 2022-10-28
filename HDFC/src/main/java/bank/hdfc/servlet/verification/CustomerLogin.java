@@ -15,5 +15,4 @@ public class CustomerLogin extends HttpServlet {
 		RequestDispatcher requestDispatcher= request.getRequestDispatcher("homePage");
 		requestDispatcher.forward(request, response);
 	}
-
 }
