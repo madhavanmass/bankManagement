@@ -7,12 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bank.hdfc.function.Employee;
+
 public class GiveLoan extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		int customerId=Integer.valueOf(request.getParameter("customerId"));
+        int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
+        int amount=Integer.valueOf(request.getParameter("amount"));
+        Employee employee=(Employee)request.getSession().getAttribute("employee");
+        int messageInt=employee.customerDeposit(customerId, accountNumber, amount);
+        request.getSession().setAttribute("message", messageInt);
+        request.getRequestDispatcher("depositMoney").forward(request, response);
 	}
 
 }

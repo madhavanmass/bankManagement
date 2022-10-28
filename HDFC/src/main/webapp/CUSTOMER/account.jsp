@@ -47,7 +47,7 @@
 		out.print("<tr>" + "<td>" + currentAccount.getAccountNumber() + "</td>" + "<td>"
 		+ BankDefinition.accountName(currentAccount.getAccountType()) + "</td>" + "<td>"
 		+ currentAccount.getBalance() + "</td>" + "<td>" + currentAccount.getTransferredAmount() + "</td>"
-				+ "<td> <a href=accountDetail?accountNumber="+currentAccount.getAccountNumber() +">USE</a></td>"
+		+ "<td> <a href=accountDetail?accountNumber="+currentAccount.getAccountNumber() +">USE</a></td>"
 		+ "</tr>");
 
 	}

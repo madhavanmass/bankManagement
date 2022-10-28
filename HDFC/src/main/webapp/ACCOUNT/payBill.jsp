@@ -12,7 +12,7 @@
 <form action="payBillServlet">
 ENTER THE AMOUNT :<input type="number" name="amount"><br>
 ENTER THE DESCRIPTION :<br>
-<textarea name="description" rows="4" cols="50" placeholder="type here...">.</textarea><br>
+<textarea name="description" rows="4" cols="50" placeholder="type here..."></textarea><br>
 <input type="hidden" name="accountNumber" value=<%=request.getParameter("accountNumber")%>>  
 <input type="submit" value="pay">
 <% if(request.getAttribute("message") instanceof Integer){

@@ -2,6 +2,7 @@ package bank.hdfc.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import bank.hdfc.pack.BankDefinition;
 
@@ -9,13 +10,20 @@ public class ManagerDao {
 
 	public int addEmployee(int personId, int branchId, int role) {
 		try (Connection connection = ConnectionTool.getConnection()) {
-			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("addEmployee"));
+			int employeeId=0;
+			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("addEmployee"),PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStatement.setInt(1, branchId);
 			preparedStatement.setInt(2, personId);
 			preparedStatement.setInt(3, role);
 			preparedStatement.execute();
 			preparedStatement.close();
-			return new EmployeeDao().getId("viewEmployeeId", personId);
+			ResultSet resultSet=preparedStatement.getGeneratedKeys();
+            if(resultSet!=null && resultSet.next()) {
+            	personId=resultSet.getInt("employee_id");
+            }
+            resultSet.close();
+            preparedStatement.close();
+			return employeeId;
 		} catch (Exception e) {
 			System.out.println("ERROR IN ADDING EMPLOYEE");
 			e.printStackTrace();

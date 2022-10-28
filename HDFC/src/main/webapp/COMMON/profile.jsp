@@ -28,11 +28,11 @@ function show()
 </script>
 </head>
 <body>
-<c:if test="${sessionScope.customer != null} ">
+<c:if test="<%=request.getSession().getAttribute(\"customer\") != null%>">
 <jsp:include page="/COMMON/topnav.html"></jsp:include>
 </c:if>
 
-<c:if test="${sessionScope.employee != null} ">
+<c:if test="<%=request.getSession().getAttribute(\"employee\") != null%>">
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
 </c:if>
 
@@ -46,16 +46,15 @@ else if(session.getAttribute("employee")!=null){
 
 %>
 <button onclick="show()">CHANGE PASSWORD</button>
-<form id="form" action="ChangePassword" method="post" style="display:none;">
+<form id="form" action="changePasswordServlet" method="post" style="display:none;">
 ENTER THE OLD-PASSWORD :<input type="text" name="oldPassword"><br>
 ENTER THE NEW-PASSWORD :<input type="text" name="newPassword"><br>
 <% if(session.getAttribute("message") !=null){
 	out.print(request.getAttribute("message")+"<br>");
 	session.removeAttribute("message");
 }
-
 %>
-<input type="submit" value="confirm">
+<input type="submit" value="CONFIRM">
 </form>
 
 </body>

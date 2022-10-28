@@ -4,6 +4,8 @@
     import="bank.hdfc.pack.CustomerDetail"
     import="bank.hdfc.function.Employee"
     import="bank.hdfc.function.Branch"
+    import="java.util.regex.Matcher"
+	import="java.util.regex.Pattern"
     %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -14,33 +16,31 @@
 </head>
 <body>
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
+<form action="viewCustomer">
+<input type="text" name="name"><input type="submit" value="SEARCH"><br>
+</form>
+
 <%
+	String name="";
+	Pattern pattern;
+	Matcher matcher;
 	ConcurrentHashMap<Integer,CustomerDetail> customerDetails= new ConcurrentHashMap<>();
 	Employee employee=((Employee)session.getAttribute("employee"));
-	
 	employee.getBranch().loadCustomers();
 	customerDetails=Branch.getCustomerDetails();
+	if(request.getParameter("name")!=null && name==""){
+		name=request.getParameter("name");
+	}
+	for(CustomerDetail customerDetail:customerDetails.values()){
+		pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
+	    matcher = pattern.matcher(customerDetail.getName());
+	    boolean matchFound = matcher.find();
+	    if(matchFound) {
+	      out.println(customerDetail.toString());
+	    }
+	}
 %>
-<table><tr><th>TRANSACTION ID</th><th>DATE</th><th>TIME</th><th>AMOUNT</th><th>REMAINING BALANCE</th></tr>
 
-<c:forEach items="${customerDetails}" var="customerDetail">
-<tr>
-<td>${customerDetail.value. getCustomerId()}</td>
-
-<tr>
-</c:forEach>
-</table>
-<!-- for(Transaction transaction:transactions.values()){
-	
-	out.print("<tr>" 
-			+ "<td>" + transaction.getTransactionId()+ "</td>" 
-			+ "<td>"+transaction.getDate().toString()+ "</td>" 
-			+ "<td>"+ transaction.getTime().toString()+ "</td>" 
-			+ "<td>"+ transaction.getAmount()+ "</td>"
-			+ "<td>"+ transaction.getRemainingBalance()+"</td>"
-			+"</tr>"); -->
-	
-}
 
 </body>
 </html>

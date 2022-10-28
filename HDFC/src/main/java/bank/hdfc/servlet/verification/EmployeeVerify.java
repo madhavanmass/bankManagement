@@ -48,6 +48,7 @@ public class EmployeeVerify extends HttpServlet {
 				request.getSession().setAttribute("admin", admin);
 			} else {
 				request.getRequestDispatcher("employeeLogin").forward(request, response);
+				request.getSession().setAttribute("message", "INVALID CRADENTIALS");
 			}
 			break;
 		}

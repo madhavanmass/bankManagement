@@ -8,11 +8,12 @@
 </head>
 <body>
 
-<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
+
 <form action="addMember" method="post">
 <jsp:include page="/COMMON/createperson.html"></jsp:include>
-<input type="hidden" name="role" value="1"> 
-<input type="submit" value="ADD EMPLOYEE">
+ENTER THE BRANCH ID : <input type="number" name="branchId">
+<input type="hidden" name="role" value="2"> 
+<input type="submit" value="ASSIGN MANAGER">
 </form>
 <% if(session.getAttribute("message") !=null){
 	out.print(request.getAttribute("message")+"<br>");

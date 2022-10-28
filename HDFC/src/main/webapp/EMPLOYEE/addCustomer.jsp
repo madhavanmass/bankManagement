@@ -8,7 +8,7 @@
 </head>
 <body>
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="addCustomerServlet" method="post">
+<form action="addMember" method="post">
 <jsp:include page="/COMMON/createperson.html"></jsp:include>
 <input type="submit" value="CREATE CUSTOMER">
 

@@ -24,7 +24,8 @@ public class PersonDao {
 	public int createPerson(String customerName,String dateOfBirth,String aadharNumber,String panNumber,String phoneNumber,String mailId,String addressline1,String addressline2,String pincode, String password) {
 	
 		try (Connection connection=ConnectionTool.getConnection()){
-            PreparedStatement preparedStatement=connection.prepareStatement(ConnectionTool.resourceBundle.getString("addPerson"));
+            int personId=0;
+			PreparedStatement preparedStatement=connection.prepareStatement(ConnectionTool.resourceBundle.getString("addPerson"),PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, customerName);
             preparedStatement.setString(2, phoneNumber);
             preparedStatement.setString(3, aadharNumber);
@@ -35,8 +36,14 @@ public class PersonDao {
             preparedStatement.setString(8, addressline1);
             preparedStatement.setString(9, addressline2);
             preparedStatement.setString(10, pincode);
-            preparedStatement.execute();
-            return getPersonId(customerName,password);
+            preparedStatement.executeUpdate();
+            ResultSet resultSet=preparedStatement.getGeneratedKeys();
+            if(resultSet!=null && resultSet.next()) {
+            	personId=resultSet.getInt("person_id");
+            }
+            resultSet.close();
+            preparedStatement.close();
+            return personId;
 
         } catch (Exception e) {
             System.out.println("ERROR IN CREATING PERSON");

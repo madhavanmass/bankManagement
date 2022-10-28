@@ -21,11 +21,18 @@ public class EmployeeDao {
 
 	public int addCustomer(int personId) {
 		try (Connection connection = ConnectionTool.getConnection()) {
-			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("addCustomer"));
+			int customerId=0;
+			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("addCustomer"),PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStatement.setInt(1, personId);
 			preparedStatement.execute();
 			preparedStatement.close();
-			return getId("viewCustomerId", personId);
+			ResultSet resultSet=preparedStatement.getGeneratedKeys();
+            if(resultSet!=null && resultSet.next()) {
+            	customerId=resultSet.getInt("customer_id");
+            }
+            resultSet.close();
+            preparedStatement.close();
+			return customerId;
 
 		} catch (Exception e) {
 			System.out.println("ERROR IN ADDING CUSTOMER");
@@ -34,69 +41,83 @@ public class EmployeeDao {
 		return 0;
 	}
 	
-	protected void createAccount(int customerId, int choice, int initialDeposit, int branchId) {
+	protected int createAccount(int customerId, int choice, int initialDeposit, int branchId) {
 		try (Connection connection = ConnectionTool.getConnection()) {
-			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("createAccount"));
+			int accountNumber=0;
+			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("createAccount"),PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStatement.setInt(1, customerId);
 			preparedStatement.setInt(2, branchId);
 			preparedStatement.setInt(3, choice);
 			preparedStatement.setInt(4, initialDeposit);
-			preparedStatement.execute();
+			preparedStatement.executeUpdate();
+			ResultSet resultSet=preparedStatement.getGeneratedKeys();
+			if(resultSet!=null && resultSet.next()) {
+				accountNumber=resultSet.getInt("account_number");
+			}
+			resultSet.close();
 			preparedStatement.close();
+			return accountNumber;
 
 		} catch (Exception e) {
 			System.out.println("ERROR IN creating Account");
 			e.printStackTrace();
 		}
+		return 0;
 	}
-	public void createCurrentAccount(int customerId, int accountChoice, int initialDeposit, int branchId) {
+	public int createCurrentAccount(int customerId, int accountChoice, int initialDeposit, int branchId) {
 		try (Connection connection = ConnectionTool.getConnection()) {
-			createAccount(customerId, 2, initialDeposit, branchId);
+			int accountNumber=createAccount(customerId, 2, initialDeposit, branchId);
 			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("createCurrentAccount"));
-			preparedStatement.setInt(1, customerId);
+			preparedStatement.setInt(1, accountNumber);
+			preparedStatement.setInt(2, initialDeposit);
 			preparedStatement.execute();
 			preparedStatement.close();
+			return accountNumber;
 
 		} catch (Exception e) {
 			System.out.println("ERROR IN creating current Account");
 			e.printStackTrace();
 		}
+		return 0;
 	}
 
 	
 
-	public void createSavingAccount(int customerId, int accountChoice, int initialDeposit, float savingAccountInterest,
+	public int createSavingAccount(int customerId, int accountChoice, int initialDeposit, float savingAccountInterest,
 			int branchId) {
 		try (Connection connection = ConnectionTool.getConnection()) {
-			createAccount(customerId, 1, initialDeposit, branchId);
+			int accountNumber=createAccount(customerId, 1, initialDeposit, branchId);
 			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("createSavingAccount"));
-			preparedStatement.setInt(1, customerId);
-			preparedStatement.setFloat(2, savingAccountInterest);
+			preparedStatement.setInt(1, accountNumber);
+			preparedStatement.setInt(2, initialDeposit);
+			preparedStatement.setFloat(3, savingAccountInterest);
 			preparedStatement.execute();
 			preparedStatement.close();
+			return accountNumber;
 
 		} catch (Exception e) {
 			System.out.println("ERROR IN creating saving account");
 			e.printStackTrace();
 		}
-	}
-
-	public int getId(String query, int id) {
-		try (Connection connection = ConnectionTool.getConnection()) {
-			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString(query));
-			preparedStatement.setInt(1, id);
-			ResultSet resultset = preparedStatement.executeQuery();
-			resultset.next();
-			int Id = resultset.getInt(1);
-			resultset.close();
-			preparedStatement.close();
-			return Id;
-
-		} catch (Exception e) {
-			System.out.println("ERROR IN GETTING ID");
-			e.printStackTrace();
-		}
 		return 0;
 	}
+
+//	public int getId(String query, int id) {
+//		try (Connection connection = ConnectionTool.getConnection()) {
+//			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString(query));
+//			preparedStatement.setInt(1, id);
+//			ResultSet resultset = preparedStatement.executeQuery();
+//			resultset.next();
+//			int Id = resultset.getInt(1);
+//			resultset.close();
+//			preparedStatement.close();
+//			return Id;
+//
+//		} catch (Exception e) {
+//			System.out.println("ERROR IN GETTING ID");
+//			e.printStackTrace();
+//		}
+//		return 0;
+//	}
 
 }

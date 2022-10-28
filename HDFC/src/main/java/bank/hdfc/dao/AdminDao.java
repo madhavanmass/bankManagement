@@ -32,11 +32,17 @@ public class AdminDao {
 
 	public int addManager(int personId, int branchId, int role) {
 		try (Connection connection = ConnectionTool.getConnection()) {
-			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("addManager"));
+			int managerId=0;
+			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("addManager"),PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStatement.setInt(1, personId);
 			preparedStatement.execute();
+			ResultSet resultSet=preparedStatement.getGeneratedKeys();
+            if(resultSet!=null && resultSet.next()) {
+            	managerId=resultSet.getInt("employee_id");
+            }
+            resultSet.close();
 			preparedStatement.close();
-			return new EmployeeDao().getId("viewManagerId", personId);
+			return managerId;
 
 		} catch (Exception e) {
 			System.out.println("ERROR IN ADDING EMPLOYEE");
@@ -48,15 +54,20 @@ public class AdminDao {
 
 	public int addBranch(String branchName, String addressLine1, String addressLine2, String pinCode) {
 		try (Connection connection = ConnectionTool.getConnection()) {
-			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("createBranch"));
+			int branchId=0;
+			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("createBranch"),PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, branchName);
-			preparedStatement.setString(2, generateIfsc("HDFC"));
-			preparedStatement.setString(3, addressLine1);
-			preparedStatement.setString(4, addressLine2);
-			preparedStatement.setString(5, pinCode);
+			preparedStatement.setString(2, addressLine1);
+			preparedStatement.setString(3, addressLine2);
+			preparedStatement.setString(4, pinCode);
 			preparedStatement.execute();
+			ResultSet resultSet=preparedStatement.getGeneratedKeys();
+            if(resultSet!=null && resultSet.next()) {
+            	branchId=resultSet.getInt("branch_id");
+            }
+            resultSet.close();
 			preparedStatement.close();
-			return getBranchId(branchName);
+			return branchId;
 
 		} catch (Exception e) {
 			System.out.println("ERROR IN CREATING A BRANCH");
@@ -87,22 +98,22 @@ public class AdminDao {
 	}
 
 
-	private String generateIfsc(String bankName) {
-		try (Connection connection = ConnectionTool.getConnection()) {
-			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("generateIfsc"));
-			ResultSet resultset = preparedStatement.executeQuery();
-			int count = 1;
-			if (resultset.next()) {
-				count = resultset.getInt(1) + 1;
-			}
-			resultset.close();
-			preparedStatement.close();
-			return bankName + String.format("%06d", count);
-
-		} catch (Exception e) {
-			System.out.println("Error in generating ifsc");
-		}
-		return null;
-	}
+//	private String generateIfsc(String bankName) {
+//		try (Connection connection = ConnectionTool.getConnection()) {
+//			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("generateIfsc"));
+//			ResultSet resultset = preparedStatement.executeQuery();
+//			int count = 1;
+//			if (resultset.next()) {
+//				count = resultset.getInt(1) + 1;
+//			}
+//			resultset.close();
+//			preparedStatement.close();
+//			return bankName + String.format("%06d", count);
+//
+//		} catch (Exception e) {
+//			System.out.println("Error in generating ifsc");
+//		}
+//		return null;
+//	}
 
 }

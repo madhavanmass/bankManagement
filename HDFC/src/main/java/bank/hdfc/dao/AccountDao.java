@@ -1,5 +1,6 @@
 package bank.hdfc.dao;
 
+import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -192,10 +193,11 @@ public class AccountDao {
 		return null;
 	}
 
-	public boolean openDeposit(int accountNumber, int amount, int type, int policy,int numberOfMonth) {
+	public int openDeposit(int accountNumber, int amount, int type, int policy,int numberOfMonth) {
 		try (Connection connection = ConnectionTool.getConnection()) {
+			int depositId=0;
 			PreparedStatement preparedStatement = connection
-					.prepareStatement(ConnectionTool.resourceBundle.getString("openDeposit"));
+					.prepareStatement(ConnectionTool.resourceBundle.getString("openDeposit"),PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStatement.setInt(1, accountNumber);
 			preparedStatement.setInt(2, amount);
 			preparedStatement.setInt(3, type);
@@ -203,22 +205,28 @@ public class AccountDao {
 			preparedStatement.setInt(5, policy);
 			preparedStatement.setInt(6, numberOfMonth);
 			boolean checker = preparedStatement.execute();
+			ResultSet resultSet=preparedStatement.getGeneratedKeys();
+			if(resultSet!=null && resultSet.next()) {
+				depositId=resultSet.getInt("deposit_id");
+			}
+			resultSet.close();
 			preparedStatement.close();
-			return checker;
+			return depositId;
 		} catch (Exception e) {
 			System.out.println("there was an error in open deposit");
 			e.printStackTrace();
 		}
-		return false;
+		return 0;
 		
 		
 	}
 
 	public boolean openFixedDeposit(int accountNumber, int amount, int type, int policy,int numberOfMonth) {
-		openDeposit(accountNumber, amount, type, policy,numberOfMonth);
+		int depositId=openDeposit(accountNumber, amount, type, policy,numberOfMonth);
 		try (Connection connection = ConnectionTool.getConnection()) {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(ConnectionTool.resourceBundle.getString("openFixedDeposit"));
+			preparedStatement.setInt(1, depositId);
 			boolean checker = preparedStatement.execute();
 			preparedStatement.close();
 			return checker;
@@ -231,10 +239,12 @@ public class AccountDao {
 	}
 
 	public boolean openRecurrsiveDeposit(int accountNumber, int amount, int type, int policy,int numberOfMonth) {
-		openDeposit(accountNumber, amount, type, policy,numberOfMonth);
+		int depositId=openDeposit(accountNumber, amount, type, policy,numberOfMonth);
 		try (Connection connection = ConnectionTool.getConnection()) {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(ConnectionTool.resourceBundle.getString("openRecurringDeposit"));
+			preparedStatement.setInt(1, depositId);
+			preparedStatement.setInt(2, amount);
 			boolean checker = preparedStatement.execute();
 			preparedStatement.close();
 			return checker;
