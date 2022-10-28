@@ -8,8 +8,6 @@
 	<listener>
 		<listener-class>bank.hdfc.dao.ConnectionTool</listener-class>
 	</listener>
-
-
 	<!-- ########################## resource reference #################### -->
 	<resource-ref>
 		<res-ref-name>jdbc/postgres</res-ref-name>
