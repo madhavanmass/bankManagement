@@ -565,10 +565,10 @@
 	
 	<!-- ########################## ERROR PAGE #################### -->
 	
-	<!-- <error-page>  
+	<error-page>  
   	<error-code>500</error-code>  
   	<location>/ERROR/sessionErrorPage.jsp</location> 
-  	</error-page>  -->
+  	</error-page>
 	
 	
 	

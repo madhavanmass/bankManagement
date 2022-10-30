@@ -18,7 +18,7 @@
 HashMap<Integer,Beneficiary> beneficiarys= new HashMap<>();
 Customer customer=((Customer)session.getAttribute("customer"));
 int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
-if(customer.getCurrentAccount().getAccountNumber()==accountNumber){
+if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
 	customer.getCurrentAccount().loadBenificary();
 	beneficiarys=customer.getCurrentAccount().getBeneficiary();
 }

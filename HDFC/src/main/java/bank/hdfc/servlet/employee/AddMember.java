@@ -48,7 +48,6 @@ public class AddMember extends HttpServlet {
         	if(roleInt==1) {
         		int personId=admin.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
         		id= admin.assignManager(Integer.parseInt(branchId), personId);
-        		
         	}
 			request.getSession().setAttribute("message", id);
         	request.getRequestDispatcher("assignManager").forward(request, response);

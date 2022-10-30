@@ -33,13 +33,14 @@ public class AdminDao {
 
 	public int addManager(int personId, int branchId, int role) {
 		try (Connection connection = ConnectionTool.getConnection()) {
+			int employeeId=new ManagerDao().addEmployee(personId, branchId, role);
 			int managerId=0;
 			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("addManager"),PreparedStatement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, personId);
+			preparedStatement.setInt(1, employeeId);
 			preparedStatement.execute();
 			ResultSet resultSet=preparedStatement.getGeneratedKeys();
             if(resultSet!=null && resultSet.next()) {
-            	managerId=resultSet.getInt("employee_id");
+            	managerId=resultSet.getInt("manager_id");
             }
             resultSet.close();
 			preparedStatement.close();
