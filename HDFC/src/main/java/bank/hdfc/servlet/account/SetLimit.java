@@ -16,6 +16,7 @@ public class SetLimit extends HttpServlet {
 		int userSetLimit=Integer.valueOf(request.getParameter("userSetLimit"));
 		Customer customer=(Customer) request.getSession().getAttribute("customer");
 		customer.getCurrentAccount().resetUserLimt(userSetLimit);
+		customer.getCurrentAccount().setUserSetLimit(userSetLimit);
 		request.getRequestDispatcher("accountDetail?accountNumber="+accountNumber).forward(request, response);
 	}
 

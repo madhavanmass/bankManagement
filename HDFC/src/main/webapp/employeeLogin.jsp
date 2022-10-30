@@ -10,10 +10,10 @@
 <h1>WELCOME TO HDFC</h1>
 <h2>STAFF LOGIN</h2>
 <form action="verify" method="post">
-ENTER YOUR ID     : <input type="number" name="userId"><br>
-ENTER PASSWORD    :<input type="password" name="password"><br>
+ENTER YOUR ID     : <input type="number" name="userId" value="2"><br>
+ENTER PASSWORD    :<input type="password" name="password" value="john000"><br>
 SELECT YOUR ROLE :
-<select name="role">
+<select name="role" >
 <option value="1">EMPLOYEE</option>
 <option value="2">MANAGER</option>
 <option value="3">ADMIN</option>

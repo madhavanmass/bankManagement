@@ -11,11 +11,11 @@
 <form action="issueDebitCardServlet" method="post">
 ENTER THE CUSTOMER ID :<input type="text" name="customerId"><br>
 ENTER THE ACCOUNT NUMBER :<input type="number" name="accountNumber"><br>
-ENTER THE M-Pin :<input type="number" name="amount"><br>
+ENTER THE M-Pin :<input type="number" name="mPin"><br>
 <input type="submit" value="ISSUE DEBIT CARD"> 
 </form>
 <% if(session.getAttribute("message") !=null){
-	out.print(request.getAttribute("message")+"<br>");
+	out.print("<h2>"+(String)session.getAttribute("message")+"</h2>");
 	session.removeAttribute("message");
 }
 %>

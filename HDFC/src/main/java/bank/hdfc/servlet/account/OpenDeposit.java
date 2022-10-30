@@ -17,16 +17,22 @@ public class OpenDeposit extends HttpServlet {
 		int type=Integer.valueOf(request.getParameter("depositType"));
 		int policy=Integer.valueOf(request.getParameter("depositPolicy"));
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
+		boolean checker=false;
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
-			customer.getCurrentAccount().debitMoney(amount, "OPENED A DEPOSIT ");	
-			customer.getCurrentAccount().openDeposit(type, amount, policy);
+			
+			if(customer.getCurrentAccount().debitMoney(amount, "OPENED A DEPOSIT ")==1) {
+				checker=customer.getCurrentAccount().openDeposit(type, amount, policy);
+			}
 		}
 		else {
-			customer.getSavingAccounts().get(accountNumber).debitMoney(amount, "OPENED A DEPOSIT ");
-			customer.getSavingAccounts().get(accountNumber).openDeposit(type, amount, policy);
+			
+			if(customer.getSavingAccounts().get(accountNumber).debitMoney(amount, "OPENED A DEPOSIT ")==1) {
+				checker=customer.getSavingAccounts().get(accountNumber).openDeposit(type, amount, policy);
+			}
 		}
 		customer.setFixedDeposits(null);
 		customer.setRecurrsiveDeposits(null);
+		request.getSession().setAttribute("message", checker);
 		response.sendRedirect("openDeposit?accountNumber="+accountNumber);
 	}
 

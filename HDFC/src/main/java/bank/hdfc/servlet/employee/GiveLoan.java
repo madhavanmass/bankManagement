@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bank.hdfc.function.Employee;
+import bank.hdfc.pack.BankDefinition;
 
 public class GiveLoan extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,8 +20,15 @@ public class GiveLoan extends HttpServlet {
         int amount=Integer.valueOf(request.getParameter("amount"));
         Employee employee=(Employee)request.getSession().getAttribute("employee");
         int messageInt=employee.customerDeposit(customerId, accountNumber, amount);
-        request.getSession().setAttribute("message", messageInt);
-        request.getRequestDispatcher("depositMoney").forward(request, response);
+        String message;
+        if(messageInt==3) {
+        	message="THE AMOUNT "+amount+" HAS BEEN SUCCESSFULLY GIVE AS A LOAN TO CUSTOMER WITH ID "+customerId;
+        }
+        else {
+        	message=BankDefinition.employeeMessage(messageInt);
+        }
+        request.getSession().setAttribute("message", message);
+        request.getRequestDispatcher("giveLoan").forward(request, response);
 	}
 
 }

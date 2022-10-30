@@ -32,7 +32,7 @@ function show()
 Customer customer=((Customer)session.getAttribute("customer"));
 DebitCard debitCard=null;
 int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
-if(customer.getCurrentAccount().getAccountNumber()==accountNumber){
+if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
 	customer.getCurrentAccount().loadDebitCard();
 	debitCard=customer.getCurrentAccount().getDebitCard();
 }
@@ -53,6 +53,17 @@ ENTER NEW MPIN:<input type="number" name="oldMPin">
 <input type="hidden" value=<%=request.getParameter("accountNumber")%> name="accountNumber">
 <input type="submit" value="CONFIRM">
 </form>
+<% if(session.getAttribute("message") !=null){
+	boolean result=((Boolean)session.getAttribute("message"));
+	session.removeAttribute("message");
+	if(result){
+		out.print("<h2>THE M-PIN HAS BEEN CHANGED SUCCESSFULLY</h2>");
+	}
+	else{
+		out.print("<h2>THE OLD M-PIN DOESNT MATCH</h2>");
+	}
+}	
+%>
 <h1>CHANGE CARD STATUS</h1>
 <form action="changeStatus">
 <input type="hidden" value=<%=request.getParameter("accountNumber")%> name="accountNumber">

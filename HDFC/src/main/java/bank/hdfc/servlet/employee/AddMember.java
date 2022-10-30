@@ -29,30 +29,34 @@ public class AddMember extends HttpServlet {
         String branchId=request.getParameter("branchId");
         Employee employee= (Employee)request.getSession().getAttribute("employee");
         Admin admin=(Admin)request.getSession().getAttribute("admin");
+        
+        
         if(employee!=null && employee.getRole()==2 && role!=null) {
-        	Manager manager=(Manager) request.getSession().getAttribute("manager");
+        	Manager manager=(Manager)request.getSession().getAttribute("employee");
         	int roleInt=Integer.parseInt(role);
+        	int id=0;
         	if(roleInt==1) {
         		int personId=manager.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
-        		manager.addEmployee(personId);
+        		id= manager.addEmployee(personId);
         	}
-        	request.getSession().setAttribute("message", "");
+        	request.getSession().setAttribute("message",id );
         	request.getRequestDispatcher("addEmployee").forward(request, response);
         }
         else if(admin!=null && role!=null) {
         	int roleInt=Integer.parseInt(role);
-			if(roleInt==1) {
+			int id=0;
+        	if(roleInt==1) {
         		int personId=admin.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
-        		admin.assignManager(Integer.parseInt(branchId), personId);
+        		id= admin.assignManager(Integer.parseInt(branchId), personId);
         		
         	}
-			request.getSession().setAttribute("message", "");
+			request.getSession().setAttribute("message", id);
         	request.getRequestDispatcher("assignManager").forward(request, response);
         }
         else if(employee!=null){
         	int personId=employee.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
-        	employee.addCustomer(personId);
-        	request.getSession().setAttribute("message", "");
+        	int id=employee.addCustomer(personId);
+        	request.getSession().setAttribute("message", id);
         	request.getRequestDispatcher("createAccount").forward(request, response);
         }
         

@@ -62,21 +62,18 @@ public class Employee extends Person {
 	// creating account for the user
 	public int createAccount(int customerId, int accountChoice, int initialDeposit) {
 		branch.loadCustomers();
-		int resultInt = 0;
+		int resultInt = 3;
 		if (!Branch.getCustomerDetails().containsKey(customerId)) {
 			resultInt = 1;
 		} else {
 			if (accountChoice == 2 && (!Branch.getCustomerDetails().get(customerId).getAccounts().containsValue(2))) {
 				employeeDao.createCurrentAccount(customerId, accountChoice, initialDeposit, branchId);
 				Branch.getCustomerDetails().replace(customerId, branch.getCustomerDetail(customerId));
-				resultInt = 2;
+				
 			} else if (accountChoice == 1) {
 				employeeDao.createSavingAccount(customerId, accountChoice, initialDeposit,
 						BankDefinition.savingAccountInterest(initialDeposit), branchId);
 				Branch.getCustomerDetails().replace(customerId, branch.getCustomerDetail(customerId));
-				resultInt = 3;
-			} else {
-				resultInt = 4;
 			}
 		}
 		return resultInt;
@@ -85,15 +82,13 @@ public class Employee extends Person {
 	// function to deposit user given money
 	public int customerDeposit(int customerId, int accountNumber, int amount) {
 		branch.loadCustomers();
-		int resultInt = 0;
+		int resultInt = 3;
 		if (!Branch.getCustomerDetails().containsKey(customerId)) {
-			resultInt = 5;
+			resultInt = 1;
 		} else {
 			if (Branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
 				branch.doDeposit(accountNumber, amount);
-				resultInt = 6;
-			} else {
-				resultInt = 7;
+				resultInt = 2;
 			}
 		}
 		return resultInt;
@@ -102,20 +97,15 @@ public class Employee extends Person {
 
 	public int issueDebitCard(int customerId, int accountNumber, int mPin) {
 		branch.loadCustomers();
-		int resultInt = 0;
+		int resultInt = 3;
 		if (!Branch.getCustomerDetails().containsKey(customerId)) {
-			resultInt = 8;
+			resultInt = 1;
 		} else {
 			if (Branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
 				boolean cardCheck = employeeDao.issueDebitCard(accountNumber, mPin);
-				if (cardCheck) {
-					resultInt = 8;
-				} else {
-					resultInt = 8;
-				}
 
 			} else {
-				resultInt = 8;
+				resultInt = 2;
 			}
 		}
 		return resultInt;

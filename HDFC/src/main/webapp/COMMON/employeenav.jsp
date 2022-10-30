@@ -9,7 +9,7 @@
 	<a class="viewCustomer" href="viewCustomer">VIEW CUSTOMER</a>
 	<c:if test="<%=((Employee)session.getAttribute(\"employee\")).getRole()==2%>">
 	<a class="giveLoan" href="giveLoan">GIVE LOAN</a>
-	<a class="addEmployee" href="giveLoan">ADD EMPLOYEE</a>
+	<a class="addEmployee" href="addEmployee">ADD EMPLOYEE</a>
 	<a class="viewEmployee" href="viewEmployee">VIEW EMPLOYEE</a>
 	</c:if>
 	<a class="logout" href="logout">LOGOUT</a>

@@ -120,41 +120,32 @@ public class Account {
 
 	// debit amount from account
 	protected int debitMoney(int amount, String description) {
-		int debitChecker = accountDao.updateAccount(accountNumber, amount * -1,getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
-		boolean transferEntryChecker = accountDao.transactionEntry(getAccountNumber(), 0, description, amount, 2, 1);
+		accountDao.updateAccount(accountNumber, amount * -1,getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
+		accountDao.transactionEntry(getAccountNumber(), 0, description, amount, 2, 1);
 		transactions = null;
-		if (debitChecker>0)
-			return 3;
-		else if (transferEntryChecker)
-			return 4;
-		else
-			return 0;
+		return 1;
 	}
 
 	// transfer money from bank
 	protected int transfer(int otherAccount, int amount, String description) {
 		loadBenificary();
 		boolean check = true;
-		int resultInt = 5;
+		int resultInt = 1;
 		int beneficiaryId = isBeneficiary(otherAccount);
 		if (beneficiaryId != 0) {
 			check = beneficiary.get(beneficiaryId).limitChecker(amount);
 			beneficiary.get(beneficiaryId).updateTransfer(amount);
 		}
 		if (check) {
-			resultInt = 7;
 			accountDao.updateAccount(accountNumber, amount * -1,getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
 			int checker=branch.doDeposit(otherAccount, amount);
-			if(checker==1) {
-				resultInt=10;
-			}
-			else {
-				resultInt=11;
+			if(checker==0) {
+				resultInt=3;
 			}
 			accountDao.transactionEntry(accountNumber, otherAccount, description, amount, 2, 1);
 			transactions = null;
 		} else {
-			resultInt = 6;
+			resultInt = 2;
 		}
 
 		return resultInt;

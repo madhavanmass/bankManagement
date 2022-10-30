@@ -21,7 +21,7 @@ public class ChangePassword extends HttpServlet {
 		HttpSession session= request.getSession();
 		boolean check=false;
 		if(session.getAttribute("customer")!=null) {
-		check=((Customer)session.getAttribute("customer")).changePassword(oldPassword, newPassword);
+			check=((Customer)session.getAttribute("customer")).changePassword(oldPassword, newPassword);
 		}
 		else if(session.getAttribute("emplyee")!=null){
 			check=((Employee)session.getAttribute("employee")).changePassword(oldPassword, newPassword);

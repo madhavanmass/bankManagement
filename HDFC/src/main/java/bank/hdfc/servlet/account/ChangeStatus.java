@@ -13,13 +13,14 @@ public class ChangeStatus extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Customer customer=(Customer) request.getSession().getAttribute("customer");
-		int choice=Integer.valueOf(request.getParameter("oldMPin")) ;
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
-			customer.getCurrentAccount().getDebitCard().activateOrLock(choice==1?2:1);	
+			customer.getCurrentAccount().getDebitCard().activateOrLock(customer.getCurrentAccount().getDebitCard().getStatus()==1?2:1);
+			customer.getCurrentAccount().getDebitCard().setStatus(customer.getCurrentAccount().getDebitCard().getStatus()==1?2:1);
 		}
 		else {
-			customer.getSavingAccounts().get(accountNumber).getDebitCard().activateOrLock(choice==1?2:1);
+			customer.getSavingAccounts().get(accountNumber).getDebitCard().activateOrLock(customer.getSavingAccounts().get(accountNumber).getDebitCard().getStatus()==1?2:1);
+			customer.getSavingAccounts().get(accountNumber).getDebitCard().setStatus(customer.getSavingAccounts().get(accountNumber).getDebitCard().getStatus()==1?2:1);
 		}
 		response.sendRedirect("debitCard?accountNumber="+accountNumber);
 	}

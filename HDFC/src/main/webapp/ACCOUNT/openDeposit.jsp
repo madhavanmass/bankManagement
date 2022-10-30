@@ -29,5 +29,11 @@ SELECT THE TYPE:
 <input type="hidden" name="accountNumber" value=<%=request.getParameter("accountNumber") %>>
 <input type="submit" value="OPEN DEPOSIT">
 </form>
+<% if(session.getAttribute("message") !=null){
+	boolean message=(boolean)session.getAttribute("message");
+	session.removeAttribute("message");
+	out.print(message?"A NEW DEPOSIT HAS BEEN OPEN FOR YOU GO CHECK IN THE DEPOSIT TAB":"IT SEEMS YOU HAVE IN SUFFICIENT BLANCE PLEASE TRY IN OTHER ACCOUNTS");
+}	
+%>
 </body>
 </html>

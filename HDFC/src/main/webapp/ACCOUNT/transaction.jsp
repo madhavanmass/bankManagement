@@ -19,7 +19,7 @@
 HashMap<Integer,Transaction> transactions= new HashMap<>();
 Customer customer=((Customer)session.getAttribute("customer"));
 int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
-if(customer.getCurrentAccount().getAccountNumber()==accountNumber){
+if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
 	customer.getCurrentAccount().loadTransactions(customer.getCurrentAccount().getBalance());
 	transactions=customer.getCurrentAccount().getTransactions();
 }

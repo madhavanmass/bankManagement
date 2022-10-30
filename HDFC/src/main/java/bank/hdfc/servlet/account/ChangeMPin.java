@@ -11,6 +11,7 @@ import bank.hdfc.function.Customer;
 
 public class ChangeMPin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private boolean checker;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Customer customer=(Customer) request.getSession().getAttribute("customer");
@@ -18,11 +19,14 @@ public class ChangeMPin extends HttpServlet {
 		int newMPin=Integer.valueOf(request.getParameter("newMPin")) ;
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
-			customer.getCurrentAccount().getDebitCard().changeMPin(oldMPin, newMPin);	
+			checker=customer.getCurrentAccount().getDebitCard().changeMPin(oldMPin, newMPin);
+			customer.getCurrentAccount().getDebitCard().setmPin(newMPin);
 		}
 		else {
-			customer.getSavingAccounts().get(accountNumber).getDebitCard().changeMPin(oldMPin, newMPin);
+			checker=customer.getSavingAccounts().get(accountNumber).getDebitCard().changeMPin(oldMPin, newMPin);
+			customer.getSavingAccounts().get(accountNumber).getDebitCard().setmPin(newMPin);
 		}
+		request.getSession().setAttribute("message", checker);
 		response.sendRedirect("debitCard?accountNumber="+accountNumber);
 	}
 

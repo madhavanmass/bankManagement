@@ -4,11 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>HOME</title>
+<title>multiple</title>
 </head>
 <body>
-<jsp:include page="/COMMON/topnav.html"></jsp:include>
-WELCOME THE HDFC
-
+MULTIPLE USER HAS BEEN DEDUCTED IN THE SESSION 
+PLEASE CLOSE ALL THE TAB AN RETRY
 </body>
 </html>

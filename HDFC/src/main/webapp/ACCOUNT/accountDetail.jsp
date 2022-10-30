@@ -16,7 +16,9 @@
 <%
 int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 Customer customer=((Customer) session.getAttribute("customer"));
-if(customer.getCurrentAccount().getAccountNumber()==accountNumber){
+customer.loadCurrentAccounts();
+customer.loadSavingAccount();
+if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
 	out.print(customer.getCurrentAccount().toString());
 }
 else{
@@ -24,9 +26,9 @@ else{
 }
 %>
 
-<c:if test="<%=customer.getCurrentAccount().getAccountNumber()==accountNumber%>">
+<c:if test="<%=customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber%>">
 <h4>SET A SPENT LIMIT</h4>
-<form action="userSetLimit?accountNumber=${accountNumber}" oninput="limit.value=parseInt(userSetLimit.value)">
+<form action="userSetLimit?accountNumber=<%=request.getParameter("accountNumber")%>" oninput="limit.value=parseInt(userSetLimit.value)">
 1000 <input type="range" min="1000" max="100000" value=<%=customer.getCurrentAccount().getUserSetLimit()%> name="userSetLimit"> 100000<br>
 <output name="limit"></output><br>
 <input type="submit" value="UPDATE LIMIT">

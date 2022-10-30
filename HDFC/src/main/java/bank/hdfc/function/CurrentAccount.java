@@ -62,10 +62,10 @@ public class CurrentAccount extends Account {
 	}
 	private int check(int amount) {
 		if(balance-amount < 0) {
-			return 1;
+			return 4;
 		}
 		else if(transferredAmount+amount > userSetLimit) {
-			return 2;
+			return 5;
 		}
 		else {
 			return 0;

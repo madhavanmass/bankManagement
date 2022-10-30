@@ -22,7 +22,7 @@ ENTER THE ACCOUNT NUMBER YOU WANT TO PUT THE MONEY IN :<input type="text" name="
 <input type="submit" value="GIVE LOAN"> 
 </form>
 <% if(session.getAttribute("message") !=null){
-	out.print(request.getAttribute("message")+"<br>");
+	out.print("<h2>"+(String)session.getAttribute("message")+"</h2>");
 	session.removeAttribute("message");
 }
 %>

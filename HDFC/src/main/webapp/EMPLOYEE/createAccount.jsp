@@ -19,9 +19,15 @@ CHOOSE AN ACCOUNT:<br>
 <select name="accountChoice">
 <option value="1">SAVING ACCOUNT</option>
 <option value="2">CURRENT ACCOUNT</option>
-</select>
+</select><br>
 ENTER INITIAL DEPOSIT :<input type="number" name="initialDeposit"><br>
-<input type="submit" value="DEPOSIT MONEY">
+<input type="submit" value="CREATE ACCOUNT">
 </form>
+
+<% if(session.getAttribute("message") !=null){
+	out.print("<h2>"+(String)session.getAttribute("message")+"</h2>");
+	session.removeAttribute("message");
+}
+%>
 </body>
 </html>

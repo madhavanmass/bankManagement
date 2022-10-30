@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-    import="java.util.concurrent.ConcurrentHashMap"
-    import="bank.hdfc.pack.EmployeeDetail"
-    import="bank.hdfc.function.Manager"
+    import="java.util.HashMap"
+    import="bank.hdfc.function.Admin"
     import="bank.hdfc.function.Branch"
     import="java.util.regex.Matcher"
 	import="java.util.regex.Pattern"
@@ -15,8 +14,8 @@
 <title>VIEW CUSTOMERS</title>
 </head>
 <body>
-<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="viewEmployee">
+<jsp:include page="/COMMON/adminnav.html"></jsp:include>
+<form action="viewBranch">
 <input type="text" name="name"><input type="submit" value="SEARCH"><br>
 </form>
 
@@ -24,19 +23,19 @@
 	String name="";
 	Pattern pattern;
 	Matcher matcher;
-	ConcurrentHashMap<Integer,EmployeeDetail> employeeDetails= new ConcurrentHashMap<>();
-	Manager manager=((Manager)session.getAttribute("employee"));
-	manager.getBranch().loadEmployee();
-	employeeDetails=Branch.getEmployeeDetails();
+	HashMap<Integer,Branch> branches= new HashMap<>();
+	Admin admin=((Admin)session.getAttribute("admin"));
+	admin.loadBranch();
+	branches=admin.getBranchDetails();
 	if(request.getParameter("name")!=null && name==""){
 		name=request.getParameter("name");
 	}
-	for(EmployeeDetail employeeDetail:employeeDetails.values()){
+	for(Branch branchDetail:branches.values()){
 		pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
-	    matcher = pattern.matcher(employeeDetail.getName());
+	    matcher = pattern.matcher(branchDetail.getAddressLine1()+branchDetail.getAddressLine2()+branchDetail.getPinCode());
 	    boolean matchFound = matcher.find();
 	    if(matchFound) {
-	      out.println(employeeDetail.toString());
+	      out.println(branchDetail.toString());
 	    }
 	}
 %>

@@ -12,8 +12,8 @@
 <h2>CUSTOMER LOGIN</h2>
 
 <form action="customerVerify" method="post">
-ENTER CUSTOMER ID     : <input type="number" name="customerId"><br>
-ENTER PASSWORD        :<input type="password" name="password"><br>
+ENTER CUSTOMER ID     : <input type="number" name="customerId" value="7"><br>
+ENTER PASSWORD        :<input type="password" name="password" value="gokul000"><br>
 <% if(session.getAttribute("message") instanceof String)
 {
 	out.print((String)session.getAttribute("message"));

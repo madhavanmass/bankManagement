@@ -12,7 +12,7 @@ public class AdminDao {
 	public HashMap<Integer, Branch> getBranchDetails() {
 		try (Connection connection = ConnectionTool.getConnection()) {
 			HashMap<Integer, Branch> branch = new HashMap<>();
-			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("getBranch"));
+			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("getBranchDetails"));
 			ResultSet resultset = preparedStatement.executeQuery();
 			while (resultset.next()) {
 				branch.put(resultset.getInt(1), new Branch(resultset.getInt(1), resultset.getString(2),
@@ -24,6 +24,7 @@ public class AdminDao {
 
 		} catch (Exception e) {
 			System.out.println("Error in getting branches");
+			e.printStackTrace();
 		}
 
 		return null;

@@ -29,6 +29,7 @@ public class Branch {
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
 		this.pinCode = pinCode;
+		this.location=addressLine1+addressLine2+pinCode;
 	}
 	
 	
@@ -141,7 +142,7 @@ public class Branch {
 	}
 
 	public CustomerDetail getCustomerDetail(int customerId) {
+		return branchDao.getACustomerDetail(customerId);
 		
-		return null;
 	}
 }

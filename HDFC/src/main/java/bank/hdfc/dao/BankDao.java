@@ -46,6 +46,8 @@ public class BankDao {
 			Statement statement = connection.createStatement();
 			statement.addBatch(ConnectionTool.resourceBundle.getString("loanUpdate1"));
 			statement.addBatch(ConnectionTool.resourceBundle.getString("loanUpdate2"));
+			statement.addBatch(ConnectionTool.resourceBundle.getString("loanUpdate3"));
+			statement.addBatch(ConnectionTool.resourceBundle.getString("loanUpdate4"));
 			statement.executeBatch();
 			statement.close();
 		} catch (Exception e) {

@@ -8,14 +8,14 @@
 </head>
 <body>
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="depsoitMoneyServlet" method="post">
+<form action="depositMoneyServlet" method="post">
 ENTER THE CUSTOMER ID :<input type="text" name="customerId"><br>
 ENTER THE ACCOUNT NUMBER :<input type="text" name="accountNumber"><br>
-ENTER INITIAL DEPOSIT :<input type="number" name="initialDeposit"><br>
+ENTER INITIAL DEPOSIT :<input type="number" name="amount"><br>
 <input type="submit" value="DEPOSIT MONEY"> 
 </form>
 <% if(session.getAttribute("message") !=null){
-	out.print(request.getAttribute("message")+"<br>");
+	out.print("<h2>"+(String)session.getAttribute("message")+"</h2>");
 	session.removeAttribute("message");
 }
 %>

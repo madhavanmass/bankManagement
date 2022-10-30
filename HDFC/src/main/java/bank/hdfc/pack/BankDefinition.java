@@ -82,6 +82,27 @@ public class BankDefinition {
 		}
     	return null;
     }
+    
+    public static String accountMessage(int messageInt) {
+    	switch (messageInt) {
+		case 1: return "DEBITED SUCCESSFULLY";
+		case 2: return "BENEFICIARY LIMIT REACHED";
+		case 3: return "THE OTHER BANK TRANSFER WILL BE DONE";
+		case 4: return "INSUFFICIENT BALANCE HAS BEEN DEDUCTED";
+		case 5: return "TRANSACTION LIMIT HAS BEEN REACHED";
+		}
+    	return null;
+    }
+    
+    public static String employeeMessage(int messageInt) {
+    	switch (messageInt) {
+		case 3: return "ACTION DONE SUCESSFULLY";
+		case 1: return "CUSTOMER ID DOES'T EXIST THE BANK";
+		case 2: return "WRONG ACCOUNT NUMBER";
+		
+		}
+    	return null;
+    }
 
 	
 	

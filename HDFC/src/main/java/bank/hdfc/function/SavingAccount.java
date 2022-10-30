@@ -70,10 +70,10 @@ public class SavingAccount extends Account {
 	
 	private int check(int amount) {
 		if(balance-amount < 0) {
-			return 1;
+			return 4;
 		}
 		else if(transferredAmount+amount > transferLimit) {
-			return 2;
+			return 5;
 		}
 		else {
 			return 0;

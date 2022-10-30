@@ -16,7 +16,6 @@ public class ManagerDao {
 			preparedStatement.setInt(2, personId);
 			preparedStatement.setInt(3, role);
 			preparedStatement.execute();
-			preparedStatement.close();
 			ResultSet resultSet=preparedStatement.getGeneratedKeys();
             if(resultSet!=null && resultSet.next()) {
             	personId=resultSet.getInt("employee_id");

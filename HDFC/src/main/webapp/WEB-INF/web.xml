@@ -193,6 +193,15 @@
 		<servlet-name>issueDebitCardServlet</servlet-name>
 		<url-pattern>/issueDebitCardServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>addBranchServlet</servlet-name>
+		<servlet-class>bank.hdfc.servlet.admin.AddBranch</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addBranchServlet</servlet-name>
+		<url-pattern>/addBranchServlet</url-pattern>
+	</servlet-mapping>
 
 
 	<!-- ########################## jsp file mapping #################### -->
@@ -457,33 +466,111 @@
 		<servlet-name>assignManager</servlet-name>
 		<url-pattern>/assignManager</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>addBranch</servlet-name>
+		<jsp-file>/ADMIN/addBranch.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addBranch</servlet-name>
+		<url-pattern>/addBranch</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>viewBranch</servlet-name>
+		<jsp-file>/ADMIN/viewBranch.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>viewBranch</servlet-name>
+		<url-pattern>/viewBranch</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>employeeErrorPage</servlet-name>
+		<jsp-file>/ERROR/employeeErrorPage.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>employeeErrorPage</servlet-name>
+		<url-pattern>/employeeErrorPage</url-pattern>
+	</servlet-mapping>
+	
+
 
 	<!-- ########################## filter mapping #################### -->
 
-	<filter>
-		<filter-name>loginFilter</filter-name>
-		<filter-class>bank.hdfc.filter.LoginFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>loginFilter</filter-name>
-		<url-pattern>/customerVerify</url-pattern>
-	</filter-mapping>
 
 	<filter>
 		<filter-name>loginVerify</filter-name>
 		<filter-class>bank.hdfc.filter.LoginVerify</filter-class>
 	</filter>
-
 	<filter-mapping>
 		<filter-name>loginVerify</filter-name>
-		<url-pattern>/ChangePassword</url-pattern>
-		<url-pattern>/currentAccount</url-pattern>
-		<url-pattern>/savingAccount</url-pattern>
 		<url-pattern>/accounts</url-pattern>
-		<url-pattern>/changePasswordPage</url-pattern>
-		<url-pattern>/profilePage</url-pattern>
 		<url-pattern>/homePage</url-pattern>
+		<url-pattern>/accountDetail</url-pattern>
+		<url-pattern>/transfer</url-pattern>
+		<url-pattern>/payBill</url-pattern>
+		<url-pattern>/transaction</url-pattern>
+		<url-pattern>/beneficiary</url-pattern>
+		<url-pattern>/loan</url-pattern>
+		<url-pattern>/loanDetail</url-pattern>
+		<url-pattern>/loanTransaction</url-pattern>
+		<url-pattern>/openDeposit</url-pattern>
+		<url-pattern>/payBillServlet</url-pattern>
+		<url-pattern>/transferServlet</url-pattern>
+		<url-pattern>/updateBeneficiary</url-pattern>
+		<url-pattern>/addBeneficiary</url-pattern>
+		<url-pattern>/deleteBeneficiary</url-pattern>
+		<url-pattern>/changeMPin</url-pattern>
+		<url-pattern>/changeStatus</url-pattern>
+		<url-pattern>/payLoanServlet</url-pattern>
+		<url-pattern>/cancelDeposit</url-pattern>
+		<url-pattern>/openDepositServlet</url-pattern>
+		<url-pattern>/userSetLimit</url-pattern>
 	</filter-mapping>
 	
+	<filter>
+		<filter-name>employeeFilter</filter-name>
+		<filter-class>bank.hdfc.filter.EmployeeFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>employeeFilter</filter-name>
+		<url-pattern>/createAccountServlet</url-pattern>
+		<url-pattern>/depositMoneyServlet</url-pattern>
+		<url-pattern>/giveLoanServlet</url-pattern>
+		<url-pattern>/issueDebitCardServlet</url-pattern>
+		<url-pattern>/addCustomer</url-pattern>
+		<url-pattern>/addEmployee</url-pattern>
+		<url-pattern>/createAccount</url-pattern>
+		<url-pattern>/depositMoney</url-pattern>
+		<url-pattern>/viewEmployee</url-pattern>
+		<url-pattern>/viewCustomer</url-pattern>
+	</filter-mapping>
+	
+	
+	<filter>
+		<filter-name>adminFilter</filter-name>
+		<filter-class>bank.hdfc.filter.AdminFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>adminFilter</filter-name>
+		<url-pattern>/addBranchServlet</url-pattern>
+		<url-pattern>/assignManager</url-pattern>
+		<url-pattern>/viewBranch</url-pattern>
+		<url-pattern>/addBranch</url-pattern>
+	</filter-mapping>
 
+	
+	
+	
+	
+	<!-- ########################## ERROR PAGE #################### -->
+	
+	<!-- <error-page>  
+  	<error-code>500</error-code>  
+  	<location>/ERROR/sessionErrorPage.jsp</location> 
+  	</error-page>  -->
+	
+	
+	
+	
 </web-app>

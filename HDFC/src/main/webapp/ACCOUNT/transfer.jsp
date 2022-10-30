@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"
+    import = "bank.hdfc.pack.BankDefinition"
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +18,17 @@ ENTER THE DESCRIPTION :<br>
 <textarea name="description" rows="4" cols="50" placeholder="type here..."></textarea><br>
 <input type="hidden" name="accountNumber" value=<%=request.getParameter("accountNumber")%>>  
 <input type="submit" value="transfer">
-<% if(request.getAttribute("message") instanceof Integer){
-	out.print("<h1>"+request.getAttribute("message")+"</h1>");
-}
-	
-	
-	%>
+<% if(session.getAttribute("message") !=null){
+	int resultInt=Integer.valueOf((String)session.getAttribute("message"));
+	session.removeAttribute("message");
+	if(resultInt==1){
+		out.print("<h1>MONEY HAS BEEN TRANSFERED SUCCESSFULLY</h1>");
+	}
+	else{
+		out.print(BankDefinition.accountMessage(resultInt));
+	}
+}	
+%>
 </form>
 </body>
 </html>

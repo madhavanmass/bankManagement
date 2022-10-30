@@ -8,13 +8,13 @@
 </head>
 <body>
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="addMember" method="post">
+<form action="addMemberServlet" method="post">
 <jsp:include page="/COMMON/createperson.html"></jsp:include>
 <input type="submit" value="CREATE CUSTOMER">
 
 </form>
 <% if(session.getAttribute("message") !=null){
-	out.print(request.getAttribute("message")+"<br>");
+	out.print("<h2>A NEW CUSTOMER HAS BEEN ADDDED TO YOUR BANK THE CUSTOMER ID IS "+session.getAttribute("message")+"</h2>");
 	session.removeAttribute("message");
 }
 %>

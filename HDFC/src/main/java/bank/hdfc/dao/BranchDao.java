@@ -91,4 +91,26 @@ public class BranchDao {
 		return null;
 	}
 
+	public CustomerDetail getACustomerDetail(int customerId) {
+		try(Connection connection = ConnectionTool.getConnection()) {
+		CustomerDetail customerDetail=null;
+		PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("getACustomerDetail"));
+		preparedStatement.setInt(1, customerId);
+		ResultSet resultset = preparedStatement.executeQuery();
+		if(resultset.next()) {
+			customerDetail= new CustomerDetail(resultset.getInt(1), resultset.getString(2), resultset.getString(3), resultset.getString(4), getAccountDetails(resultset.getInt(1)));
+		}
+		resultset.close();
+		preparedStatement.close();
+		return customerDetail;
+		}
+		catch(Exception e) {
+			System.out.print("error in getting a customer detail");
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
+
+

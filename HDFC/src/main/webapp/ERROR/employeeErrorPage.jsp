@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>HOME</title>
+<title>error</title>
 </head>
 <body>
-<jsp:include page="/COMMON/topnav.html"></jsp:include>
-WELCOME THE HDFC
-
+<form>
+<button type="submit" formaction="employeeLogin" >GO TO INDEX</button>
+</form>
 </body>
 </html>

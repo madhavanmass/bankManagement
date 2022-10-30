@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"
     import="bank.hdfc.function.Customer"
     import="bank.hdfc.function.Employee"
+    import="bank.hdfc.function.Admin"
     %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
@@ -28,13 +29,19 @@ function show()
 </script>
 </head>
 <body>
-<c:if test="<%=request.getSession().getAttribute(\"customer\") != null%>">
+<c:if test="<%=request.getSession().getAttribute(\"customer\") != null %>">
 <jsp:include page="/COMMON/topnav.html"></jsp:include>
 </c:if>
 
 <c:if test="<%=request.getSession().getAttribute(\"employee\") != null%>">
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
 </c:if>
+
+<c:if test="<%=request.getSession().getAttribute(\"admin\") != null%>">
+<jsp:include page="/COMMON/adminnav.html"></jsp:include>
+</c:if>
+
+
 
 <%
 if(session.getAttribute("customer")!=null){
@@ -43,6 +50,9 @@ if(session.getAttribute("customer")!=null){
 else if(session.getAttribute("employee")!=null){
 	out.print(((Employee)session.getAttribute("employee")).toString());
 }
+else if(session.getAttribute("admin")!=null){
+	out.print(((Admin)session.getAttribute("admin")).toString());
+}
 
 %>
 <button onclick="show()">CHANGE PASSWORD</button>
@@ -50,7 +60,7 @@ else if(session.getAttribute("employee")!=null){
 ENTER THE OLD-PASSWORD :<input type="text" name="oldPassword"><br>
 ENTER THE NEW-PASSWORD :<input type="text" name="newPassword"><br>
 <% if(session.getAttribute("message") !=null){
-	out.print(request.getAttribute("message")+"<br>");
+	out.print("<h2>"+request.getAttribute("message")+"</h2>");
 	session.removeAttribute("message");
 }
 %>

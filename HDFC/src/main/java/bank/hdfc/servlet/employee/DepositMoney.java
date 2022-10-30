@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bank.hdfc.function.Employee;
+import bank.hdfc.pack.BankDefinition;
 
 
 public class DepositMoney extends HttpServlet {
@@ -18,7 +19,14 @@ public class DepositMoney extends HttpServlet {
         int amount=Integer.valueOf(request.getParameter("amount"));
         Employee employee=(Employee)request.getSession().getAttribute("employee");
         int messageInt=employee.customerDeposit(customerId, accountNumber, amount);
-        request.getSession().setAttribute("message", messageInt);
+        String message;
+        if(messageInt==3) {
+        	message="THE AMOUNT "+amount+" HAS BEEN SUCCESSFULLY DEPOSITED TO YOUR ACCOUNT "+accountNumber;
+        }
+        else {
+        	message=BankDefinition.employeeMessage(messageInt);
+        }
+        request.getSession().setAttribute("message", message);
         request.getRequestDispatcher("depositMoney").forward(request, response);
 	}
 

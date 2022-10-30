@@ -15,6 +15,7 @@ public class EmployeeVerify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Verification verification=new Verification();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().invalidate();
 		int userId=Integer.valueOf(request.getParameter("userId"));
 		String password=request.getParameter("password");
 		int role=Integer.valueOf(request.getParameter("role"));
@@ -44,8 +45,8 @@ public class EmployeeVerify extends HttpServlet {
 		case 3:
 			Admin admin = verification.verifyAdmin(userId, password);
 			if (admin != null) {
-				request.getRequestDispatcher("profilePage").forward(request, response);
 				request.getSession().setAttribute("admin", admin);
+				request.getRequestDispatcher("profilePage").forward(request, response);
 			} else {
 				request.getRequestDispatcher("employeeLogin").forward(request, response);
 				request.getSession().setAttribute("message", "INVALID CRADENTIALS");

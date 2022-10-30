@@ -9,13 +9,13 @@
 <body>
 
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="addMember" method="post">
+<form action="addMemberServlet" method="post">
 <jsp:include page="/COMMON/createperson.html"></jsp:include>
 <input type="hidden" name="role" value="1"> 
 <input type="submit" value="ADD EMPLOYEE">
 </form>
 <% if(session.getAttribute("message") !=null){
-	out.print(request.getAttribute("message")+"<br>");
+	out.print("<h2>A NEW EMPLOYEE HAS BEEN ADDDED TO YOUR BRANCH THE EMPLOYEE ID IS "+session.getAttribute("message")+"</h2>");
 	session.removeAttribute("message");
 }
 %>
