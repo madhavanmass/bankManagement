@@ -10,10 +10,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>TRANSACTION HISTORY</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<link rel="stylesheet" href="CSS/sideBarStyle.css">
+<style>
+nav a.accounts, li a.transaction{
+	background-color: red;
+}
+</style>
 </head>
+
 <body>
+
 <jsp:include page="/COMMON/topnav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<div class="content">
 <h1>TRANSACTION HISTORY</h1>
 <%
 HashMap<Integer,Transaction> transactions= new HashMap<>();
@@ -46,5 +56,6 @@ for(Transaction transaction:transactions.values()){
 }
 out.print("</table>");
 %>
+</div>
 </body>
 </html>

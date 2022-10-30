@@ -15,14 +15,15 @@ public class ManagerDao {
 			preparedStatement.setInt(1, branchId);
 			preparedStatement.setInt(2, personId);
 			preparedStatement.setInt(3, role);
-			preparedStatement.execute();
+			preparedStatement.executeUpdate();
 			ResultSet resultSet=preparedStatement.getGeneratedKeys();
             if(resultSet!=null && resultSet.next()) {
-            	personId=resultSet.getInt("employee_id");
+            	employeeId=resultSet.getInt("employee_id");
             }
             resultSet.close();
             preparedStatement.close();
-			return employeeId;
+            return employeeId;
+			
 		} catch (Exception e) {
 			System.out.println("ERROR IN ADDING EMPLOYEE");
 			e.printStackTrace();

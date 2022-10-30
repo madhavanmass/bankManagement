@@ -6,10 +6,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>PAY BILL</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<link rel="stylesheet" href="CSS/sideBarStyle.css">
+<style>
+nav a.accounts, li a.payBill{
+	background-color: red;
+}
+</style>
 </head>
+
 <body>
+
 <jsp:include page="/COMMON/topnav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<div class="content">
 <form action="payBillServlet">
 ENTER THE AMOUNT :<input type="number" name="amount"><br>
 ENTER THE DESCRIPTION :<br>
@@ -28,5 +38,6 @@ ENTER THE DESCRIPTION :<br>
 }	
 %>
 </form>
+</div>
 </body>
 </html>

@@ -28,7 +28,6 @@ public class EmployeeFilter extends HttpFilter implements Filter {
 		else {
 			((HttpServletResponse)response).sendRedirect("employeeErrorPage");
 		}
-		chain.doFilter(request, response);
 	}
 
 

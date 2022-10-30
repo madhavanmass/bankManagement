@@ -23,10 +23,19 @@ function show()
     }
 }
 </script>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<link rel="stylesheet" href="CSS/sideBarStyle.css">
+<style>
+nav a.accounts, li a.debitCard{
+	background-color: red;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/COMMON/topnav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+
+<div class="content">
 
 <%
 Customer customer=((Customer)session.getAttribute("customer"));
@@ -76,6 +85,7 @@ ENTER NEW MPIN:<input type="number" name="oldMPin">
 </c:if>
 
 
-
+</div>
 </body>
+
 </html>

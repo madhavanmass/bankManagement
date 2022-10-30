@@ -2,6 +2,12 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<style>
+nav a.home{
+	background-color: red;
+}
+</style>
 <head>
 <meta charset="ISO-8859-1">
 <title>HOME</title>

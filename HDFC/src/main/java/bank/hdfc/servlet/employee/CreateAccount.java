@@ -20,11 +20,11 @@ public class CreateAccount extends HttpServlet {
         Employee employee=(Employee)request.getSession().getAttribute("employee");
         int messageInt=employee.createAccount(customerId, accountChoice, initialDeposit);
         String message;
-        if(messageInt==0) {
-        	message="YOU ALREADY HAVE A SAVING ACCOUNT IN THIS BRANCH";
+        if(messageInt<5) {
+        	message=BankDefinition.employeeMessage(messageInt);
         }
         else {
-        	message="AN "+BankDefinition.accountName(accountChoice)+" HAS BEEN CREATE FOR THE CUSTOMER WITH ID "+customerId+" IN BRANCH ID "+employee.getBranchId();
+        	message="AN "+BankDefinition.accountName(accountChoice)+ " : "+messageInt+" HAS BEEN CREATE FOR THE CUSTOMER WITH ID "+customerId+" IN BRANCH ID "+employee.getBranchId();
         }
         request.getSession().setAttribute("message", message);
         request.getRequestDispatcher("createAccount").forward(request, response);

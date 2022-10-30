@@ -10,10 +10,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<link rel="stylesheet" href="CSS/sideBarStyle.css">
+<style>
+nav a.loan, li a.transaction{
+	background-color: red;
+}
+</style>
 </head>
+
 <body>
- <jsp:include page="/COMMON/topnav.html"></jsp:include>
- <jsp:include page="/COMMON/loansidebar.jsp"></jsp:include>
+
+<jsp:include page="/COMMON/topnav.html"></jsp:include>
+<jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<div class="content">
 <%
 HashMap<Integer,Transaction> transactions= new HashMap<>();
 Customer customer=((Customer)session.getAttribute("customer"));
@@ -36,5 +46,6 @@ for(Transaction transaction:transactions.values()){
 out.print("</table>");
 
 %>
+</div>
 </body>
 </html>

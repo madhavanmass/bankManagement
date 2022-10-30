@@ -12,6 +12,12 @@
 
 <meta charset="ISO-8859-1">
 <title>PROFILE</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<style>
+nav a.profile{
+	background-color: red;
+}
+</style>
 <script type="text/javascript">
 var a=0;
 function show()

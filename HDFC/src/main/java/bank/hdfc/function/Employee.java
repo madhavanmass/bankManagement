@@ -67,13 +67,12 @@ public class Employee extends Person {
 			resultInt = 1;
 		} else {
 			if (accountChoice == 2 && (!Branch.getCustomerDetails().get(customerId).getAccounts().containsValue(2))) {
-				employeeDao.createCurrentAccount(customerId, accountChoice, initialDeposit, branchId);
-				Branch.getCustomerDetails().replace(customerId, branch.getCustomerDetail(customerId));
-				
+				resultInt= employeeDao.createCurrentAccount(customerId, accountChoice, initialDeposit, branchId);
+				Branch.setCustomerDetails(null);
 			} else if (accountChoice == 1) {
-				employeeDao.createSavingAccount(customerId, accountChoice, initialDeposit,
+				resultInt= employeeDao.createSavingAccount(customerId, accountChoice, initialDeposit,
 						BankDefinition.savingAccountInterest(initialDeposit), branchId);
-				Branch.getCustomerDetails().replace(customerId, branch.getCustomerDetail(customerId));
+				Branch.setCustomerDetails(null);
 			}
 		}
 		return resultInt;

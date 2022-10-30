@@ -45,7 +45,7 @@ public class AddMember extends HttpServlet {
         else if(admin!=null && role!=null) {
         	int roleInt=Integer.parseInt(role);
 			int id=0;
-        	if(roleInt==1) {
+        	if(roleInt==2) {
         		int personId=admin.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
         		id= admin.assignManager(Integer.parseInt(branchId), personId);
         	}
@@ -55,7 +55,7 @@ public class AddMember extends HttpServlet {
         else if(employee!=null){
         	int personId=employee.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
         	int id=employee.addCustomer(personId);
-        	request.getSession().setAttribute("message", id);
+        	request.getSession().setAttribute("message", "THE CUSTOMER HAS BEEN CREATED SUCCESSFULLY WITH ID "+id);
         	request.getRequestDispatcher("createAccount").forward(request, response);
         }
         

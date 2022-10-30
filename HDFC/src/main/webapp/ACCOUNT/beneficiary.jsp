@@ -9,10 +9,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>BENEFICIARY</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<link rel="stylesheet" href="CSS/sideBarStyle.css">
+<style>
+nav a.accounts, li a.beneficiary{
+	background-color: red;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/COMMON/topnav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<div class="content">
 <h1>BENEFICIARY</h1>
 <%
 HashMap<Integer,Beneficiary> beneficiarys= new HashMap<>();
@@ -55,5 +63,7 @@ ENTER THE TRANSFER LIMIT :<input type="number" name="transactionLimit"><br>
 <input type="hidden" value= <%=request.getParameter("accountNumber")%> name="accountNumber">
 <input type="submit" value="ADD BENEFICIARY">
 </form>
+</div>
 </body>
+
 </html>

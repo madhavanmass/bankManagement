@@ -6,6 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>LOGIN</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
 </head>
 <body>
 <h1>WELCOME TO HDFC</h1>

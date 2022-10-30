@@ -11,10 +11,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<link rel="stylesheet" href="CSS/sideBarStyle.css">
+<style>
+nav a.loan, li a.transaction{
+	background-color: red;
+}
+</style>
 </head>
+
 <body>
- <jsp:include page="/COMMON/topnav.html"></jsp:include>
- <jsp:include page="/COMMON/loansidebar.jsp"></jsp:include>
+
+<jsp:include page="/COMMON/topnav.html"></jsp:include>
+<jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<div class="content">
  <h1>PAY LOAN</h1>
  <form action="payLoanServlet">
  ENTER THE AMOUNT YOU WANT TO PAY: <input type="number" name="amount">
@@ -39,6 +49,6 @@
  <input type="hidden" name="accountNumber" value=<%= request.getParameter("accountNumber")%>>  
  <input type="submit" value="PAY LOAN">
  </form>
- 
+ </div>
 </body>
 </html>

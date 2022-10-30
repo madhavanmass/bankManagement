@@ -5,6 +5,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>DEPOSIT MONEY</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<style>
+nav a.depositMoney{
+	background-color: red;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>

@@ -11,6 +11,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>DEPOSIT</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<style>
+nav a.deposits{
+	background-color: red;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/COMMON/topnav.html"></jsp:include>

@@ -5,11 +5,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>GIVE LOAN</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<style>
+nav a.giveLoan{
+	background-color: red;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
 <form action="giveLoanServlet" method="post">
 ENTER THE CUSTOMER ID :<input type="text" name="customerId"><br>
+SELECT THE LOAN TYPE :
 <select name="loanType">
 <option value="1">PERSONAL LOAN</option>
 <option value="2">HOME LOAN</option>

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import bank.hdfc.function.Branch;
+
 public class EmployeeDao {
 
 	public boolean issueDebitCard(int accountNumber, int mPin) {
@@ -26,9 +28,10 @@ public class EmployeeDao {
 			preparedStatement.setInt(1, personId);
 			preparedStatement.executeUpdate();
 			ResultSet resultSet=preparedStatement.getGeneratedKeys();
-            if(resultSet!=null && resultSet.next()) {
+            if(resultSet.next()) {
             	customerId=resultSet.getInt("customer_id");
             }
+            Branch.setCustomerDetails(null);          
             resultSet.close();
             preparedStatement.close();
 			return customerId;

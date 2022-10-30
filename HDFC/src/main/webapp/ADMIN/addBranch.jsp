@@ -5,6 +5,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>ADD BRANCH</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<style>
+nav a.addBranch{
+	background-color: red;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/COMMON/adminnav.html"></jsp:include>

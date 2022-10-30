@@ -4,7 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>LOGOUT</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<style>
+nav a.logout{
+	background-color: red;
+}
+</style>
 </head>
 <body>
 <h1>ARE YOU SURE YOU WANT TO LOGOUT</h1>

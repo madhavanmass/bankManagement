@@ -9,6 +9,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>accounts</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<style>
+nav a.accounts{
+	background-color: red;
+}
+</style>
 </head>
 <body>
    <jsp:include page="/COMMON/topnav.html"></jsp:include>
@@ -25,7 +31,7 @@
 			+ "<td>"+ BankDefinition.accountName(savingAccount.getAccountType())+ "</td>" 
 			+ "<td>"+ savingAccount.getBalance()+ "</td>" 
 			+ "<td>" + savingAccount.getTransferredAmount()+ "</td>"
-			+ "<td> <a href=accountDetail?accountNumber="+savingAccount.getAccountNumber() +">USE</a></td>"
+			+ "<td> <a href=accountDetail?accountNumber="+savingAccount.getAccountNumber()+">USE</a></td>"
 			+"</tr>");
 		}
 		out.print("</table>");

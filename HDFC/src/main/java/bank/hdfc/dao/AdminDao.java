@@ -37,9 +37,9 @@ public class AdminDao {
 			int managerId=0;
 			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("addManager"),PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStatement.setInt(1, employeeId);
-			preparedStatement.execute();
+			preparedStatement.executeUpdate();
 			ResultSet resultSet=preparedStatement.getGeneratedKeys();
-            if(resultSet!=null && resultSet.next()) {
+            if(resultSet.next()) {
             	managerId=resultSet.getInt("manager_id");
             }
             resultSet.close();

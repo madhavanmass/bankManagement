@@ -8,11 +8,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>ACCOUNT DETAILS</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
+<link rel="stylesheet" href="CSS/sideBarStyle.css">
+<style>
+nav a.accounts, li a.accountDetail{
+	background-color: red;
+}
+</style>
 </head>
+
 <body>
 
 <jsp:include page="/COMMON/topnav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<div class="content">
 <%
 int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 Customer customer=((Customer) session.getAttribute("customer"));
@@ -34,5 +43,6 @@ else{
 <input type="submit" value="UPDATE LIMIT">
 </form>
 </c:if>
+</div>
 </body>
 </html>
