@@ -33,9 +33,9 @@ public class ManagerDao {
 
 	public void giveLoan(int customerId, int accountNumber, int amount, int branchId, int loanType) {
 		try (Connection connection = ConnectionTool.getConnection()) {
-			new EmployeeDao().createAccount(customerId, 3, amount, branchId);
+			int loanAccountNumber=new EmployeeDao().createAccount(customerId, 3, amount, branchId);
 			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("giveLoan"));
-			preparedStatement.setInt(1, customerId);
+			preparedStatement.setInt(1, loanAccountNumber);
 			preparedStatement.setInt(2, loanType);
 			preparedStatement.setInt(3, accountNumber);
 			preparedStatement.setInt(4, amount);

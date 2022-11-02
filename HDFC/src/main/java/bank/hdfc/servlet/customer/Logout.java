@@ -13,7 +13,7 @@ public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String redirect="index";
+		String redirect="indexPage";
 		HttpSession session=request.getSession();
 		if(session.getAttribute("admin")!=null || session.getAttribute("employee")!=null) {
 			redirect="employeeLogin";
@@ -30,7 +30,6 @@ public class Logout extends HttpServlet {
 		response.setDateHeader("Expires", 0);
 		request.getSession().invalidate();
 		response.sendRedirect(redirect);
-		
 	}
 
 }

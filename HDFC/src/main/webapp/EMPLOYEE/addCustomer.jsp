@@ -11,12 +11,13 @@ nav a.addCustomer{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
 
-<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="addMemberServlet" method="post">
-<jsp:include page="/COMMON/createperson.html"></jsp:include>
+<jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<form name="myForm" onsubmit="return validateForm([13,15,16,17,18,19,20,21,22])" action="addMemberServlet" method="post" >
+<jsp:include page="/COMMON/createPerson.html"></jsp:include>
 <input type="submit" value="CREATE CUSTOMER">
 
 </form>

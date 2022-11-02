@@ -217,7 +217,7 @@
 
 	<servlet>
 		<servlet-name>logout</servlet-name>
-		<jsp-file>/CUSTOMER/logout.jsp</jsp-file>
+		<jsp-file>/COMMON/logout.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>logout</servlet-name>
@@ -544,6 +544,7 @@
 		<url-pattern>/depositMoney</url-pattern>
 		<url-pattern>/viewEmployee</url-pattern>
 		<url-pattern>/viewCustomer</url-pattern>
+		<url-pattern>/issueDebitCard</url-pattern>
 	</filter-mapping>
 	
 	

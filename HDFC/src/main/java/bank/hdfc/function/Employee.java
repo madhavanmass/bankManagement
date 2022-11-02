@@ -80,14 +80,17 @@ public class Employee extends Person {
 
 	// function to deposit user given money
 	public int customerDeposit(int customerId, int accountNumber, int amount) {
+		Branch.setCustomerDetails(null);
 		branch.loadCustomers();
 		int resultInt = 3;
 		if (!Branch.getCustomerDetails().containsKey(customerId)) {
 			resultInt = 1;
 		} else {
 			if (Branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
-				branch.doDeposit(accountNumber, amount);
-				resultInt = 2;
+				branch.doDeposit(0,accountNumber,amount,2);
+			}
+			else{
+				resultInt=2;
 			}
 		}
 		return resultInt;
@@ -108,6 +111,19 @@ public class Employee extends Person {
 			}
 		}
 		return resultInt;
+	}
+	
+	@Override
+	public String toString() {
+		String details=super.toString()
+				+branch.toString()+
+				"<tr><td> ROLE </td><td>"+BankDefinition.roleName(role)+ "</td></tr>"
+				;
+		if(role==1) {
+			details="<tr><td> EMPLOYEE ID </td><td>"+employeeId+ "</td></tr>"+details;
+		}
+		return details;
+				
 	}
 
 }

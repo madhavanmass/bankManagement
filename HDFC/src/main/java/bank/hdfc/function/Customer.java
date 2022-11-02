@@ -81,7 +81,8 @@ public class Customer extends Person {
 
 	@Override
 	public String toString() {
-		return "<br>CUSTOMER ID : " + customerId + super.toString();
+		return "<tr><td> CUSTOMER ID </td><td>"+customerId+ "</td></tr>" 
+				+super.toString();
 	}
 
 	private CustomerDao customerDao = new CustomerDao();

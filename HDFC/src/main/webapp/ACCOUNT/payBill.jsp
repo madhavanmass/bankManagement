@@ -13,28 +13,25 @@ nav a.accounts, li a.payBill{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 
 <body>
 
-<jsp:include page="/COMMON/topnav.html"></jsp:include>
+<jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
 <div class="content">
-<form action="payBillServlet">
+<h1>PAY BILL</h1>
+<form name="myForm" onsubmit="return validateForm([7,8])" action="payBillServlet">
 ENTER THE AMOUNT :<input type="number" name="amount"><br>
 ENTER THE DESCRIPTION :<br>
 <textarea name="description" rows="4" cols="50" placeholder="type here..."></textarea><br>
 <input type="hidden" name="accountNumber" value=<%=request.getParameter("accountNumber")%>>  
 <input type="submit" value="pay">
 <% if(session.getAttribute("message") !=null){
-	int resultInt=Integer.valueOf((String)session.getAttribute("message"));
+	out.print((String)session.getAttribute("message"));
 	session.removeAttribute("message");
-	if(resultInt==1){
-		out.print("<h1>THE AMOUNT HAS BEEN PAID SUCESSFULLY </h1>");
-	}
-	else{
-		out.print(BankDefinition.accountMessage(resultInt));
-	}
+	
 }	
 %>
 </form>

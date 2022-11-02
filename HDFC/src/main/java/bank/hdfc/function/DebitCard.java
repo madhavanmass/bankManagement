@@ -72,8 +72,12 @@ public class DebitCard {
 
 	@Override
 	public String toString() {
-		return "<br>CARDNUMBER : " + cardNumber + " <br>EXPIREDATE : " + expireDate + " <br>M-PIN : " + mPin
-				+ " <br>CARDISSUEDDATE : " + cardIssuedDate + " <br>STATUS : " + BankDefinition.status(status);
+		return 
+				"<tr><td> CARD NUMBER </td><td>"+cardNumber+ "</td></tr>"
+				+ "<tr><td> EXPIRE DATE </td><td>"+expireDate+ "</td></tr>"
+				+ "<tr><td> CARD ISSUE DATE </td><td>"+cardIssuedDate+ "</td></tr>"
+				+ "<tr><td> CARD STATUS </td><td>"+BankDefinition.status(status)+ "</td></tr>"
+				;
 	}
 
 
@@ -87,12 +91,9 @@ public class DebitCard {
 	}
 
 	public boolean activateOrLock(int choice) {
-		if (status != choice) {
 			cardDB.updateCardStatus(cardNumber, choice);
 			status = choice;
 			return true;
-		} 
-		return false;
 		
 	}
 }

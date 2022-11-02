@@ -17,7 +17,7 @@ nav a.loan{
 </style>
 </head>
 <body>
- <jsp:include page="/COMMON/topnav.html"></jsp:include>
+ <jsp:include page="/COMMON/topNav.html"></jsp:include>
 	<h1>LOAN ACCOUNT</h1>
 	<%
 	((Customer) session.getAttribute("customer")).loadLoanAccount();
@@ -38,7 +38,7 @@ nav a.loan{
 		out.print("</table>");
 	} 
 	else{
-		out.print("<h1>IT SEEMS YOU DONT HAVE A LOAN </h1>");
+		out.print("<h2>IT SEEMS YOU DONT HAVE A LOAN </h2>");
 	}
 	
 	%>

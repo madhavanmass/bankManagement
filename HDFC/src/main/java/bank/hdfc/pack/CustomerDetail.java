@@ -61,16 +61,20 @@ public class CustomerDetail {
 	private String accounts() {
 		String account = "";
 		for (int accountNumber : accounts.keySet()) {
-			account += "\n  -->ACCOUNT NUMBER : " + accountNumber + ", ACCOUNTTYPE : "
-					+ BankDefinition.accountName(accounts.get(accountNumber));
+			account +="<tr><td> ACCOUNT NUMBER ["+accountNumber+"] </td><td>"+BankDefinition.accountName(accounts.get(accountNumber))+ "</td></tr>";
 		}
 		return account;
 	}
 
 	@Override
 	public String toString() {
-		String details = "\nCUSTOMER ID : " + customerId + "\nNAME : " + name + "\nPHONE NUMBER : " + phoneNumber
-				+ "\nMAIL ID : " + mailId + accounts();
+		String details = 
+		"<tr><td> CUSTOMER ID </td><td>"+customerId+ "</td></tr>"
+		+ "<tr><td> NAME </td><td>"+name+ "</td></tr>"
+		+ "<tr><td> PHONE NUMBER </td><td>"+phoneNumber+ "</td></tr>"
+		+ "<tr><td> MAIL ID </td><td>"+mailId+ "</td></tr>"
+		+ accounts()
+		;
 		return details;
 	}
 }

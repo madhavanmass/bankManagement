@@ -58,8 +58,8 @@ public class AccountDao {
 	}
 
 	// Getting the transaction History of the account
-	public HashMap<Integer, Transaction> transactionHistory(int accountNumber, int balance) {
-
+	public HashMap<Integer, Transaction> transactionHistory(int accountNumber, int finalbalance) {
+		int balance=finalbalance;
 		try (Connection connection = ConnectionTool.getConnection()) {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(ConnectionTool.resourceBundle.getString("transactionHistory"));
@@ -69,15 +69,16 @@ public class AccountDao {
 			ResultSet resultset = preparedStatement.executeQuery();
 			while (resultset.next()) {
 				// Calculating the remaining balance and action for a Transaction History
+				int tableAccountNumber=resultset.getInt(2);
 				int action = resultset.getInt(6);
 				int amount = resultset.getInt(7);
 				int transferedAccount = resultset.getInt(3);
-				if (transferedAccount == 0) {
-					balance -= (action == 1 ? amount : (amount * -1));
-				} else if (transferedAccount == accountNumber) {
+				if ((transferedAccount == 0 || transferedAccount==1) && accountNumber==tableAccountNumber) {
+					balance-=amount;
+					action=2;
+				} else if (transferedAccount == accountNumber && (accountNumber!=tableAccountNumber || tableAccountNumber==0)) {
+					balance+=amount;
 					action = 1;
-				} else {
-					balance -= amount;
 				}
 				transaction.put(resultset.getInt(1),
 						new Transaction(resultset.getInt(1), resultset.getInt(2), transferedAccount,
@@ -102,6 +103,9 @@ public class AccountDao {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(ConnectionTool.resourceBundle.getString(query));
 			preparedStatement.setInt(1, amount);
+			if(amount<0) {
+				amount=0;
+			}
 			preparedStatement.setInt(2, Math.abs(amount));
 			preparedStatement.setInt(3, accountNumber);
 			int checker = preparedStatement.executeUpdate();

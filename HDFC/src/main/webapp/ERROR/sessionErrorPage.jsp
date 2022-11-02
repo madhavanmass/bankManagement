@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>multiple</title>
+<title>error</title>
+<link rel="stylesheet" href="CSS/topNavStyle.css">
 </head>
 <body>
-MULTIPLE USER HAS BEEN DEDUCTED IN THE SESSION 
-PLEASE CLOSE ALL THE TAB AN RETRY
+<h1>SORRY THE SERVER HAS BEEN RESTARTED</h1>
+<h2>PLEASE GO TO THE LOGIN PAGE TO START</h2>
 </body>
 </html>

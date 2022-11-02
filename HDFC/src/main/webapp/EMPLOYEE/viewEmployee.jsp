@@ -19,9 +19,10 @@ nav a.viewEmployee{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
-<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
+<jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
 <form action="viewEmployee">
 <input type="text" name="name"><input type="submit" value="SEARCH"><br>
 </form>
@@ -32,6 +33,7 @@ nav a.viewEmployee{
 	Matcher matcher;
 	ConcurrentHashMap<Integer,EmployeeDetail> employeeDetails= new ConcurrentHashMap<>();
 	Manager manager=((Manager)session.getAttribute("employee"));
+	Branch.setCustomerDetails(null);
 	manager.getBranch().loadEmployee();
 	employeeDetails=Branch.getEmployeeDetails();
 	if(request.getParameter("name")!=null && name==""){
@@ -42,7 +44,7 @@ nav a.viewEmployee{
 	    matcher = pattern.matcher(employeeDetail.getName());
 	    boolean matchFound = matcher.find();
 	    if(matchFound) {
-	      out.println(employeeDetail.toString());
+	      out.println("<table>"+employeeDetail.toString()+"</table>");
 	    }
 	}
 %>

@@ -52,8 +52,11 @@ public class CurrentAccount extends Account {
 
 	@Override
 	public String toString() {
-		return "<br>USERSET LIMIT : " + userSetLimit + "<br>TRANFERRED AMOUNT : " + transferredAmount + "BALANCE : "
-				+ balance + super.toString();
+		return super.toString()
+				+ "<tr><td> BALANCE </td><td>"+balance+ "</td></tr>"
+				+"<tr><td> USER SET LIMIT </td><td>"+userSetLimit+ "</td></tr>"
+				+ "<tr><td> TRANSFER AMOUNT </td><td>"+transferredAmount+ "</td></tr>"
+				;
 	}
 	
 	

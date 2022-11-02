@@ -4,6 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import bank.hdfc.dao.AccountDao;
 import bank.hdfc.dao.BranchDao;
+import bank.hdfc.pack.BankDefinition;
 import bank.hdfc.pack.CustomerDetail;
 import bank.hdfc.pack.EmployeeDetail;
 
@@ -112,20 +113,31 @@ public class Branch {
 
 	@Override
 	public String toString() {
-		return "\nBRANCH ID : " + branchId + "\nBRANCH NAME : " + branchName + "\nIFSC CODE : " + ifscCode
-				+ "\nLOCATION : " + location + "\nMANAGER : " + (manager == null ? "NOT ASSIGNED" : manager);
+		return 
+				"<tr><td> BRANCH NAME </td><td>"+branchName+ "</td></tr>"
+				+ "<tr><td> BRANCH ID </td><td>"+branchId+ "</td></tr>"
+				+ "<tr><td> IFSC CODE </td><td>"+ifscCode+ "</td></tr>"
+				+ "<tr><td> LOCATION </td><td>"+addressLine1+", "+addressLine2+"- "+pinCode+ "</td></tr>"
+				+"<tr><td> MANAGER </td><td>"+(manager == null ? "NOT ASSIGNED" : manager)+"</td></tr>"
+				
+				;
 	}
 
 	private BranchDao branchDao = new BranchDao();
 
 	public Account getAccount(int accountNumber) {
+		
 		return branchDao.getAccount(accountNumber);
 	}
 
-	public int doDeposit(int accountNumber, int amount) {
-		Account account = getAccount(accountNumber);
-		int checker = new AccountDao().updateAccount(accountNumber, amount * -1,
+	public int doDeposit(int otherAccount,int accountNumber, int amount,int action) {
+		Account account = getAccount(otherAccount);
+		int checker=0;
+		if(account!=null) {
+		checker = new AccountDao().updateAccount(otherAccount, amount,
 				account.getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
+		new AccountDao().transactionEntry(accountNumber,otherAccount , "BANK DEPOSITED MONEY", amount,action, 4);
+		}
 		return checker;
 	}
 

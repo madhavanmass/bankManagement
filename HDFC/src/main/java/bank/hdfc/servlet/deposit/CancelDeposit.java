@@ -21,7 +21,7 @@ public class CancelDeposit extends HttpServlet {
 		}
 		else if(customer.getRecurrsiveDeposits()!=null) {
 			amount=customer.getRecurrsiveDeposits().get(depositId).getDepositAmount();
-			customer.getFixedDeposits().get(depositId).cancelDeposit();
+			customer.getRecurrsiveDeposits().get(depositId).cancelDeposit();
 		}
 		customer.loadCurrentAccounts();
 		customer.loadSavingAccount();

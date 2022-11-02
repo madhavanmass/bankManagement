@@ -11,17 +11,18 @@ nav a.issueDebitCard{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
-<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="issueDebitCardServlet" method="post">
-ENTER THE CUSTOMER ID :<input type="text" name="customerId"><br>
+<jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<form name="myForm" onsubmit="return validateForm([23,1,25])" action="issueDebitCardServlet" method="post">
+ENTER THE CUSTOMER ID :<input type="number" name="customerId"><br>
 ENTER THE ACCOUNT NUMBER :<input type="number" name="accountNumber"><br>
 ENTER THE M-Pin :<input type="number" name="mPin"><br>
 <input type="submit" value="ISSUE DEBIT CARD"> 
 </form>
 <% if(session.getAttribute("message") !=null){
-	out.print("<h2>"+(String)session.getAttribute("message")+"</h2>");
+	out.print((String)session.getAttribute("message"));
 	session.removeAttribute("message");
 }
 %>

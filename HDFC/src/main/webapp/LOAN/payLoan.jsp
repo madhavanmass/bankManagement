@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="CSS/topNavStyle.css">
 <link rel="stylesheet" href="CSS/sideBarStyle.css">
 <style>
-nav a.loan, li a.transaction{
+nav a.loan, li a.payLoan{
 	background-color: red;
 }
 </style>
@@ -22,8 +22,8 @@ nav a.loan, li a.transaction{
 
 <body>
 
-<jsp:include page="/COMMON/topnav.html"></jsp:include>
-<jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<jsp:include page="/COMMON/topNav.html"></jsp:include>
+<jsp:include page="/COMMON/loanSidebar.jsp"></jsp:include>
 <div class="content">
  <h1>PAY LOAN</h1>
  <form action="payLoanServlet">
@@ -45,10 +45,18 @@ nav a.loan, li a.transaction{
 	}
  
  %>
+ 
  </select>
  <input type="hidden" name="accountNumber" value=<%= request.getParameter("accountNumber")%>>  
  <input type="submit" value="PAY LOAN">
  </form>
+ 
+ <% if(session.getAttribute("message") !=null){
+	out.print((String)session.getAttribute("message"));
+	session.removeAttribute("message");
+	
+}	
+%>
  </div>
 </body>
 </html>

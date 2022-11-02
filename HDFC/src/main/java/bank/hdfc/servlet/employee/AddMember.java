@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bank.hdfc.function.Admin;
+import bank.hdfc.function.Branch;
 import bank.hdfc.function.Employee;
 import bank.hdfc.function.Manager;
 
@@ -40,6 +41,7 @@ public class AddMember extends HttpServlet {
         		id= manager.addEmployee(personId);
         	}
         	request.getSession().setAttribute("message",id );
+        	Branch.setEmployeeDetails(null);
         	request.getRequestDispatcher("addEmployee").forward(request, response);
         }
         else if(admin!=null && role!=null) {
@@ -50,12 +52,14 @@ public class AddMember extends HttpServlet {
         		id= admin.assignManager(Integer.parseInt(branchId), personId);
         	}
 			request.getSession().setAttribute("message", id);
+			Branch.setEmployeeDetails(null);
         	request.getRequestDispatcher("assignManager").forward(request, response);
         }
         else if(employee!=null){
         	int personId=employee.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
         	int id=employee.addCustomer(personId);
-        	request.getSession().setAttribute("message", "THE CUSTOMER HAS BEEN CREATED SUCCESSFULLY WITH ID "+id);
+        	Branch.setCustomerDetails(null);
+        	request.getSession().setAttribute("message", "<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\" >THE CUSTOMER HAS BEEN CREATED SUCCESSFULLY WITH ID "+id+"</h2>");
         	request.getRequestDispatcher("createAccount").forward(request, response);
         }
         

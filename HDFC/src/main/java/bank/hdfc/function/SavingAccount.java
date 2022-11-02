@@ -62,10 +62,12 @@ public class SavingAccount extends Account {
 	
 	@Override
 	public String toString() {
-		return "<br>INTEREST RATE : "+interestRate
-				+"<br>TRANSFER LIMIT : "+transferLimit
-				+"<br>TRANFERRED AMOUNT : "+transferredAmount
-				+"BALANCE : "+balance + super.toString();
+		return super.toString()
+				+ "<tr><td> BALANCE </td><td>"+balance+ "</td></tr>"
+				+ "<tr><td> YEARLY INTEREST </td><td>"+interestRate+ "</td></tr>"
+				+"<tr><td> TRANSFER LIMIT </td><td>"+transferLimit+ "</td></tr>"
+				+ "<tr><td> TRANSFER AMOUNT </td><td>"+transferredAmount+ "</td></tr>"
+				;
 	}
 	
 	private int check(int amount) {

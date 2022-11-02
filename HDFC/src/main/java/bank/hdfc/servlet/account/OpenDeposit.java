@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bank.hdfc.function.Customer;
+import bank.hdfc.pack.BankDefinition;
 
 public class OpenDeposit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +33,14 @@ public class OpenDeposit extends HttpServlet {
 		}
 		customer.setFixedDeposits(null);
 		customer.setRecurrsiveDeposits(null);
-		request.getSession().setAttribute("message", checker);
+		String message;
+		if(checker) {
+			message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">A NEW "+(type==1?"FIXED":"RECURRING")+" HAS BEEN OPEN PLEASE CHECK ON DEPOSIT TAB<h2>";
+		}
+		else {
+			message="<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">INSUFFICIENT BALANCE PLEASE TYPE IN OTHER ACCOUNT<h2>";
+		}
+		request.getSession().setAttribute("message", message);
 		response.sendRedirect("openDeposit?accountNumber="+accountNumber);
 	}
 

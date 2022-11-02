@@ -95,8 +95,13 @@ public class LoanAccount extends Account {
 
 	@Override
 	public String toString() {
-		return super.toString() + "<br>LOAN TYPE : " + loanType + "<br>TOTAL LOAN AMMOUNT : " + totalAmount
-				+ "<br>INTEREST : " + interestRate + "<br>LOAN END DATE : " + loanEndDate.toString();
+		return super.toString()+
+				"<tr><td> LOAN TYPE </td><td>"+loanType+ "</td></tr>"+
+				"<tr><td> TOTAL LOAN AMOUNT </td><td>"+totalAmount+ "</td></tr>"+
+				"<tr><td> LOAN END DATE </td><td>"+loanEndDate.toString()+ "</td></tr>"+
+				"<tr><td> AMOUNT PAID </td><td>"+amountPaid+ "</td></tr>"+
+				"<tr><td> LOAN INTEREST RATE </td><td>"+interestRate+ "</td></tr>"
+				;
 	}
 
 	private int check(int amount) {
@@ -109,11 +114,10 @@ public class LoanAccount extends Account {
 
 	public void payLoan(int amount) {
 		balance -= amount;
+		amountPaid+=amount;
 		if (check(amount) == 0) {
 			loanDao.payLoan(amount, loanId);
 		}
-		// accountDao.transactionEntry( accountNumberChoose,getAccountNumber(), "LOAN
-		// PAYMENT", amount, 2, 1);
 	}
 
 }

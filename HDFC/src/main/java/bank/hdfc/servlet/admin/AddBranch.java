@@ -15,7 +15,7 @@ public class AddBranch extends HttpServlet {
 		String branchName=request.getParameter("branchName");
 		String addressLine1=request.getParameter("addressLine1");
 		String addressLine2=request.getParameter("addressLine2");
-		String pinCode=request.getParameter("pinCode");
+		String pinCode=request.getParameter("pincode");
 		Admin admin=(Admin)request.getSession().getAttribute("admin");
 		int messageInt=admin.createBranch(branchName, addressLine1, addressLine2, pinCode);
 		request.getSession().setAttribute("message", messageInt);

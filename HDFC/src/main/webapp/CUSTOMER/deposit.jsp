@@ -19,7 +19,7 @@ nav a.deposits{
 </style>
 </head>
 <body>
-<jsp:include page="/COMMON/topnav.html"></jsp:include>
+<jsp:include page="/COMMON/topNav.html"></jsp:include>
 	<h1>FIXED DEPOSIT</h1>
 	<%
 	((Customer) session.getAttribute("customer")).loadFixedDeposit();
@@ -40,7 +40,7 @@ nav a.deposits{
 		out.print("</table>");
 	} 
 	else{
-		out.print("<h1>IT SEEMS YOU DONT HAVE A FIXED DEPOSIT</h1>");
+		out.print("<h2>IT SEEMS YOU DONT HAVE A FIXED DEPOSIT</h2>");
 	}
 	
 	%>
@@ -65,7 +65,7 @@ nav a.deposits{
 		out.print("</table>");
 	} 
 	else{
-		out.print("<h1>IT SEEMS YOU DONT HAVE A RECURRING DEPOSIT</h1>");
+		out.print("<h2>IT SEEMS YOU DONT HAVE A RECURRING DEPOSIT</h2>");
 	}
 	%>
 </body>

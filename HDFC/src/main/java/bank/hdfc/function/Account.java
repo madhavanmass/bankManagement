@@ -113,15 +113,22 @@ public class Account {
 
 	@Override
 	public String toString() {
-		String details = "<br>ACCOUNT NUMBER : " + accountNumber + "<br>ACCOUNT TYPE : "
-				+ BankDefinition.accountName(accountType) + "<br>BANK NAME : HDFC" + branch.toString();
+		
+		String details =branch.toString()+
+				"<tr><td> ACCOUNT NUMBER </td><td>"+accountNumber+ "</td></tr>"
+				+ "<tr><td> ACCOUNT TYPE </td><td>"+BankDefinition.accountName(accountType)+ "</td></tr>"
+				+ "<tr><td> DATE OF CREATION </td><td>"+dateOfCreattion+ "</td></tr>";
 		return details;
 	}
 
 	// debit amount from account
 	protected int debitMoney(int amount, String description) {
 		accountDao.updateAccount(accountNumber, amount * -1,getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
-		accountDao.transactionEntry(getAccountNumber(), 0, description, amount, 2, 1);
+		int otherAccount=1;
+		if(description.equals("LOAN PAYMENT")) {
+			otherAccount=0;
+		}
+		accountDao.transactionEntry(getAccountNumber(), otherAccount, description, amount, 2, 1);
 		transactions = null;
 		return 1;
 	}
@@ -138,11 +145,10 @@ public class Account {
 		}
 		if (check) {
 			accountDao.updateAccount(accountNumber, amount * -1,getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
-			int checker=branch.doDeposit(otherAccount, amount);
+			int checker=branch.doDeposit(otherAccount,accountNumber, amount,1);
 			if(checker==0) {
 				resultInt=3;
 			}
-			accountDao.transactionEntry(accountNumber, otherAccount, description, amount, 2, 1);
 			transactions = null;
 		} else {
 			resultInt = 2;
@@ -200,7 +206,7 @@ public class Account {
 
 	// Open Deposit in this account
 	public boolean openDeposit(int type, int amount, int policy) {
-		boolean resultbool;
+		boolean resultbool=false;
 		if (type == 1) {
 			resultbool=accountDao.openFixedDeposit(accountNumber, amount, type, policy,BankDefinition.getDepositTime(policy));
 			fixedDeposit = null;

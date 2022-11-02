@@ -27,7 +27,7 @@ public class EmployeeVerify extends HttpServlet {
 				request.getRequestDispatcher("profilePage").forward(request, response);
 				
 			} else {
-				request.getSession().setAttribute("employee", employee);
+				request.getSession().setAttribute("message", "<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">INVALID CREDENTIALS</h2>");
 				request.getRequestDispatcher("employeeLogin").forward(request, response);
 			}
 			break;
@@ -38,6 +38,7 @@ public class EmployeeVerify extends HttpServlet {
 				request.getRequestDispatcher("profilePage").forward(request, response);
 				
 			} else {
+				request.getSession().setAttribute("message", "<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">INVALID CREDENTIALS</h2>");
 				request.getRequestDispatcher("employeeLogin").forward(request, response);
 			}
 			
@@ -48,8 +49,9 @@ public class EmployeeVerify extends HttpServlet {
 				request.getSession().setAttribute("admin", admin);
 				request.getRequestDispatcher("profilePage").forward(request, response);
 			} else {
+				request.getSession().setAttribute("message", "<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">INVALID CREDENTIALS</h2>");
 				request.getRequestDispatcher("employeeLogin").forward(request, response);
-				request.getSession().setAttribute("message", "INVALID CRADENTIALS");
+				
 			}
 			break;
 		}

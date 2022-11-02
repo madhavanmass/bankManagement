@@ -21,8 +21,8 @@ nav a.loan, li a.transaction{
 
 <body>
 
-<jsp:include page="/COMMON/topnav.html"></jsp:include>
-<jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<jsp:include page="/COMMON/topNav.html"></jsp:include>
+<jsp:include page="/COMMON/loanSidebar.jsp"></jsp:include>
 <div class="content">
 <%
 HashMap<Integer,Transaction> transactions= new HashMap<>();

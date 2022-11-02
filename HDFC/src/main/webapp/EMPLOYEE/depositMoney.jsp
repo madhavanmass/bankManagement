@@ -11,17 +11,18 @@ nav a.depositMoney{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
-<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
-<form action="depositMoneyServlet" method="post">
-ENTER THE CUSTOMER ID :<input type="text" name="customerId"><br>
-ENTER THE ACCOUNT NUMBER :<input type="text" name="accountNumber"><br>
-ENTER INITIAL DEPOSIT :<input type="number" name="amount"><br>
+<jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<form name="myForm" onsubmit="return validateForm([23,7,1])" action="depositMoneyServlet" method="post" >
+ENTER THE CUSTOMER ID :<input type="number" name="customerId"><br>
+ENTER THE ACCOUNT NUMBER :<input type="number" name="accountNumber"><br>
+ENTER THE DEPOSIT AMOUNT :<input type="number" name="amount"><br>
 <input type="submit" value="DEPOSIT MONEY"> 
 </form>
 <% if(session.getAttribute("message") !=null){
-	out.print("<h2>"+(String)session.getAttribute("message")+"</h2>");
+	out.print((String)session.getAttribute("message"));
 	session.removeAttribute("message");
 }
 %>

@@ -122,9 +122,17 @@ public class Person {
 	
 	@Override
 	public String toString() {
-		String details = "<br>NAME : " + name + "<br>DATE OF BIRTH : " + dateOfBirth + "<br>PHONE NUMBER : "
-				+ phoneNumber + "<br>MAIL ID : " + mailId + "<br>ADDHAR NUMBER : " + aadharNumber + "<br>PANCARD NUMBER : "
-				+ panNumber + "<br>ADDRESS : " + addressLine1 + ", " + addressLine2 + " -" + pinCode + "<br>";
+		String details = 
+				"<tr><td> NAME </td><td>"+name+ "</td></tr>"
+				+ "<tr><td> DATE OF BIRTH </td><td>"+dateOfBirth+ "</td></tr>"
+				+ "<tr><td> AADHAR NUMBER </td><td>"+aadharNumber+ "</td></tr>"
+				+ "<tr><td> PAN NUMBER </td><td>"+panNumber+ "</td></tr>"
+				+ "<tr><td> PHONE NUMBER </td><td>"+phoneNumber+ "</td></tr>"
+				+ "<tr><td> MAIL ID </td><td>"+mailId+ "</td></tr>"
+				+ "<tr><td> ADDRESS LINE 1 </td><td>"+addressLine1+ "</td></tr>"
+				+ "<tr><td> ADDRESS LINE 2 </td><td>"+addressLine2+ "</td></tr>"
+				+ "<tr><td> PINCODE </td><td>"+pinCode+ "</td></tr>";
+			
 		return details;
 	}
 	

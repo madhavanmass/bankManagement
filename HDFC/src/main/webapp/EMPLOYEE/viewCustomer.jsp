@@ -19,9 +19,10 @@ nav a.viewCustomer{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
-<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
+<jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
 <form action="viewCustomer">
 <input type="text" name="name"><input type="submit" value="SEARCH"><br>
 </form>
@@ -42,7 +43,7 @@ nav a.viewCustomer{
 	    matcher = pattern.matcher(customerDetail.getName());
 	    boolean matchFound = matcher.find();
 	    if(matchFound) {
-	      out.println(customerDetail.toString());
+	      out.println("<table>"+customerDetail.toString()+"</table>");
 	    }
 	}
 %>

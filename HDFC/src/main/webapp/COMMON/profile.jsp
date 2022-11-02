@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<script src="JAVASCRIPT/hideForm.js"></script>
 <meta charset="ISO-8859-1">
 <title>PROFILE</title>
 <link rel="stylesheet" href="CSS/topNavStyle.css">
@@ -18,46 +18,31 @@ nav a.profile{
 	background-color: red;
 }
 </style>
-<script type="text/javascript">
-var a=0;
-function show()
-{
-    if(a==1){
-    	a=0;
-        document.getElementById("form").style.display="none";
-    }
-    else{
-    	a=1;
-        document.getElementById("form").style.display="block";
-    }
-}
-
-</script>
 </head>
 <body>
 <c:if test="<%=request.getSession().getAttribute(\"customer\") != null %>">
-<jsp:include page="/COMMON/topnav.html"></jsp:include>
+<jsp:include page="/COMMON/topNav.html"></jsp:include>
 </c:if>
 
 <c:if test="<%=request.getSession().getAttribute(\"employee\") != null%>">
-<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
+<jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
 </c:if>
 
 <c:if test="<%=request.getSession().getAttribute(\"admin\") != null%>">
-<jsp:include page="/COMMON/adminnav.html"></jsp:include>
+<jsp:include page="/COMMON/adminNav.html"></jsp:include>
 </c:if>
 
 
 
 <%
 if(session.getAttribute("customer")!=null){
-	out.print(((Customer)session.getAttribute("customer")).toString());
+	out.print("<table>"+((Customer)session.getAttribute("customer")).toString()+"</table>");
 }
 else if(session.getAttribute("employee")!=null){
-	out.print(((Employee)session.getAttribute("employee")).toString());
+	out.print("<table>"+((Employee)session.getAttribute("employee")).toString()+"</table>");
 }
 else if(session.getAttribute("admin")!=null){
-	out.print(((Admin)session.getAttribute("admin")).toString());
+	out.print("<table>"+((Admin)session.getAttribute("admin")).toString()+"</table>");
 }
 
 %>
@@ -65,13 +50,14 @@ else if(session.getAttribute("admin")!=null){
 <form id="form" action="changePasswordServlet" method="post" style="display:none;">
 ENTER THE OLD-PASSWORD :<input type="text" name="oldPassword"><br>
 ENTER THE NEW-PASSWORD :<input type="text" name="newPassword"><br>
+
+<input type="submit" value="CONFIRM">
+</form>
 <% if(session.getAttribute("message") !=null){
-	out.print("<h2>"+request.getAttribute("message")+"</h2>");
+	out.print(session.getAttribute("message"));
 	session.removeAttribute("message");
 }
 %>
-<input type="submit" value="CONFIRM">
-</form>
 
 </body>
 </html>

@@ -43,7 +43,7 @@ public class VerifyDao {
             ResultSet resultset=preparedStatement.executeQuery();
             Manager manager=null;
             if(resultset.next()){
-            	manager=new Manager(resultset.getString(1),resultset.getInt(2) , resultset.getString(3), resultset.getString(4), resultset.getString(5), resultset.getString(6), resultset.getString(7), resultset.getString(8), resultset.getInt(9), resultset.getInt(10), resultset.getInt(11),resultset.getString(12),resultset.getString(13),resultset.getString(14));
+            	manager=new Manager(resultset.getString(1),resultset.getInt(2) , resultset.getString(3), resultset.getString(4), resultset.getString(5), resultset.getString(6), resultset.getString(7), resultset.getString(8), resultset.getInt(9), resultset.getInt(10), resultset.getInt(11),resultset.getString(12),resultset.getString(13),resultset.getString(14),resultset.getInt(15));
             }
             resultset.close();
             preparedStatement.close();

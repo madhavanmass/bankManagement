@@ -4,6 +4,7 @@
     import="java.util.HashMap"
     import="bank.hdfc.function.Beneficiary"
     %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +17,10 @@ nav a.accounts, li a.beneficiary{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
-<jsp:include page="/COMMON/topnav.html"></jsp:include>
+<jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
 <div class="content">
 <h1>BENEFICIARY</h1>
@@ -36,20 +38,21 @@ else{
 }
 
 if(beneficiarys.size()==0 || beneficiarys==null){
-	out.println("YOU DONT HAVE ANY BENEFICIARYS");
+	out.println("<h2>YOU DONT HAVE ANY BENEFICIARYS</h2>");
 }
+
 else{
 	out.print(
 			"<table><tr><th>BENEFICIARY ID</th><th>CONNECTED ACCOUNT</th><th>TRANSACTION LIMIT</th><th>UPDATE</th><th>DELETE</th></tr> ");
 	for(Beneficiary beneficiary:beneficiarys.values()){
 		out.print("<tr>" 
-				+"<form action=\"updateBeneficiary\">"
-				+ "<td><input type=\"text\" name=\"beneficiaryId\" value="+beneficiary.getBeneficiaryId()+" readonly></td>"
-				+ "<td><input type=\"text\" name=\"connectedAccount\" value="+beneficiary.getConnectedAccount()+ " readonly></td>"
-				+ "<td><input type=\"number\" name=\"transactionLimit\" value="+beneficiary.getTransactionLimit()+"></td>"
+				+"<form name=\"myForm\" onsubmit=\"return validateForm([2,3,4])\" action=\"updateBeneficiary\">"
+				+ "<td><input type=\"number\" name=\"beneficiaryId\" value="+beneficiary.getBeneficiaryId()+" readonly></td>"
+				+ "<td><input type=\"number\" name=\"connectedAccount\" value="+beneficiary.getConnectedAccount()+ " readonly></td>"
+				+ "<td ><input class=\"limit\" type=\"number\" name=\"transactionLimit\" value="+beneficiary.getTransactionLimit()+"></td>"
 				+"<input type=\"hidden\" value="+request.getParameter("accountNumber")+" name=\"accountNumber\">"
 				+ "<td><input type=\"submit\" value=\"UPDATE\"></td>"
-				+ "<td><input  type=\"submit\" formaction=\"deleteBeneficiary\" value=\"DELETE\" ></td>"
+				+ "<td><input  type=\"submit\" formaction=\"deleteBeneficiary\" value=\"DELETE\"></td>"
 				+"</form>"
 				+"</tr>");
 	}
@@ -57,7 +60,7 @@ else{
 }
 %>
 <h1>ADD BENEFICIARY</h1>
-<form action="addBeneficiary">
+<form name="myForm" onsubmit="return validateForm([3,4])" action="addBeneficiary">
 ENTER THE ACCOUNT NUMBER YOU TO CONNECT :<input type="number" name="connectedAccount"><br>
 ENTER THE TRANSFER LIMIT :<input type="number" name="transactionLimit"><br>
 <input type="hidden" value= <%=request.getParameter("accountNumber")%> name="accountNumber">

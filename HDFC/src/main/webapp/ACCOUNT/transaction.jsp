@@ -17,11 +17,12 @@ nav a.accounts, li a.transaction{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 
 <body>
 
-<jsp:include page="/COMMON/topnav.html"></jsp:include>
+<jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
 <div class="content">
 <h1>TRANSACTION HISTORY</h1>
@@ -41,7 +42,16 @@ else{
 out.print(
 		"<table><tr><th>TRANSACTION ID</th><th>DATE</th><th>TIME</th><th>AMOUNT</th><th>ACTION</th><th>REMAINING BALANCE</th><th>TRANSFERRED ACCOUNT</th><th>DESCRIPTION</th></tr> ");
 for(Transaction transaction:transactions.values()){
-	
+	String otherAccount;
+	if(transaction.getTransferAccountNumber()==0){
+		otherAccount="[bank]";
+	}
+	else if(transaction.getTransferAccountNumber()==1){
+		otherAccount="[bill]";
+	}
+	else{
+		otherAccount=String.valueOf(transaction.getTransferAccountNumber());
+	}
 	out.print("<tr>" 
 			+ "<td>" + transaction.getTransactionId()+ "</td>" 
 			+ "<td>"+transaction.getDate().toString()+ "</td>" 
@@ -49,7 +59,7 @@ for(Transaction transaction:transactions.values()){
 			+ "<td>"+ transaction.getAmount()+ "</td>"
 			+ "<td>" + BankDefinition.actionType(transaction.getAction()) + "</td>"
 			+ "<td>"+ transaction.getRemainingBalance()+"</td>"
-			+ "<td>"+ transaction.getTransferAccountNumber()+ "</td>"
+			+ "<td>"+ otherAccount+ "</td>"
 			+ "<td>"+ transaction.getDescription()+ "</td>"
 			+"</tr>");
 	

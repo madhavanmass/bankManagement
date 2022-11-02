@@ -67,8 +67,13 @@ public class EmployeeDetail {
 
 	@Override
 	public String toString() {
-		String details = "<td>EMPLOYEE ID : " + employeeId + "</td><td>NAME : " + name + "<br>PHONE NUMBER : " + phoneNumber
-				+ "\nROLE : " + role;
+		String details =
+				"<tr><td> EMPLOYEE ID </td><td>"+employeeId+ "</td></tr>"
+				+ "<tr><td> EMPLOYEE NAME </td><td>"+name+ "</td></tr>"
+				+ "<tr><td> PHONE NUMBER </td><td>"+phoneNumber+ "</td></tr>"
+				+ "<tr><td> MAIL ID </td><td>"+mailId+ "</td></tr>"
+				+ "<tr><td> ROLE </td><td>"+role+ "</td></tr>"
+				;
 		return details;
 	}
 }

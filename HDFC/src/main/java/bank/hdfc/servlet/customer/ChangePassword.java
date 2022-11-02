@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bank.hdfc.function.Admin;
 import bank.hdfc.function.Customer;
 import bank.hdfc.function.Employee;
 
@@ -26,8 +27,11 @@ public class ChangePassword extends HttpServlet {
 		else if(session.getAttribute("emplyee")!=null){
 			check=((Employee)session.getAttribute("employee")).changePassword(oldPassword, newPassword);
 		}
-		request.getSession().setAttribute("message", check?"YOUR PASSWORD HAS BEEN CHANGES SUCCESSFULLY":"PLEASE RECHECK THE PASSWORD YOPU HAVE ENTERED");
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("changePasswordPage");
+		else if(session.getAttribute("admin")!=null) {
+			check=((Admin)session.getAttribute("admin")).changePassword(oldPassword, newPassword);
+		}
+		request.getSession().setAttribute("message", (check?"<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">YOUR PASSWORD HAS BEEN CHANGES SUCCESSFULLY</h2>":"<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">PLEASE RECHECK THE OLD PASSWORD YOPU HAVE ENTERED</h2>"));
+		RequestDispatcher requestDispatcher=request.getRequestDispatcher("profilePage");
 		requestDispatcher.forward(request, response);
 	}
 }

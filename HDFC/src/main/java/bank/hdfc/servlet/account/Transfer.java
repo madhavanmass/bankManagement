@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bank.hdfc.function.Customer;
+import bank.hdfc.pack.BankDefinition;
 
 public class Transfer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,9 +25,19 @@ public class Transfer extends HttpServlet {
 		else {
 			messageNumber=customer.getSavingAccounts().get(accountNumber).transfer(Integer.valueOf(request.getParameter("otherAccount")),Integer.valueOf(request.getParameter("amount")), request.getParameter("description"));
 		}
-		RequestDispatcher requestDispatcher=request.getRequestDispatcher("transfer?accountNumber="+accountNumber);
-		request.setAttribute("message", messageNumber);
-		requestDispatcher.forward(request, response);
+		
+		String message;
+		if(messageNumber==1) {
+			message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">THE AMOUNT "+Integer.valueOf(request.getParameter("amount"))+" HAS SUCCESSFULLY PAID</h2>";
+		}
+		else {
+			message=BankDefinition.accountMessage(messageNumber);
+		}
+		request.getSession().setAttribute("message", message);
+		
+		request.getSession().setAttribute("message", message);
+		response.sendRedirect("transfer?accountNumber="+accountNumber);
+		
 	}
 
 }

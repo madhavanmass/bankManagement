@@ -15,30 +15,32 @@ nav a.accounts, li a.accountDetail{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 
 <body>
 
-<jsp:include page="/COMMON/topnav.html"></jsp:include>
+<jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
 <div class="content">
+<h1>ACCOUNT DETAILS</h1>
 <%
 int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 Customer customer=((Customer) session.getAttribute("customer"));
 customer.loadCurrentAccounts();
 customer.loadSavingAccount();
 if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
-	out.print(customer.getCurrentAccount().toString());
+	out.print("<table>"+customer.getCurrentAccount().toString()+"</table>");
 }
 else{
-	out.print(customer.getSavingAccounts().get(accountNumber).toString());	
+	out.print("<table>"+customer.getSavingAccounts().get(accountNumber).toString()+"</table>");	
 }
 %>
 
 <c:if test="<%=customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber%>">
-<h4>SET A SPENT LIMIT</h4>
-<form action="userSetLimit?accountNumber=<%=request.getParameter("accountNumber")%>" oninput="limit.value=parseInt(userSetLimit.value)">
-1000 <input type="range" min="1000" max="100000" value=<%=customer.getCurrentAccount().getUserSetLimit()%> name="userSetLimit"> 100000<br>
+<h2>SET A SPENT LIMIT</h2>
+<form action="userSetLimit?accountNumber=<%=request.getParameter("accountNumber")%>" oninput="limit.value=parseInt(userSetLimit.value)" >
+<input type="range" min="1000" max="100000" value=<%=customer.getCurrentAccount().getUserSetLimit()%> name="userSetLimit">
 <output name="limit"></output><br>
 <input type="submit" value="UPDATE LIMIT">
 </form>

@@ -15,9 +15,10 @@ nav a.accounts{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
-   <jsp:include page="/COMMON/topnav.html"></jsp:include>
+   <jsp:include page="/COMMON/topNav.html"></jsp:include>
 	<h1>SAVING ACCOUNT</h1>
 	<%
 	((Customer) session.getAttribute("customer")).loadSavingAccount();
@@ -31,13 +32,13 @@ nav a.accounts{
 			+ "<td>"+ BankDefinition.accountName(savingAccount.getAccountType())+ "</td>" 
 			+ "<td>"+ savingAccount.getBalance()+ "</td>" 
 			+ "<td>" + savingAccount.getTransferredAmount()+ "</td>"
-			+ "<td> <a href=accountDetail?accountNumber="+savingAccount.getAccountNumber()+">USE</a></td>"
+			+ "<td><a href=accountDetail?accountNumber="+savingAccount.getAccountNumber()+">USE</a></td>"
 			+"</tr>");
 		}
 		out.print("</table>");
 	} 
 	else{
-		out.print("<h1>IT SEEMS YOU DONT HAVE A SAVING ACCOUNT</h1>");
+		out.print("<h2>IT SEEMS YOU DONT HAVE A SAVING ACCOUNT</h2>");
 	}
 	
 	%>
@@ -58,7 +59,7 @@ nav a.accounts{
 
 	}
 	else{
-		out.print("<h1>IT SEEMS YOU DONT HAVE A CURRENT ACCOUNT</h1>");
+		out.print("<h2>IT SEEMS YOU DONT HAVE A CURRENT ACCOUNT</h2>");
 
 	}
 	%>

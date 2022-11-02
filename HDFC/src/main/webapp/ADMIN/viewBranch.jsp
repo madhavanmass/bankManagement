@@ -20,7 +20,8 @@ nav a.viewBranch{
 </style>
 </head>
 <body>
-<jsp:include page="/COMMON/adminnav.html"></jsp:include>
+<h1>VIEW BRANCH</h1>
+<jsp:include page="/COMMON/adminNav.html"></jsp:include>
 <form action="viewBranch">
 <input type="text" name="name"><input type="submit" value="SEARCH"><br>
 </form>
@@ -41,7 +42,7 @@ nav a.viewBranch{
 	    matcher = pattern.matcher(branchDetail.getAddressLine1()+branchDetail.getAddressLine2()+branchDetail.getPinCode());
 	    boolean matchFound = matcher.find();
 	    if(matchFound) {
-	      out.println(branchDetail.toString());
+	      out.println("<table>"+branchDetail.toString()+"</table>");
 	    }
 	}
 %>

@@ -20,11 +20,12 @@ public class CreateAccount extends HttpServlet {
         Employee employee=(Employee)request.getSession().getAttribute("employee");
         int messageInt=employee.createAccount(customerId, accountChoice, initialDeposit);
         String message;
+        System.out.println(messageInt);
         if(messageInt<5) {
         	message=BankDefinition.employeeMessage(messageInt);
         }
         else {
-        	message="AN "+BankDefinition.accountName(accountChoice)+ " : "+messageInt+" HAS BEEN CREATE FOR THE CUSTOMER WITH ID "+customerId+" IN BRANCH ID "+employee.getBranchId();
+        	message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">AN "+BankDefinition.accountName(accountChoice)+ " : "+messageInt+" HAS BEEN CREATE FOR THE CUSTOMER WITH ID "+customerId+" IN BRANCH ID "+employee.getBranchId()+"</h2>";
         }
         request.getSession().setAttribute("message", message);
         request.getRequestDispatcher("createAccount").forward(request, response);

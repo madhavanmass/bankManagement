@@ -11,16 +11,17 @@ nav a.createAccount{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
-<jsp:include page="/COMMON/employeenav.jsp"></jsp:include>
+<jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
 <% if(session.getAttribute("message") !=null){
-	out.print("<h2>"+(String)session.getAttribute("message")+"</h2>");
+	out.print((String)session.getAttribute("message"));
 	session.removeAttribute("message");
 }
 %>
-<form action="createAccountServlet" method="post">
-ENTER THE CUSTOMER ID :<input type="text" name="customerId"><br>
+<form name="myForm" onsubmit="return validateForm([23,24])" action="createAccountServlet" method="post" >
+ENTER THE CUSTOMER ID :<input type="number" name="customerId"><br>
 CHOOSE AN ACCOUNT:
 <select name="accountChoice">
 <option value="1">SAVING ACCOUNT</option>

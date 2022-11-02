@@ -85,20 +85,20 @@ public class BankDefinition {
     
     public static String accountMessage(int messageInt) {
     	switch (messageInt) {
-		case 1: return "DEBITED SUCCESSFULLY";
-		case 2: return "BENEFICIARY LIMIT REACHED";
-		case 3: return "THE OTHER BANK TRANSFER WILL BE DONE";
-		case 4: return "INSUFFICIENT BALANCE HAS BEEN DEDUCTED";
-		case 5: return "TRANSACTION LIMIT HAS BEEN REACHED";
+		case 1: return "<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">DEBITED SUCCESSFULLY</h2>";
+		case 2: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">BENEFICIARY LIMIT REACHED</h2>";
+		case 3: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">THE OTHER BANK TRANSFER WILL BE DONE</h2>";
+		case 4: return "<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">INSUFFICIENT BALANCE IN YOUR ACCOUNT</h2>";
+		case 5: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">TRANSACTION LIMIT HAS BEEN REACHED</h2>";
 		}
     	return null;
     }
     
     public static String employeeMessage(int messageInt) {
     	switch (messageInt) {
-		case 3: return "ACTION DONE SUCESSFULLY";
-		case 1: return "CUSTOMER ID DOES'T EXIST THE BANK";
-		case 2: return "WRONG ACCOUNT NUMBER";
+		case 3: return "<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">ACTION DONE SUCESSFULLY</h2>";
+		case 1: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">CUSTOMER ID DOES'T EXIST THE BANK</h2>";
+		case 2: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">WRONG ACCOUNT NUMBER</h2>";
 		
 		}
     	return null;
