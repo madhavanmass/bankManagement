@@ -21,7 +21,7 @@ public class GiveLoan extends HttpServlet {
         int amount=Integer.valueOf(request.getParameter("amount"));
         int loanType=Integer.valueOf(request.getParameter("loanType"));
         Manager manager=(Manager)request.getSession().getAttribute("employee");
-        int messageInt=manager.customerDeposit(customerId, accountNumber, amount);
+        int messageInt=manager.customerDeposit(customerId, accountNumber, amount,0);
         String message;
         if(messageInt==3) {
         	manager.giveLoan(customerId, amount, accountNumber,loanType);

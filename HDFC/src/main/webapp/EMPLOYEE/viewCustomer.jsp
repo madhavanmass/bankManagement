@@ -23,6 +23,7 @@ nav a.viewCustomer{
 </head>
 <body>
 <jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<h1>VIEW CUSTOMER</h1>
 <form action="viewCustomer">
 <input type="text" name="name"><input type="submit" value="SEARCH"><br>
 </form>

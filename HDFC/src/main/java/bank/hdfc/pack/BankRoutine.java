@@ -1,5 +1,6 @@
 package bank.hdfc.pack;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -7,23 +8,29 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.TimerTask;
 
 import bank.hdfc.dao.BankDao;
 
 class UpdateDates implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 	LocalDate dailyUpdate;
 	public LocalDate monthlyUpdate;
+	
+	
+	public UpdateDates() {
+		this.dailyUpdate =LocalDate.now() ;
+	}
 	public void updateDailyDate() {
 		this.dailyUpdate= LocalDate.now() ;
 	}
 	
 }
-public class BankRoutine extends TimerTask  {
+public class BankRoutine implements Runnable  {
 	BankDao bankDao=new BankDao();
 	public void run() {
 		try {
+
             ObjectInputStream inputfromfile=new ObjectInputStream(new FileInputStream("BankTask.txt"));  
             UpdateDates dates=(UpdateDates)inputfromfile.readObject();
             inputfromfile.close();

@@ -19,10 +19,10 @@ public class PayLoan extends HttpServlet {
 		Customer customer=(Customer) request.getSession().getAttribute("customer");
 		int messageNumber=0;
 		if(customer.getCurrentAccount().getAccountNumber()==accountChoose) {
-			messageNumber=customer.getCurrentAccount().debitMoney(Integer.valueOf(request.getParameter("amount")), "LOAN PAYMENT");
+			messageNumber=customer.getCurrentAccount().transfer(accountNumber, -amount,0, "LOAN PAYMENT");
 		}
 		else {
-			messageNumber=customer.getSavingAccounts().get(accountChoose).debitMoney(Integer.valueOf(request.getParameter("amount")), "LOAN PAYMENT");
+			messageNumber=customer.getSavingAccounts().get(accountChoose).transfer(accountNumber, -amount, 0, "LOAN PAYMENT");
 		}
 		String message;
 		if(messageNumber==1) {

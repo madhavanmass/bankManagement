@@ -15,6 +15,7 @@ nav a.giveLoan{
 </head>
 <body>
 <jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<h1>GIVE LOAN</h1>
 <form name="myForm" onsubmit="return validateForm([23,1,7])" action="giveLoanServlet" method="post" >
 ENTER THE CUSTOMER ID :<input type="number" name="customerId"><br>
 SELECT THE LOAN TYPE :

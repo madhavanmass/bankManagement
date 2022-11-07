@@ -1,6 +1,5 @@
 package bank.hdfc.dao;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,7 +58,7 @@ public class AccountDao {
 
 	// Getting the transaction History of the account
 	public HashMap<Integer, Transaction> transactionHistory(int accountNumber, int finalbalance) {
-		int balance=finalbalance;
+		
 		try (Connection connection = ConnectionTool.getConnection()) {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(ConnectionTool.resourceBundle.getString("transactionHistory"));
@@ -73,17 +72,19 @@ public class AccountDao {
 				int action = resultset.getInt(6);
 				int amount = resultset.getInt(7);
 				int transferedAccount = resultset.getInt(3);
-				if ((transferedAccount == 0 || transferedAccount==1) && accountNumber==tableAccountNumber) {
-					balance-=amount;
-					action=2;
-				} else if (transferedAccount == accountNumber && (accountNumber!=tableAccountNumber || tableAccountNumber==0)) {
-					balance+=amount;
-					action = 1;
+				if(tableAccountNumber==transferedAccount) {
+					action=action==1?2:1;
 				}
 				transaction.put(resultset.getInt(1),
 						new Transaction(resultset.getInt(1), resultset.getInt(2), transferedAccount,
 								resultset.getString(4), resultset.getDate(5), resultset.getTime(5).toString(), action,
-								resultset.getInt(7), balance, resultset.getString(8)));
+								resultset.getInt(7), finalbalance, resultset.getString(8)));
+				if(action==1) {
+					finalbalance-=amount;
+				}
+				else {
+					finalbalance+=amount;
+				}
 			}
 			resultset.close();
 			preparedStatement.close();
@@ -97,16 +98,13 @@ public class AccountDao {
 	}
 
 	// Adding or Debiting money from account
-	public int updateAccount(int accountNumber, int amount, String query) {
+	public int updateAccount(int accountNumber, int amount,int transferedAmount, String query) {
 
 		try (Connection connection = ConnectionTool.getConnection()) {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(ConnectionTool.resourceBundle.getString(query));
 			preparedStatement.setInt(1, amount);
-			if(amount<0) {
-				amount=0;
-			}
-			preparedStatement.setInt(2, Math.abs(amount));
+			preparedStatement.setInt(2, transferedAmount);
 			preparedStatement.setInt(3, accountNumber);
 			int checker = preparedStatement.executeUpdate();
 			preparedStatement.close();

@@ -31,23 +31,24 @@ nav a.loan, li a.payLoan{
  ENTER THE ACCOUNT YOU WANT TO PAY: 
  <select name="accountChoose">
  <% 
+ ((Customer) session.getAttribute("customer")).loadCurrentAccounts();
  ((Customer) session.getAttribute("customer")).loadSavingAccount();
  ((Customer) session.getAttribute("customer")).loadCurrentAccounts();
 	HashMap<Integer, SavingAccount> savingAccounts = ((Customer) session.getAttribute("customer")).getSavingAccounts();
 	CurrentAccount currentAccount = ((Customer) session.getAttribute("customer")).getCurrentAccount();
 	if (savingAccounts.size()!=0) {
 		for (SavingAccount savingAccount : savingAccounts.values()) {
-			out.print( "<option value="+savingAccount.getAccountNumber()+">ACC NO : " + savingAccount.getAccountNumber()+ "ACC TYPE : SAVING</option>" );	
+			out.print( "<option value="+savingAccount.getAccountNumber()+">Account Number : " + savingAccount.getAccountNumber()+ " -SAVING ACCOUNT</option>" );	
 		}
 	}
 	if(currentAccount!=null){
-		out.print( "<option value="+currentAccount.getAccountNumber()+">ACC NO : " + currentAccount.getAccountNumber()+ "ACC TYPE : CURRENT</option>" );
+		out.print( "<option value="+currentAccount.getAccountNumber()+">Account Number : " + currentAccount.getAccountNumber()+ " -CURRENT ACCOUNT</option>" );
 	}
  
  %>
  
  </select>
- <input type="hidden" name="accountNumber" value=<%= request.getParameter("accountNumber")%>>  
+ <input type="hidden" name="accountNumber" value=<%=request.getParameter("accountNumber")%>>  
  <input type="submit" value="PAY LOAN">
  </form>
  

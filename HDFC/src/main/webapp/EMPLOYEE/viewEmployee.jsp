@@ -23,6 +23,7 @@ nav a.viewEmployee{
 </head>
 <body>
 <jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<h1>VIEW EMPLOYEE</h1>
 <form action="viewEmployee">
 <input type="text" name="name"><input type="submit" value="SEARCH"><br>
 </form>

@@ -20,6 +20,7 @@ nav a.profile{
 </style>
 </head>
 <body>
+
 <c:if test="<%=request.getSession().getAttribute(\"customer\") != null %>">
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
 </c:if>
@@ -32,7 +33,7 @@ nav a.profile{
 <jsp:include page="/COMMON/adminNav.html"></jsp:include>
 </c:if>
 
-
+<h1>PROFILE</h1>
 
 <%
 if(session.getAttribute("customer")!=null){

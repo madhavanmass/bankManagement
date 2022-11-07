@@ -27,7 +27,7 @@ public class IssueDebitCard extends HttpServlet {
         	message=BankDefinition.employeeMessage(messageInt);
         }
         request.getSession().setAttribute("message", message);
-        request.getRequestDispatcher("depositMoney").forward(request, response);
+        request.getRequestDispatcher("issueDebitCard").forward(request, response);
 	}
 
 }

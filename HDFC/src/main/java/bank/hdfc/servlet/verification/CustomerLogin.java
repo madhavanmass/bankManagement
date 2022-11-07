@@ -27,7 +27,7 @@ public class CustomerLogin extends HttpServlet {
 			requestDispatcher.forward(request, response);
 			
 		} else {
-			request.getSession().setAttribute("message", "INVALID CREDENTIALS");
+			request.getSession().setAttribute("message", "<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">INVALID CREDENTIALS</h2>");
 			RequestDispatcher requestuestDispatcher = request.getRequestDispatcher("indexPage");
 			requestuestDispatcher.include(request, response);
 		}

@@ -16,6 +16,7 @@ nav a.addEmployee{
 <body>
 
 <jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<h1>ADD EMPLOYEE</h1>
 <form name="myForm" onsubmit="return validateForm([13,15,16,17,18,19,20,21,22])" action="addMemberServlet" method="post" >
 <jsp:include page="/COMMON/createPerson.html"></jsp:include>
 <input type="hidden" name="role" value="1"> 

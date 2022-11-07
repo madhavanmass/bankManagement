@@ -18,23 +18,23 @@ public class OpenDeposit extends HttpServlet {
 		int type=Integer.valueOf(request.getParameter("depositType"));
 		int policy=Integer.valueOf(request.getParameter("depositPolicy"));
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
-		boolean checker=false;
+		int checker=0;
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
-			
-			if(customer.getCurrentAccount().debitMoney(amount, "OPENED A DEPOSIT ")==1) {
-				checker=customer.getCurrentAccount().openDeposit(type, amount, policy);
+			checker=customer.getCurrentAccount().debitMoney(amount,0, "OPENED A DEPOSIT");
+			if(checker ==1) {
+				customer.getCurrentAccount().openDeposit(type, amount, policy);
 			}
 		}
-		else {
-			
-			if(customer.getSavingAccounts().get(accountNumber).debitMoney(amount, "OPENED A DEPOSIT ")==1) {
-				checker=customer.getSavingAccounts().get(accountNumber).openDeposit(type, amount, policy);
+		else if(customer.getSavingAccounts().get(accountNumber)!=null) {
+			checker=customer.getSavingAccounts().get(accountNumber).debitMoney(amount,0, "OPENED A DEPOSIT");
+			if(checker==1) {
+				customer.getSavingAccounts().get(accountNumber).openDeposit(type, amount, policy);
 			}
 		}
 		customer.setFixedDeposits(null);
 		customer.setRecurrsiveDeposits(null);
 		String message;
-		if(checker) {
+		if(checker==1) {
 			message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">A NEW "+(type==1?"FIXED":"RECURRING")+" HAS BEEN OPEN PLEASE CHECK ON DEPOSIT TAB<h2>";
 		}
 		else {

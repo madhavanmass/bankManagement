@@ -15,7 +15,9 @@ nav a.addCustomer{
 </head>
 <body>
 
+
 <jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<h1>ADD CUSTOMER</h1>
 <form name="myForm" onsubmit="return validateForm([13,15,16,17,18,19,20,21,22])" action="addMemberServlet" method="post" >
 <jsp:include page="/COMMON/createPerson.html"></jsp:include>
 <input type="submit" value="CREATE CUSTOMER">

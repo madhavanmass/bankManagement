@@ -30,12 +30,12 @@ ENTER THE DESCRIPTION :<br>
 <textarea name="description" rows="4" cols="50" placeholder="type here..."></textarea><br>
 <input type="hidden" name="accountNumber" value=<%=request.getParameter("accountNumber")%>>  
 <input type="submit" value="transfer">
+</form>
 <% if(session.getAttribute("message") !=null){
 	out.print((String)session.getAttribute("message"));
 	session.removeAttribute("message");
 }	
 %>
-</form>
 </div>
 </body>
 </html>

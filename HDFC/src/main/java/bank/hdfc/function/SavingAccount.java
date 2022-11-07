@@ -71,32 +71,34 @@ public class SavingAccount extends Account {
 	}
 	
 	private int check(int amount) {
-		if(balance-amount < 0) {
+		if(balance-Math.abs(amount) < 0) {
 			return 4;
 		}
-		else if(transferredAmount+amount > transferLimit) {
+		else if(transferredAmount+Math.abs(amount) > transferLimit) {
 			return 5;
 		}
 		else {
 			return 0;
 		}
 	}
-	public int debitMoney(int amount, String description) {
+	public int debitMoney(int amount,int transferAmount, String description) {
 		int resultInt=check(amount);
-		balance-=amount;
+		balance-=Math.abs(amount);
+		this.transferredAmount +=Math.abs(amount);
 		if(resultInt==0) {
-			return super.debitMoney(amount, description);
+			return super.debitMoney(amount,transferAmount, description);
 		}
 		else {
 			return resultInt;
 		}
 	}
 	
-	public int transfer(int otherAccount, int amount, String description) {
+	public int transfer(int otherAccount, int amount,int transferAmount, String description) {
 		int resultInt=check(amount);
-		balance-=amount;
+		balance-=Math.abs(amount);
+		this.transferredAmount +=Math.abs(amount);
 		if(resultInt==0) {
-			return super.transfer(otherAccount,amount, description);
+			return super.transfer(otherAccount,amount,transferAmount, description);
 		}
 		else {
 			return resultInt;

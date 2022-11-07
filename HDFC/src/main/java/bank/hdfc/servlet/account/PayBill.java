@@ -20,10 +20,10 @@ public class PayBill extends HttpServlet {
 		int amount=Integer.valueOf(request.getParameter("amount"));
 		int messageNumber=0;
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
-			messageNumber=customer.getCurrentAccount().debitMoney(amount,(String)request.getParameter("description"));	
+			messageNumber=customer.getCurrentAccount().debitMoney(-1*amount,amount,(String)request.getParameter("description"));	
 		}
 		else {
-			messageNumber=customer.getSavingAccounts().get(accountNumber).debitMoney(amount, (String)request.getParameter("description"));
+			messageNumber=customer.getSavingAccounts().get(accountNumber).debitMoney(-1*amount,amount ,(String)request.getParameter("description"));
 		}
 		String message;
 		if(messageNumber==1) {

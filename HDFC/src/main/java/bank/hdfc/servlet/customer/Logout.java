@@ -18,7 +18,6 @@ public class Logout extends HttpServlet {
 		if(session.getAttribute("admin")!=null || session.getAttribute("employee")!=null) {
 			redirect="employeeLogin";
 		}
-		
 		request.getSession().setAttribute("customer", "");
 		request.getSession().removeAttribute("customer");
 		request.getSession().setAttribute("employee", "");

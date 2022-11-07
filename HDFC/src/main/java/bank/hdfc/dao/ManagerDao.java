@@ -42,7 +42,7 @@ public class ManagerDao {
 			preparedStatement.setInt(5, BankDefinition.getDue(loanType));
 			preparedStatement.setInt(6, loanType );
 			preparedStatement.setInt(7, amount);
-			preparedStatement.execute();
+			preparedStatement.executeUpdate();
 			preparedStatement.close();
 
 		} catch (Exception e) {

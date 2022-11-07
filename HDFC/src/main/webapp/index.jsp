@@ -14,8 +14,8 @@
 <h2 style="text-align: center;">CUSTOMER LOGIN</h2>
 
 <form name="myForm" onsubmit="return validateForm([23,27])" action="customerVerify" method="post">
-ENTER CUSTOMER ID     : <input type="number" name="customerId" value="13"><br>
-ENTER PASSWORD        :<input type="password" name="password" value="gokul000"><br>
+ENTER CUSTOMER ID     : <input type="number" name="customerId" value="15"><br>
+ENTER PASSWORD        :<input type="password" name="password" value="akilan000"><br>
 
 <input type="submit" value="LOGIN">
 </form>

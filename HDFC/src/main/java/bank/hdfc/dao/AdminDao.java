@@ -80,42 +80,4 @@ public class AdminDao {
 	}
 
 
-//	private int getBranchId(String branchName) {
-//		try (Connection connection = ConnectionTool.getConnection()) {
-//			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("getBranchId"));
-//			preparedStatement.setString(1, branchName);
-//			ResultSet resultset=preparedStatement.executeQuery();
-//			resultset.next();
-//			int branchId = resultset.getInt(1);
-//			resultset.close();
-//			preparedStatement.close();
-//			return branchId;
-//			
-//
-//		} catch (Exception e) {
-//			System.out.println("ERROR IN CREATING A BRANCH");
-//			e.printStackTrace();
-//		}
-//		return 0;
-//	}
-
-
-//	private String generateIfsc(String bankName) {
-//		try (Connection connection = ConnectionTool.getConnection()) {
-//			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("generateIfsc"));
-//			ResultSet resultset = preparedStatement.executeQuery();
-//			int count = 1;
-//			if (resultset.next()) {
-//				count = resultset.getInt(1) + 1;
-//			}
-//			resultset.close();
-//			preparedStatement.close();
-//			return bankName + String.format("%06d", count);
-//
-//		} catch (Exception e) {
-//			System.out.println("Error in generating ifsc");
-//		}
-//		return null;
-//	}
-
 }

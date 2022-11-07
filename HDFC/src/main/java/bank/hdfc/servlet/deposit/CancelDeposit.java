@@ -26,10 +26,10 @@ public class CancelDeposit extends HttpServlet {
 		customer.loadCurrentAccounts();
 		customer.loadSavingAccount();
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
-			customer.getCurrentAccount().debitMoney(amount,"Deposit MONEY" );
+			customer.getCurrentAccount().debitMoney(amount,0,"Deposit MONEY" );
 		}
 		else {
-			customer.getSavingAccounts().get(accountNumber).debitMoney(amount, "DEPSOIT MONEY");
+			customer.getSavingAccounts().get(accountNumber).debitMoney(amount,0, "DEPSOIT MONEY");
 		}
 		customer.setFixedDeposits(null);
 		customer.setRecurrsiveDeposits(null);

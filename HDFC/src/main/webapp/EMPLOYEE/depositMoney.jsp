@@ -15,6 +15,7 @@ nav a.depositMoney{
 </head>
 <body>
 <jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<h1>DEPOSIT MONEY</h1>
 <form name="myForm" onsubmit="return validateForm([23,7,1])" action="depositMoneyServlet" method="post" >
 ENTER THE CUSTOMER ID :<input type="number" name="customerId"><br>
 ENTER THE ACCOUNT NUMBER :<input type="number" name="accountNumber"><br>

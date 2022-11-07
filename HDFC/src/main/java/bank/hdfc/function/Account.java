@@ -122,10 +122,10 @@ public class Account {
 	}
 
 	// debit amount from account
-	protected int debitMoney(int amount, String description) {
-		accountDao.updateAccount(accountNumber, amount * -1,getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
+	protected int debitMoney(int amount,int transferedAmount, String description) {
+		accountDao.updateAccount(accountNumber, amount,transferedAmount,getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
 		int otherAccount=1;
-		if(description.equals("LOAN PAYMENT")) {
+		if(description.equals("LOAN PAYMENT") || description.equals("OPENED A DEPOSIT")) {
 			otherAccount=0;
 		}
 		accountDao.transactionEntry(getAccountNumber(), otherAccount, description, amount, 2, 1);
@@ -134,18 +134,21 @@ public class Account {
 	}
 
 	// transfer money from bank
-	protected int transfer(int otherAccount, int amount, String description) {
+	protected int transfer(int otherAccount, int amount,int transferedAmount, String description) {
 		loadBenificary();
 		boolean check = true;
 		int resultInt = 1;
 		int beneficiaryId = isBeneficiary(otherAccount);
 		if (beneficiaryId != 0) {
-			check = beneficiary.get(beneficiaryId).limitChecker(amount);
-			beneficiary.get(beneficiaryId).updateTransfer(amount);
+			check = beneficiary.get(beneficiaryId).limitChecker(transferedAmount);
+			if(check) {
+				beneficiary.get(beneficiaryId).updateTransfer(transferedAmount);
+				beneficiary.get(beneficiaryId).setTransferAmount(transferedAmount+beneficiary.get(beneficiaryId).getTransferAmount());
+			}
 		}
 		if (check) {
-			accountDao.updateAccount(accountNumber, amount * -1,getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
-			int checker=branch.doDeposit(otherAccount,accountNumber, amount,1);
+			accountDao.updateAccount(accountNumber, amount , transferedAmount, getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
+			int checker=branch.doDeposit(otherAccount,accountNumber,-amount,0,-amount>0?2:1,description);
 			if(checker==0) {
 				resultInt=3;
 			}

@@ -80,6 +80,7 @@ public class EmployeeDao {
 	public int createCurrentAccount(int customerId, int accountChoice, int initialDeposit, int branchId) {
 		try (Connection connection = ConnectionTool.getConnection()) {
 			int accountNumber=createAccount(customerId, 2, initialDeposit, branchId);
+			
 			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("createCurrentAccount"));
 			preparedStatement.setInt(1, accountNumber);
 			preparedStatement.setInt(2, initialDeposit);
@@ -101,7 +102,6 @@ public class EmployeeDao {
 		int accountNumber=createAccount(customerId, 1, initialDeposit, branchId);
 		if(accountNumber!=0) {
 			try (Connection connection = ConnectionTool.getConnection()) {
-				
 				PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("createSavingAccount"));
 				preparedStatement.setInt(1, accountNumber);
 				preparedStatement.setInt(2, initialDeposit);

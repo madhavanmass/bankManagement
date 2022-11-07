@@ -130,14 +130,16 @@ public class Branch {
 		return branchDao.getAccount(accountNumber);
 	}
 
-	public int doDeposit(int otherAccount,int accountNumber, int amount,int action) {
+	public int doDeposit(int otherAccount,int accountNumber, int amount,int transferedAmount,int action,String description) {
 		Account account = getAccount(otherAccount);
 		int checker=0;
-		if(account!=null) {
-		checker = new AccountDao().updateAccount(otherAccount, amount,
+		if(account!=null && account.getAccountType()!=3) {
+		checker = new AccountDao().updateAccount(otherAccount, amount,transferedAmount,
 				account.getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
-		new AccountDao().transactionEntry(accountNumber,otherAccount , "BANK DEPOSITED MONEY", amount,action, 4);
+		account.setTransactions(null);
+		
 		}
+		new AccountDao().transactionEntry(accountNumber,otherAccount , description, amount,action, 4 );
 		return checker;
 	}
 
