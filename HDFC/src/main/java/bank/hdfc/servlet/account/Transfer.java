@@ -22,15 +22,23 @@ public class Transfer extends HttpServlet {
 		String description= request.getParameter("description");
 		int transferedAmount=amount;
 		int messageNumber=0;
-		if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
+		String message;
+		if(transferedAmount==accountNumber) {
+			message="<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">SAME ACCOUNT NUMBER AND TRANSFER ACCOUNT</h2>";
+		}
+		else if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			messageNumber=customer.getCurrentAccount().transfer(otherAccount,-amount, transferedAmount ,description);	
 		}
 		else if(customer.getSavingAccounts().size()!=0) {
 			messageNumber=customer.getSavingAccounts().get(accountNumber).transfer(otherAccount,-amount , transferedAmount , description);
 		}
-		
-		String message;
 		if(messageNumber==1) {
+			if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==otherAccount) {
+				customer.getCurrentAccount().setBalance(customer.getCurrentAccount().getBalance()+amount);	
+			}
+			else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(otherAccount)) {
+				customer.getSavingAccounts().get(otherAccount).setBalance(amount + customer.getSavingAccounts().get(otherAccount).getBalance());
+			}
 			message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">THE AMOUNT "+amount+" HAS SUCCESSFULLY PAID</h2>";
 		}
 		else {

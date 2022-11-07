@@ -20,13 +20,13 @@ public class OpenDeposit extends HttpServlet {
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 		int checker=0;
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
-			checker=customer.getCurrentAccount().debitMoney(amount,0, "OPENED A DEPOSIT");
+			checker=customer.getCurrentAccount().transfer(0, -amount, amount,"OPENED A DEPOSIT" );
 			if(checker ==1) {
 				customer.getCurrentAccount().openDeposit(type, amount, policy);
 			}
 		}
 		else if(customer.getSavingAccounts().get(accountNumber)!=null) {
-			checker=customer.getSavingAccounts().get(accountNumber).debitMoney(amount,0, "OPENED A DEPOSIT");
+			checker=customer.getSavingAccounts().get(accountNumber).transfer(0, -amount, amount,"OPENED A DEPOSIT" );
 			if(checker==1) {
 				customer.getSavingAccounts().get(accountNumber).openDeposit(type, amount, policy);
 			}

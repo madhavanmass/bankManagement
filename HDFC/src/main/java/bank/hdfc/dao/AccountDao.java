@@ -72,8 +72,9 @@ public class AccountDao {
 				int action = resultset.getInt(6);
 				int amount = resultset.getInt(7);
 				int transferedAccount = resultset.getInt(3);
-				if(tableAccountNumber==transferedAccount) {
-					action=action==1?2:1;
+				if(accountNumber==transferedAccount) {
+					action=(action==1?2:1);
+					transferedAccount=tableAccountNumber;
 				}
 				transaction.put(resultset.getInt(1),
 						new Transaction(resultset.getInt(1), resultset.getInt(2), transferedAccount,

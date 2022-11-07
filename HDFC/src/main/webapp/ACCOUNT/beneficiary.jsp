@@ -43,12 +43,13 @@ if(beneficiarys.size()==0 || beneficiarys==null){
 
 else{
 	out.print(
-			"<table><tr><th>BENEFICIARY ID</th><th>CONNECTED ACCOUNT</th><th>TRANSACTION LIMIT</th><th>UPDATE</th><th>DELETE</th></tr> ");
+			"<table><tr><th>BENEFICIARY ID</th><th>CONNECTED ACCOUNT</th><th>TRANSFERED AMOUNT</th><th>TRANSACTION LIMIT</th><th>UPDATE</th><th>DELETE</th></tr> ");
 	for(Beneficiary beneficiary:beneficiarys.values()){
 		out.print("<tr>" 
 				+"<form name=\"myForm\" onsubmit=\"return validateForm([2,3,4])\" action=\"updateBeneficiary\">"
 				+ "<td><input type=\"number\" name=\"beneficiaryId\" value="+beneficiary.getBeneficiaryId()+" readonly></td>"
 				+ "<td><input type=\"number\" name=\"connectedAccount\" value="+beneficiary.getConnectedAccount()+ " readonly></td>"
+				+ "<td><input type=\"number\" value="+beneficiary.getTransferAmount()+ " readonly></td>"
 				+ "<td ><input class=\"limit\" type=\"number\" name=\"transactionLimit\" value="+beneficiary.getTransactionLimit()+"></td>"
 				+"<input type=\"hidden\" value="+request.getParameter("accountNumber")+" name=\"accountNumber\">"
 				+ "<td><input type=\"submit\" value=\"UPDATE\"></td>"

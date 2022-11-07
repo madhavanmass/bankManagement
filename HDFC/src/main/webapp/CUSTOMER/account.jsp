@@ -25,13 +25,14 @@ nav a.accounts{
 	HashMap<Integer, SavingAccount> savingAccounts = ((Customer) session.getAttribute("customer")).getSavingAccounts();
 	if (savingAccounts.size()!=0) {
 		out.print(
-		"<table><tr><th>ACCOUNT  NUMBER</th><th>ACCOUNT TYPE</th><th>ACCOUNT BALACE</th><th>TRANSFERRED AMOUNT</th><th>ACTION</th></tr> ");
+		"<table><tr><th>ACCOUNT  NUMBER</th><th>ACCOUNT TYPE</th><th>ACCOUNT BALACE</th><th>TRANSFERRED AMOUNT</th><th>TRANSACTION LIMIT</th><th>ACTION</th></tr> ");
 		for (SavingAccount savingAccount : savingAccounts.values()) {
 			out.print("<tr>" 
 			+ "<td>" + savingAccount.getAccountNumber()+ "</td>" 
 			+ "<td>"+ BankDefinition.accountName(savingAccount.getAccountType())+ "</td>" 
 			+ "<td>"+ savingAccount.getBalance()+ "</td>" 
 			+ "<td>" + savingAccount.getTransferredAmount()+ "</td>"
+			+ "<td>" + savingAccount.getTransferLimit()+ "</td>"
 			+ "<td><a href=accountDetail?accountNumber="+savingAccount.getAccountNumber()+">USE</a></td>"
 			+"</tr>");
 		}
@@ -48,13 +49,15 @@ nav a.accounts{
 	((Customer) session.getAttribute("customer")).loadCurrentAccounts();
 	CurrentAccount currentAccount = ((Customer) session.getAttribute("customer")).getCurrentAccount();
 	if (currentAccount!=null) {
-
 		out.print(
-		"<table><tr><th>ACCOUNT  NUMBER</th><th>ACCOUNT TYPE</th><th>ACCOUNT BALACE</th><th>TRANSFERRED AMOUNT</th><th>ACTION</th></tr> ");
-		out.print("<tr>" + "<td>" + currentAccount.getAccountNumber() + "</td>" + "<td>"
-		+ BankDefinition.accountName(currentAccount.getAccountType()) + "</td>" + "<td>"
-		+ currentAccount.getBalance() + "</td>" + "<td>" + currentAccount.getTransferredAmount() + "</td>"
-		+ "<td> <a href=accountDetail?accountNumber="+currentAccount.getAccountNumber() +">USE</a></td>"
+		"<table><tr><th>ACCOUNT  NUMBER</th><th>ACCOUNT TYPE</th><th>ACCOUNT BALACE</th><th>TRANSFERRED AMOUNT</th><th>USERSET LIMIT</th><th>ACTION</th></tr> ");
+		out.print("<tr>" +
+		"<td>" + currentAccount.getAccountNumber() + "</td>" + 
+		"<td>"+ BankDefinition.accountName(currentAccount.getAccountType()) + "</td>" + 
+		"<td>"+ currentAccount.getBalance() + "</td>" + 
+		"<td>" + currentAccount.getTransferredAmount() + "</td>"+
+		"<td>" + currentAccount.getUserSetLimit() + "</td>"+
+		"<td> <a href=accountDetail?accountNumber="+currentAccount.getAccountNumber() +">USE</a></td>"
 		+ "</tr>");
 
 	}

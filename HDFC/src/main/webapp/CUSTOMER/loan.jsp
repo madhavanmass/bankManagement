@@ -20,6 +20,12 @@ nav a.loan{
  <jsp:include page="/COMMON/topNav.html"></jsp:include>
 	<h1>LOAN ACCOUNT</h1>
 	<%
+	
+	if(session.getAttribute("message") !=null){
+		out.print(session.getAttribute("message"));
+		session.removeAttribute("message");
+	}
+	
 	((Customer) session.getAttribute("customer")).loadLoanAccount();
 	HashMap<Integer, LoanAccount> loanAccounts = ((Customer) session.getAttribute("customer")).getLoanAccounts();
 	if (loanAccounts.size()!=0) {

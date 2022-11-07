@@ -31,10 +31,12 @@ HashMap<Integer,Transaction> transactions= new HashMap<>();
 Customer customer=((Customer)session.getAttribute("customer"));
 int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
+	customer.setCurrentAccount(null);
+	customer.loadCurrentAccounts();
 	customer.getCurrentAccount().loadTransactions(customer.getCurrentAccount().getBalance());
 	transactions=customer.getCurrentAccount().getTransactions();
 }
-else{
+else if(customer.getSavingAccounts().size()!=0){
 	customer.getSavingAccounts().get(accountNumber).loadTransactions(customer.getSavingAccounts().get(accountNumber).getBalance());
 	transactions= customer.getSavingAccounts().get(accountNumber).getTransactions();
 }

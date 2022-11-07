@@ -20,7 +20,6 @@ public class CreateAccount extends HttpServlet {
         Employee employee=(Employee)request.getSession().getAttribute("employee");
         int messageInt=employee.createAccount(customerId, accountChoice, initialDeposit);
         String message;
-        System.out.println(messageInt);
         if(messageInt<5) {
         	message=BankDefinition.employeeMessage(messageInt);
         }

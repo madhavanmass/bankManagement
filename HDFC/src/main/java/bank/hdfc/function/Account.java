@@ -8,6 +8,8 @@ import bank.hdfc.pack.BankDefinition;
 
 public class Account {
 
+	
+
 	private int accountNumber;
 	private int customerId;
 	private int branchId;
@@ -110,6 +112,14 @@ public class Account {
 	public void setDebitCard(DebitCard debitCard) {
 		this.debitCard = debitCard;
 	}
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
+	
 
 	@Override
 	public String toString() {
@@ -120,14 +130,13 @@ public class Account {
 				+ "<tr><td> DATE OF CREATION </td><td>"+dateOfCreattion+ "</td></tr>";
 		return details;
 	}
+	
+	
 
 	// debit amount from account
 	protected int debitMoney(int amount,int transferedAmount, String description) {
 		accountDao.updateAccount(accountNumber, amount,transferedAmount,getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
 		int otherAccount=1;
-		if(description.equals("LOAN PAYMENT") || description.equals("OPENED A DEPOSIT")) {
-			otherAccount=0;
-		}
 		accountDao.transactionEntry(getAccountNumber(), otherAccount, description, amount, 2, 1);
 		transactions = null;
 		return 1;
@@ -189,8 +198,8 @@ public class Account {
 
 	// Function to load transaction history
 	public void loadTransactions(int balance) {
-		if (transactions == null)
-			transactions = accountDao.transactionHistory(accountNumber, balance);
+		transactions = null;
+		transactions = accountDao.transactionHistory(accountNumber, balance);
 	}
 
 	// Function to load beneficiary, transactions, card details

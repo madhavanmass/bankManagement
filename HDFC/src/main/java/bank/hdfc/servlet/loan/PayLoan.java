@@ -32,8 +32,17 @@ public class PayLoan extends HttpServlet {
 		else {
 			message=BankDefinition.accountMessage(messageNumber);
 		}
-		request.getSession().setAttribute("message", message);
-		response.sendRedirect("payLoan?accountNumber="+accountNumber);
+		
+		if(customer.getLoanAccounts().get(accountNumber).getBalance()==0) {
+			customer.getLoanAccounts().get(accountNumber).closeLoanAccount();
+			customer.getLoanAccounts().remove(customer.getLoanAccounts().get(accountNumber).getLoanId());
+			request.getSession().setAttribute("message","<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">THE LOAN HAS BEEN PAID SUCCESSFULLY.. THE ACCOUNT "+accountNumber+ " HAS BEEN CLOSED</h2>");
+			response.sendRedirect("loan");
+		}
+		else {
+			request.getSession().setAttribute("message", message);
+			response.sendRedirect("payLoan?accountNumber="+accountNumber);
+		}
 	}
 
 }

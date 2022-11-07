@@ -99,6 +99,7 @@ public class LoanAccount extends Account {
 				"<tr><td> LOAN TYPE </td><td>"+loanType+ "</td></tr>"+
 				"<tr><td> TOTAL LOAN AMOUNT </td><td>"+totalAmount+ "</td></tr>"+
 				"<tr><td> LOAN END DATE </td><td>"+loanEndDate.toString()+ "</td></tr>"+
+				"<tr><td> LOAN BALANCE </td><td>"+balance+ "</td></tr>"+
 				"<tr><td> AMOUNT PAID </td><td>"+amountPaid+ "</td></tr>"+
 				"<tr><td> LOAN INTEREST RATE </td><td>"+interestRate+ "</td></tr>"
 				;
@@ -113,11 +114,16 @@ public class LoanAccount extends Account {
 	}
 
 	public void payLoan(int amount) {
-		balance -= amount;
-		amountPaid+=amount;
+		
 		if (check(amount) == 0) {
+			balance -= amount;
+			amountPaid +=amount;
 			loanDao.payLoan(amount, loanId);
 		}
+	}
+
+	public void closeLoanAccount() {
+		loanDao.closeLoanAccount(loanId);
 	}
 
 }

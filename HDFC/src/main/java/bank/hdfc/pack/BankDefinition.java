@@ -96,11 +96,11 @@ public class BankDefinition {
     
     public static String employeeMessage(int messageInt) {
     	switch (messageInt) {
-    	case 4: return "<h2 style=\\\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">CURRENT ACCOUNT ALREADY EXIST FOR THIS CUSTOMER</h2>";
+    	case 4: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">CURRENT ACCOUNT ALREADY EXIST FOR THIS CUSTOMER</h2>";
 		case 3: return "<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">ACTION DONE SUCESSFULLY</h2>";
 		case 1: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">CUSTOMER ID DOES'T EXIST THE BANK</h2>";
 		case 2: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">WRONG ACCOUNT NUMBER</h2>";
-		case 0: return "<h2 style=\\\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">YOU ALREADY HAVE AN SAVING ACCOUNT IN THIS BRANCH</h2>";
+		case 0: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">YOU ALREADY HAVE AN SAVING ACCOUNT IN THIS BRANCH</h2>";
 		
 		}
     	return null;
