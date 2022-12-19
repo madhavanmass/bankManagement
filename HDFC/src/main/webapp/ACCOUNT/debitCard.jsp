@@ -34,6 +34,8 @@ response.setDateHeader("Expires", 0);
 
 
 Customer customer=((Customer)session.getAttribute("customer"));
+customer.loadCurrentAccounts();
+customer.loadSavingAccount();
 DebitCard debitCard=null;
 int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){

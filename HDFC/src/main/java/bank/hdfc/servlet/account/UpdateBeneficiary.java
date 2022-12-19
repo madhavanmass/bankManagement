@@ -16,7 +16,7 @@ public class UpdateBeneficiary extends HttpServlet {
 		int beneficiaryId=Integer.valueOf(request.getParameter("beneficiaryId"));
 		int transactionLimit=Integer.valueOf(request.getParameter("transactionLimit"));
 		Customer customer=(Customer) request.getSession().getAttribute("customer");
-		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
+		if(customer.getCurrentAccount() !=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			customer.getCurrentAccount().getBeneficiary().get(beneficiaryId).changeBeneficiaryAmount(transactionLimit);
 			customer.getCurrentAccount().setBeneficiary(null);
 		}

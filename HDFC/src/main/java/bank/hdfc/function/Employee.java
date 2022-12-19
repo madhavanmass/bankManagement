@@ -109,6 +109,9 @@ public class Employee extends Person {
 		} else {
 			if (Branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
 				boolean cardCheck = employeeDao.issueDebitCard(accountNumber, mPin);
+				if(!cardCheck) {
+					resultInt=4;
+				}
 
 			} else {
 				resultInt = 2;

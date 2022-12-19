@@ -37,6 +37,8 @@ ENTER THE OTHER ACCOUNT :
 <%
 HashMap<Integer,Beneficiary> beneficiarys= new HashMap<>();
 Customer customer=((Customer)session.getAttribute("customer"));
+customer.loadCurrentAccounts();
+customer.loadSavingAccount();
 int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
 	customer.getCurrentAccount().loadBenificary();

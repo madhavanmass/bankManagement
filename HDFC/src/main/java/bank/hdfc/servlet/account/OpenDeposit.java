@@ -19,7 +19,7 @@ public class OpenDeposit extends HttpServlet {
 		int policy=Integer.valueOf(request.getParameter("depositPolicy"));
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 		int checker=0;
-		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
+		if(customer.getCurrentAccount() !=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			checker=customer.getCurrentAccount().transfer(0, -amount, amount,"OPENED A DEPOSIT" );
 			if(checker ==1) {
 				customer.getCurrentAccount().openDeposit(type, amount, policy);

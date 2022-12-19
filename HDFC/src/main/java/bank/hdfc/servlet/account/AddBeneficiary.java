@@ -15,7 +15,7 @@ public class AddBeneficiary extends HttpServlet {
 		int transactionLimit=Integer.valueOf(request.getParameter("transactionLimit"));
 		
 		Customer customer=(Customer) request.getSession().getAttribute("customer");
-		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
+		if(customer.getCurrentAccount() !=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			customer.getCurrentAccount().addBeneficiary(connectAccountNumber, transactionLimit);
 		}
 		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){

@@ -16,14 +16,16 @@ public class PayBill extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Customer customer=(Customer) request.getSession().getAttribute("customer");
+		customer.loadCurrentAccounts();
+		customer.loadSavingAccount();
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 		int amount=Integer.valueOf(request.getParameter("amount"));
 		int messageNumber=0;
-		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
-			messageNumber=customer.getCurrentAccount().debitMoney(-1*amount,amount,(String)request.getParameter("description"));	
+		if(customer.getCurrentAccount() !=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
+			messageNumber=customer.getCurrentAccount().debitMoney(-amount,amount,(String)request.getParameter("description"));	
 		}
-		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
-			messageNumber=customer.getSavingAccounts().get(accountNumber).debitMoney(-1*amount,amount ,(String)request.getParameter("description"));
+		else if( customer.getSavingAccounts() !=null && customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
+			messageNumber=customer.getSavingAccounts().get(accountNumber).debitMoney(-amount,amount ,(String)request.getParameter("description"));
 		}
 		String message;
 		if(messageNumber==1) {

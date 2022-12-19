@@ -15,7 +15,7 @@ public class DeleteBeneficiary extends HttpServlet {
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 		int beneficiaryId=Integer.valueOf(request.getParameter("beneficiaryId"));
 		Customer customer=(Customer) request.getSession().getAttribute("customer");
-		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
+		if(customer.getCurrentAccount() !=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			customer.getCurrentAccount().deleteBeneficiary(beneficiaryId);
 		}
 		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
