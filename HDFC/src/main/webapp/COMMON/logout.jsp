@@ -10,6 +10,13 @@
 nav a.logout{
 	background-color: red;
 }
+input[type=submit]{
+	width: 100%;
+	padding: 15px;
+	border: 4px solid #ccc;
+	border-radius: 4px;
+	resize: vertical;
+}
 </style>
 </head>
 <body>

@@ -45,6 +45,9 @@ else if(session.getAttribute("employee")!=null){
 else if(session.getAttribute("admin")!=null){
 	out.print("<table>"+((Admin)session.getAttribute("admin")).toString()+"</table>");
 }
+else{
+	response.sendRedirect("ERROR/sessionErrorPage.jsp");
+}
 
 %>
 <button onclick="show()">CHANGE PASSWORD</button>

@@ -22,8 +22,8 @@ public class Transfer extends HttpServlet {
 		String description= request.getParameter("description");
 		int transferedAmount=amount;
 		int messageNumber=0;
-		String message;
-		if(transferedAmount==accountNumber) {
+		String message="";
+		if(otherAccount==accountNumber) {
 			message="<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">SAME ACCOUNT NUMBER AND TRANSFER ACCOUNT</h2>";
 		}
 		else if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
@@ -41,7 +41,7 @@ public class Transfer extends HttpServlet {
 			}
 			message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">THE AMOUNT "+amount+" HAS SUCCESSFULLY PAID</h2>";
 		}
-		else {
+		else if(messageNumber!=0){
 			message=BankDefinition.accountMessage(messageNumber);
 		}
 		request.getSession().setAttribute("message", message);

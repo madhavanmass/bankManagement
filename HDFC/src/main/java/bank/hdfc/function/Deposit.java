@@ -110,7 +110,7 @@ public class Deposit {
 		float amount=(float)this.amount;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
 		Period difference=Period.between(LocalDate.parse(formatter.format(dateOfCreation)), LocalDate.now());
-		amount+=(amount*interestRate*(difference.getMonths()==0?1:difference.getMonths())) ;
+		amount=difference.getMonths()==0?amount:(amount+(difference.getMonths()*amount*interestRate));
 		return (int)amount;
 	
 	}

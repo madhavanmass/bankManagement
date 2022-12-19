@@ -14,8 +14,8 @@ nav a.addBranch{
 <script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
-<h1>ADD BRANCH</h1>
 <jsp:include page="/COMMON/adminNav.html"></jsp:include>
+<h1>ADD BRANCH</h1>
 <form name="myForm" onsubmit="return validateForm([10,11,12,13])" action="addBranchServlet" method="post">
 ENTER THE BRANCH NAME : <input type="text" name="branchName"><br>
 ENTER ADDRESSLINE 1:<input type="text" name="addressLine1"><br>

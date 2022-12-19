@@ -136,10 +136,9 @@ public class Branch {
 		if(account!=null && account.getAccountType()!=3) {
 			checker = new AccountDao().updateAccount(otherAccount, amount,transferedAmount,
 					account.getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
-			account.setTransactions(null);
-		
+			
 		}
-		if(account.getAccountType()==3 || otherAccount==0 ) {
+		else if((account!=null && account.getAccountType()==3) || otherAccount==0 ) {
 			checker=1;
 		}
 		new AccountDao().transactionEntry(accountNumber,otherAccount , description, amount,action, 4 );

@@ -40,9 +40,10 @@ else{
 <c:if test="<%=customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber%>">
 <h2>SET A SPENT LIMIT</h2>
 <form action="userSetLimit?accountNumber=<%=request.getParameter("accountNumber")%>" oninput="limit.value=parseInt(userSetLimit.value)" >
-<input type="range" min="1000" max="100000" value=<%=customer.getCurrentAccount().getUserSetLimit()%> name="userSetLimit">
-<output name="limit"></output><br>
-<input type="submit" value="UPDATE LIMIT">
+<input type="range" min="1000" max="100000"  name="userSetLimit">
+<input type="hidden" name="accountNumber" value=<%=request.getParameter("accountNumber")%>> 
+<button type="submit" >UPDATE LIMIT TO  <output name="limit"><%=customer.getCurrentAccount().getUserSetLimit()%></output></button>
+
 </form>
 </c:if>
 </div>

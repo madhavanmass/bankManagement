@@ -2,12 +2,9 @@ package bank.hdfc.servlet.employee;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import bank.hdfc.function.Employee;
 import bank.hdfc.function.Manager;
 import bank.hdfc.pack.BankDefinition;
 
@@ -21,7 +18,7 @@ public class GiveLoan extends HttpServlet {
         int amount=Integer.valueOf(request.getParameter("amount"));
         int loanType=Integer.valueOf(request.getParameter("loanType"));
         Manager manager=(Manager)request.getSession().getAttribute("employee");
-        int messageInt=manager.customerDeposit(customerId, accountNumber, amount,0);
+        int messageInt=manager.customerDeposit(customerId, accountNumber, amount,0,"LOAN AMOUNT");
         String message;
         if(messageInt==3) {
         	manager.giveLoan(customerId, amount, accountNumber,loanType);

@@ -14,8 +14,9 @@ nav a.assignManager{
 <script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
-<h1>ASSIGN MANAGER</h1>
+
 <jsp:include page="/COMMON/adminNav.html"></jsp:include>
+<h1>ASSIGN MANAGER</h1>
 <% if(session.getAttribute("message") !=null){
 	out.print("<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">THE MANAGER HAS BEEN SUCCESSFULLY ASSIGNED TO THE BRANCH.. WITH THE MANAGER ID "+session.getAttribute("message")+"</h2>");
 	session.removeAttribute("message");

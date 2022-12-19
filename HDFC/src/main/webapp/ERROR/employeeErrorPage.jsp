@@ -9,7 +9,7 @@
 </head>
 <body>
 <form>
-<h1>WE CANNOT FIND YOUR OBJECT IN SESSION [SERVER RESTART]</h1>
+<h1>WE CANNOT FIND YOUR OBJECT IN SESSION</h1>
 <h2>PLEASE GO TO THE LOGIN PAGE TO START</h2>
 <button type="submit" formaction="employeeLogin" >GO TO INDEX</button>
 </form>

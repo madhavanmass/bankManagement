@@ -20,8 +20,9 @@ nav a.viewBranch{
 </style>
 </head>
 <body>
-<h1>VIEW BRANCH</h1>
+
 <jsp:include page="/COMMON/adminNav.html"></jsp:include>
+<h1>VIEW BRANCH</h1>
 <form action="viewBranch">
 <input type="text" name="name"><input type="submit" value="SEARCH"><br>
 </form>

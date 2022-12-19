@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="CSS/topNavStyle.css">
 </head>
 <body>
-<h1>WE CANNOT FIND YOUR OBJECT IN SESSION [SERVER RESTART]</h1>
+<h1>WE CANNOT FIND YOUR OBJECT IN SESSION </h1>
 <h2>PLEASE GO TO THE LOGIN PAGE TO START</h2>
 <form>
 <button type="submit" formaction="indexPage" >GO TO INDEX</button>

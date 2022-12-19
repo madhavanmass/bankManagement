@@ -139,8 +139,10 @@ public class Person {
 	PersonDao personDao=new PersonDao();
 	
 	public boolean changePassword(String oldPass, String newPassword) {
-		if (getPassword().equals(new CipherTextGenerator().encrypt(oldPass, oldPass.charAt(0)))) {
+		//System.out.println(password+"  "+new CipherTextGenerator().encrypt(oldPass, oldPass.charAt(0)));
+		if (password.equals(new CipherTextGenerator().encrypt(oldPass, oldPass.charAt(0)))) {
 			personDao.changepassword(new CipherTextGenerator().encrypt(newPassword, newPassword.charAt(0)), getProfileId());
+			password=new CipherTextGenerator().encrypt(newPassword, newPassword.charAt(0));
 			return true;
 
 		}

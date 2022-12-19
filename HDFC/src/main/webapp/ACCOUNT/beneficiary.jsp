@@ -32,15 +32,13 @@ if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccount
 	customer.getCurrentAccount().loadBenificary();
 	beneficiarys=customer.getCurrentAccount().getBeneficiary();
 }
-else{
+else if(customer.getSavingAccounts().size()!=0){
 	customer.getSavingAccounts().get(accountNumber).loadBenificary();
 	beneficiarys= customer.getSavingAccounts().get(accountNumber).getBeneficiary();
 }
-
 if(beneficiarys.size()==0 || beneficiarys==null){
 	out.println("<h2>YOU DONT HAVE ANY BENEFICIARYS</h2>");
 }
-
 else{
 	out.print(
 			"<table><tr><th>BENEFICIARY ID</th><th>CONNECTED ACCOUNT</th><th>TRANSFERED AMOUNT</th><th>TRANSACTION LIMIT</th><th>UPDATE</th><th>DELETE</th></tr> ");

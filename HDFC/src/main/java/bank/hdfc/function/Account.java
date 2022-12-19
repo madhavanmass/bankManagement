@@ -8,8 +8,6 @@ import bank.hdfc.pack.BankDefinition;
 
 public class Account {
 
-	
-
 	private int accountNumber;
 	private int customerId;
 	private int branchId;
@@ -157,7 +155,7 @@ public class Account {
 		}
 		if (check) {
 			accountDao.updateAccount(accountNumber, amount , transferedAmount, getAccountType() == 1 ? "updateSavingAccount" : "updateCurrentAccount");
-			int checker=branch.doDeposit(otherAccount,accountNumber,-amount,0,-amount>0?2:1,description);
+			int checker=branch.doDeposit(otherAccount,accountNumber,-amount,0,amount>0?1:2,description);
 			if(checker==0) {
 				resultInt=3;
 			}

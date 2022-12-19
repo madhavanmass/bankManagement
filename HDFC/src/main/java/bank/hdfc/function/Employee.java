@@ -82,7 +82,7 @@ public class Employee extends Person {
 	}
 
 	// function to deposit user given money
-	public int customerDeposit(int customerId, int accountNumber, int amount,int transferAmount) {
+	public int customerDeposit(int customerId, int accountNumber, int amount,int transferAmount,String description) {
 		Branch.setCustomerDetails(null);
 		branch.loadCustomers();
 		int resultInt = 3;
@@ -90,7 +90,8 @@ public class Employee extends Person {
 			resultInt = 1;
 		} else {
 			if (Branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
-				branch.doDeposit(0,accountNumber,amount,transferAmount,2,"BANK DEPOSIT");
+				
+				branch.doDeposit(accountNumber,0,amount,transferAmount,2,description);
 			}
 			else{
 				resultInt=2;

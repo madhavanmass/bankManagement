@@ -7,10 +7,23 @@
 <title>LOGIN</title>
 <link rel="stylesheet" href="CSS/topNavStyle.css">
 <script src="JAVASCRIPT/validateForm.js"></script>
+
+<style type="text/css">
+input[type=submit]{
+	width: 100%;
+	padding: 15px;
+	border: 4px solid #ccc;
+	border-radius: 4px;
+	resize: vertical;
+}
+</style>
+
 </head>
 <body>
+
 <h1 style="text-align: center;">WELCOME TO HDFC</h1>
 <h2 style="text-align: center;">STAFF LOGIN</h2>
+
 <form name="myForm" onsubmit="return validateForm([26,27])" action="verify" method="post">
 ENTER YOUR ID     : <input type="number" name="userId"><br>
 ENTER PASSWORD    :<input type="password" name="password"><br>

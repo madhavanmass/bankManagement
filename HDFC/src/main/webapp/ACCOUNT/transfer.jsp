@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     import = "bank.hdfc.pack.BankDefinition"
+    import="bank.hdfc.function.Customer"
+    import="java.util.HashMap"
+    import="bank.hdfc.function.Beneficiary"
     %>
 <!DOCTYPE html>
 <html>
@@ -17,6 +20,11 @@ nav a.accounts, li a.transfer{
 <script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 
+<%
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+response.setHeader("Pragma", "no-cache"); 
+response.setDateHeader("Expires", 0);
+%>
 <body>
 
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
@@ -24,7 +32,29 @@ nav a.accounts, li a.transfer{
 <div class="content">
 <h1>TRANSFER</h1>
 <form name="myForm" onsubmit="return validateForm([7,8,9])" action="transferServlet" >
-ENTER THE OTHER ACCOUNT NUMBER : <input type="number" name="otherAccount"><br>
+<!-- ENTER THE OTHER ACCOUNT NUMBER : <input type="number" name="otherAccount"><br> -->
+ENTER THE OTHER ACCOUNT : 
+<%
+HashMap<Integer,Beneficiary> beneficiarys= new HashMap<>();
+Customer customer=((Customer)session.getAttribute("customer"));
+int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
+if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
+	customer.getCurrentAccount().loadBenificary();
+	beneficiarys=customer.getCurrentAccount().getBeneficiary();
+}
+else if(customer.getSavingAccounts().size()!=0){
+	customer.getSavingAccounts().get(accountNumber).loadBenificary();
+	beneficiarys= customer.getSavingAccounts().get(accountNumber).getBeneficiary();
+}
+%>
+<input list="browsers" name="otherAccount" type ="number">
+<datalist id="browsers">
+<%
+	for(Beneficiary beneficiary:beneficiarys.values()){
+		out.print( "<option value="+beneficiary.getConnectedAccount()+">" );
+	}
+%>
+</datalist>
 ENTER THE AMOUNT :<input type="number" name="amount"><br>
 ENTER THE DESCRIPTION :<br>
 <textarea name="description" rows="4" cols="50" placeholder="type here..."></textarea><br>

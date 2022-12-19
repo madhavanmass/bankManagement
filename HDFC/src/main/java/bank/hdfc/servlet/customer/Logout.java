@@ -27,7 +27,7 @@ public class Logout extends HttpServlet {
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		response.setHeader("Pragma", "no-cache"); 
 		response.setDateHeader("Expires", 0);
-		request.getSession().invalidate();
+		session.invalidate();
 		response.sendRedirect(redirect);
 	}
 
