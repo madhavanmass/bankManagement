@@ -22,7 +22,7 @@ public class PayBill extends HttpServlet {
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			messageNumber=customer.getCurrentAccount().debitMoney(-1*amount,amount,(String)request.getParameter("description"));	
 		}
-		else {
+		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 			messageNumber=customer.getSavingAccounts().get(accountNumber).debitMoney(-1*amount,amount ,(String)request.getParameter("description"));
 		}
 		String message;

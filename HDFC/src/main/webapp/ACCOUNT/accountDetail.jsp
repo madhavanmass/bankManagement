@@ -32,7 +32,7 @@ customer.loadSavingAccount();
 if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
 	out.print("<table>"+customer.getCurrentAccount().toString()+"</table>");
 }
-else{
+else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 	out.print("<table>"+customer.getSavingAccounts().get(accountNumber).toString()+"</table>");	
 }
 %>

@@ -40,7 +40,7 @@ if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccount
 	customer.getCurrentAccount().loadDebitCard();
 	debitCard=customer.getCurrentAccount().getDebitCard();
 }
-else{
+else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 	customer.getSavingAccounts().get(accountNumber).loadDebitCard();
 	debitCard=customer.getSavingAccounts().get(accountNumber).getDebitCard();
 }

@@ -36,7 +36,7 @@ if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccount
 	customer.getCurrentAccount().loadTransactions(customer.getCurrentAccount().getBalance());
 	transactions=customer.getCurrentAccount().getTransactions();
 }
-else if(customer.getSavingAccounts().size()!=0){
+else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 	customer.getSavingAccounts().get(accountNumber).loadTransactions(customer.getSavingAccounts().get(accountNumber).getBalance());
 	transactions= customer.getSavingAccounts().get(accountNumber).getTransactions();
 }

@@ -17,7 +17,7 @@ public class ChangeStatus extends HttpServlet {
 		if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
 			customer.getCurrentAccount().getDebitCard().activateOrLock(customer.getCurrentAccount().getDebitCard().getStatus()==1?2:1);
 		}
-		else {
+		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 			customer.getSavingAccounts().get(accountNumber).getDebitCard().activateOrLock(customer.getSavingAccounts().get(accountNumber).getDebitCard().getStatus()==1?2:1);
 		}
 		response.sendRedirect("debitCard?accountNumber="+accountNumber);

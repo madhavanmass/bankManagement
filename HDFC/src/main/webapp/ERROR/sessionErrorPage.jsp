@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/HDFC/CSS/topNavStyle.css">
 </head>
 <body>
-<h1>SORRY THE WE CAN NOT FIND YOUR OBJECT IN SESSION</h1>
+<h1>SORRY WE COULD FIND SOME INFORMATION IN THE SESSION</h1>
 <h2>PLEASE GO TO THE LOGIN PAGE TO START</h2>
 </body>
 </html>

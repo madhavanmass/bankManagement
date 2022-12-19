@@ -21,7 +21,7 @@ public class ChangeMPin extends HttpServlet {
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			checker=customer.getCurrentAccount().getDebitCard().changeMPin(oldMPin, newMPin);
 		}
-		else {
+		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 			checker=customer.getSavingAccounts().get(accountNumber).getDebitCard().changeMPin(oldMPin, newMPin);
 		}
 		request.getSession().setAttribute("message", checker);

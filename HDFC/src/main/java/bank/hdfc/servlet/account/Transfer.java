@@ -29,7 +29,7 @@ public class Transfer extends HttpServlet {
 		else if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			messageNumber=customer.getCurrentAccount().transfer(otherAccount,-amount, transferedAmount ,description);	
 		}
-		else if(customer.getSavingAccounts().size()!=0) {
+		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 			messageNumber=customer.getSavingAccounts().get(accountNumber).transfer(otherAccount,-amount , transferedAmount , description);
 		}
 		if(messageNumber==1) {

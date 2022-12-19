@@ -18,7 +18,7 @@ public class DeleteBeneficiary extends HttpServlet {
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			customer.getCurrentAccount().deleteBeneficiary(beneficiaryId);
 		}
-		else {
+		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 			customer.getSavingAccounts().get(accountNumber).deleteBeneficiary(beneficiaryId);
 		}
 		response.sendRedirect("beneficiary?accountNumber="+accountNumber);

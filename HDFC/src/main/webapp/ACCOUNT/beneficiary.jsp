@@ -32,7 +32,7 @@ if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccount
 	customer.getCurrentAccount().loadBenificary();
 	beneficiarys=customer.getCurrentAccount().getBeneficiary();
 }
-else if(customer.getSavingAccounts().size()!=0){
+else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 	customer.getSavingAccounts().get(accountNumber).loadBenificary();
 	beneficiarys= customer.getSavingAccounts().get(accountNumber).getBeneficiary();
 }

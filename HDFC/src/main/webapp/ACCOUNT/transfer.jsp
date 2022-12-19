@@ -42,7 +42,7 @@ if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccount
 	customer.getCurrentAccount().loadBenificary();
 	beneficiarys=customer.getCurrentAccount().getBeneficiary();
 }
-else if(customer.getSavingAccounts().size()!=0){
+else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 	customer.getSavingAccounts().get(accountNumber).loadBenificary();
 	beneficiarys= customer.getSavingAccounts().get(accountNumber).getBeneficiary();
 }
@@ -50,9 +50,11 @@ else if(customer.getSavingAccounts().size()!=0){
 <input list="browsers" name="otherAccount" type ="number">
 <datalist id="browsers">
 <%
+if(beneficiarys.size()!=0){
 	for(Beneficiary beneficiary:beneficiarys.values()){
-		out.print( "<option value="+beneficiary.getConnectedAccount()+">" );
+		out.print( "<option value="+beneficiary.getConnectedAccount()+"> TRANSACTION LIMIT : "+beneficiary.getTransactionLimit()+" </option>" );
 	}
+}
 %>
 </datalist>
 ENTER THE AMOUNT :<input type="number" name="amount"><br>

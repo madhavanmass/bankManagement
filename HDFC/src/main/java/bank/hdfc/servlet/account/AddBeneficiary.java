@@ -18,7 +18,7 @@ public class AddBeneficiary extends HttpServlet {
 		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			customer.getCurrentAccount().addBeneficiary(connectAccountNumber, transactionLimit);
 		}
-		else {
+		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 			customer.getSavingAccounts().get(accountNumber).addBeneficiary(connectAccountNumber, transactionLimit);
 		}
 		response.sendRedirect("beneficiary?accountNumber="+accountNumber);

@@ -25,7 +25,7 @@ public class OpenDeposit extends HttpServlet {
 				customer.getCurrentAccount().openDeposit(type, amount, policy);
 			}
 		}
-		else if(customer.getSavingAccounts().get(accountNumber)!=null) {
+		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 			checker=customer.getSavingAccounts().get(accountNumber).transfer(0, -amount, amount,"OPENED A DEPOSIT" );
 			if(checker==1) {
 				customer.getSavingAccounts().get(accountNumber).openDeposit(type, amount, policy);

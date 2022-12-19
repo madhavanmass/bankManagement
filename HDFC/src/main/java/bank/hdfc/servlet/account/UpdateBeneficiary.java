@@ -20,7 +20,7 @@ public class UpdateBeneficiary extends HttpServlet {
 			customer.getCurrentAccount().getBeneficiary().get(beneficiaryId).changeBeneficiaryAmount(transactionLimit);
 			customer.getCurrentAccount().setBeneficiary(null);
 		}
-		else {
+		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
 			customer.getSavingAccounts().get(accountNumber).getBeneficiary().get(beneficiaryId).changeBeneficiaryAmount(transactionLimit);
 			customer.getSavingAccounts().get(accountNumber).setBeneficiary(null);
 		}
