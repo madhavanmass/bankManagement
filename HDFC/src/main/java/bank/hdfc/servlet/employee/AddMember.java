@@ -48,8 +48,14 @@ public class AddMember extends HttpServlet {
         	int roleInt=Integer.parseInt(role);
 			int id=0;
         	if(roleInt==2) {
-        		int personId=admin.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
-        		id= admin.assignManager(Integer.parseInt(branchId), personId);
+        		
+        		admin.loadBranch();
+        		if(admin.getBranchDetails().get(Integer.parseInt(branchId)).getManager()==null) {
+        			int personId=admin.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
+            		id= admin.assignManager(Integer.parseInt(branchId), personId);
+        		}
+//        		int personId=admin.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
+//        		id= admin.assignManager(Integer.parseInt(branchId), personId);
         	}
 			request.getSession().setAttribute("message", id);
 			Branch.setEmployeeDetails(null);

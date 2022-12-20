@@ -106,7 +106,7 @@ public class LoanAccount extends Account {
 	}
 
 	private int check(int amount) {
-		if (balance - amount < 0) {
+		if (balance - amount < 0 && totalAmount - amountPaid <= 0 && balance==0) {
 			return 1;
 		} else {
 			return 0;
@@ -115,7 +115,7 @@ public class LoanAccount extends Account {
 
 	public void payLoan(int amount) {
 		
-		if (check(amount) == 0) {
+		if (check(amount) == 0 ) {
 			balance -= amount;
 			amountPaid +=amount;
 			loanDao.payLoan(amount, loanId);

@@ -31,7 +31,7 @@ nav a.loan, li a.payLoan{
  ENTER THE ACCOUNT YOU WANT TO PAY: 
  <select name="accountChoose">
  <% 
- ((Customer) session.getAttribute("customer")).loadCurrentAccounts();
+ /* ((Customer) session.getAttribute("customer")).loadCurrentAccounts(); */
  ((Customer) session.getAttribute("customer")).loadSavingAccount();
  ((Customer) session.getAttribute("customer")).loadCurrentAccounts();
 	HashMap<Integer, SavingAccount> savingAccounts = ((Customer) session.getAttribute("customer")).getSavingAccounts();

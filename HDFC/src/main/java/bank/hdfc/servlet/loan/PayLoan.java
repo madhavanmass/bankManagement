@@ -18,6 +18,8 @@ public class PayLoan extends HttpServlet {
 		int amount=Integer.valueOf(request.getParameter("amount"));
 		Customer customer=(Customer) request.getSession().getAttribute("customer");
 		int messageNumber=0;
+//		customer.setLoanAccounts(null);
+//		customer.loadLoanAccount();
 		if(customer.getCurrentAccount().getAccountNumber()==accountChoose) {
 			messageNumber=customer.getCurrentAccount().transfer(accountNumber, -amount,0, "LOAN PAYMENT");
 		}
@@ -33,7 +35,7 @@ public class PayLoan extends HttpServlet {
 			message=BankDefinition.accountMessage(messageNumber);
 		}
 		
-		if(customer.getLoanAccounts().get(accountNumber).getBalance()==0) {
+		if(customer.getLoanAccounts().get(accountNumber).getBalance()<=0 || customer.getLoanAccounts().get(accountNumber).getTotalAmount()-customer.getLoanAccounts().get(accountNumber).getAmountPaid() <=0) {
 			customer.getLoanAccounts().get(accountNumber).closeLoanAccount();
 			customer.getLoanAccounts().remove(customer.getLoanAccounts().get(accountNumber).getLoanId());
 			request.getSession().setAttribute("message","<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">THE LOAN HAS BEEN PAID SUCCESSFULLY.. THE ACCOUNT "+accountNumber+ " HAS BEEN CLOSED</h2>");

@@ -1,7 +1,6 @@
 package bank.hdfc.function;
 
 import bank.hdfc.dao.ManagerDao;
-import bank.hdfc.pack.BankDefinition;
 
 public class Manager extends Employee {
 

@@ -33,6 +33,8 @@ public class BankDao {
 		try (Connection connection = ConnectionTool.getConnection()) {
 			Statement statement = connection.createStatement();
 			statement.addBatch(ConnectionTool.resourceBundle.getString("depositUpdate1"));
+			statement.addBatch(ConnectionTool.resourceBundle.getString("depositUpdate3"));
+			statement.addBatch(ConnectionTool.resourceBundle.getString("depositUpdate4"));
 			statement.addBatch(ConnectionTool.resourceBundle.getString("depositUpdate2"));
 			statement.executeBatch();
 			statement.close();

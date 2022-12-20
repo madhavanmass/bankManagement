@@ -25,7 +25,7 @@ nav a.loan{
 		out.print(session.getAttribute("message"));
 		session.removeAttribute("message");
 	}
-	
+	((Customer) session.getAttribute("customer")).setLoanAccounts(null);
 	((Customer) session.getAttribute("customer")).loadLoanAccount();
 	HashMap<Integer, LoanAccount> loanAccounts = ((Customer) session.getAttribute("customer")).getLoanAccounts();
 	if (loanAccounts.size()!=0) {
