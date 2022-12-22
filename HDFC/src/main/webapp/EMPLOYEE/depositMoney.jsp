@@ -15,6 +15,7 @@ nav a.depositMoney{
 </head>
 <body>
 <jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<div class="content1">
 <h1>DEPOSIT MONEY</h1>
 <form name="myForm" onsubmit="return validateForm([23,7,1])" action="depositMoneyServlet" method="post" >
 ENTER THE CUSTOMER ID :<input type="number" name="customerId"><br>
@@ -27,5 +28,6 @@ ENTER THE DEPOSIT AMOUNT :<input type="number" name="amount"><br>
 	session.removeAttribute("message");
 }
 %>
+</div>
 </body>
 </html>

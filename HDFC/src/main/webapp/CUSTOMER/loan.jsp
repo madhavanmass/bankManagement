@@ -18,6 +18,7 @@ nav a.loan{
 </head>
 <body>
  <jsp:include page="/COMMON/topNav.html"></jsp:include>
+<div class="content1">
 	<h1>LOAN ACCOUNT</h1>
 	<%
 	
@@ -48,5 +49,6 @@ nav a.loan{
 	}
 	
 	%>
+	</div>
 </body>
 </html>

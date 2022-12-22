@@ -15,7 +15,10 @@ nav a.home{
 <body>
 
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
+
+<div class="content1">
 <h1 style="text-align: center;">WELCOME TO HDFC ${sessionScope.customer.getName()}</h1>
+</div>
 
 </body>
 </html>

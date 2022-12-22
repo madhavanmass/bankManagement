@@ -25,7 +25,7 @@ public class CancelDeposit extends HttpServlet {
 		}
 		customer.loadCurrentAccounts();
 		customer.loadSavingAccount();
-		if(customer.getCurrentAccount().getAccountNumber()==accountNumber) {
+		if(customer.getCurrentAccount() !=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			customer.getCurrentAccount().getBranch().doDeposit(accountNumber, 0, amount, 0, 2, "DEPOSIT MONEY");
 		}
 		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){

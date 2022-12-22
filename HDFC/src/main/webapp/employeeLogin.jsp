@@ -8,16 +8,6 @@
 <link rel="stylesheet" href="CSS/topNavStyle.css">
 <script src="JAVASCRIPT/validateForm.js"></script>
 
-<style type="text/css">
-input[type=submit]{
-	width: 100%;
-	padding: 15px;
-	border: 4px solid #ccc;
-	border-radius: 4px;
-	resize: vertical;
-}
-</style>
-
 </head>
 <body>
 

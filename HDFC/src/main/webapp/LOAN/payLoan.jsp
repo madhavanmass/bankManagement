@@ -24,6 +24,7 @@ nav a.loan, li a.payLoan{
 
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/loanSidebar.jsp"></jsp:include>
+<div class="content1">
 <div class="content">
  <h1>PAY LOAN</h1>
  <form action="payLoanServlet">
@@ -58,6 +59,7 @@ nav a.loan, li a.payLoan{
 	
 }	
 %>
+ </div>
  </div>
 </body>
 </html>

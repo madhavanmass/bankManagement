@@ -19,6 +19,7 @@ nav a.accounts, li a.openDeposit{
 
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<div class="content1">
 <div class="content">
 <h1>OPEN DEPOSIT</h1>
 <form name="myForm" onsubmit="return validateForm([7])" action="openDepositServlet" >
@@ -30,12 +31,12 @@ SELECT THE TYPE:
 </select><br>
 SELECT THE DEPOSIT POLICY :
 <select name="depositPolicy">
-<option value="1">ONE MONTH</option>
-<option value="2">2 MONTH</option>
-<option value="3">3 MONTH</option>
-<option value="4">6 MONTH</option>
-<option value="5">ONE YEAR</option>
-<option value="6">5 YEAR</option>
+<option value="1">MONTHS[1]   INTERSET[0.01]</option>
+<option value="2">MONTHS[2]   INTERSET[0.025]</option>
+<option value="3">MONTHS[3]   INTERSET[0.04]</option>
+<option value="4">MONTHS[6]   INTERSET[0.1]</option>
+<option value="5">YEAR[1]   INTERSET[0.3]</option>
+<option value="6">YEARS[5]   INTERSET[1.7]</option>
 </select><br>
 <input type="hidden" name="accountNumber" value=<%=request.getParameter("accountNumber") %>>
 <input type="submit" value="OPEN DEPOSIT">
@@ -45,6 +46,7 @@ SELECT THE DEPOSIT POLICY :
 	session.removeAttribute("message");
 }	
 %>
+</div>
 </div>
 </body>
 </html>

@@ -21,7 +21,7 @@ public class IssueDebitCard extends HttpServlet {
         int messageInt=employee.issueDebitCard(customerId, accountNumber, mPin);
         String message;
         if(messageInt==3) {
-        	message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\" >A DEBIT CARD HAS BEEN ISSUED TO THE CUSTOMER ID "+customerId+" TO THE ACCOUNT NUMBER "+accountNumber+"<h2>";
+        	message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\" >!!A DEBIT CARD HAS BEEN SUCCESSFULLY ISSUED!! <br>TO THE CUSTOMER : "+customerId+"<br> FOR THE ACCOUNT NUMBER : "+accountNumber+"<h2>";
         }
         else {
         	message=BankDefinition.employeeMessage(messageInt);

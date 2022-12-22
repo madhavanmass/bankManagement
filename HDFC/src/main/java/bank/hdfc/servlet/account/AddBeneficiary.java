@@ -13,13 +13,15 @@ public class AddBeneficiary extends HttpServlet {
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 		int connectAccountNumber=Integer.valueOf(request.getParameter("connectedAccount"));
 		int transactionLimit=Integer.valueOf(request.getParameter("transactionLimit"));
-		
+		String accountHolderName=request.getParameter("accountHolderName");
+		int bankName=Integer.valueOf(request.getParameter("bankName"));
+		String IFSCCode=request.getParameter("ifsccode");
 		Customer customer=(Customer) request.getSession().getAttribute("customer");
 		if(customer.getCurrentAccount() !=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
-			customer.getCurrentAccount().addBeneficiary(connectAccountNumber, transactionLimit);
+			customer.getCurrentAccount().addBeneficiary(connectAccountNumber, transactionLimit,accountHolderName,bankName,IFSCCode);
 		}
 		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
-			customer.getSavingAccounts().get(accountNumber).addBeneficiary(connectAccountNumber, transactionLimit);
+			customer.getSavingAccounts().get(accountNumber).addBeneficiary(connectAccountNumber, transactionLimit,accountHolderName,bankName,IFSCCode);
 		}
 		response.sendRedirect("beneficiary?accountNumber="+accountNumber);
 	}

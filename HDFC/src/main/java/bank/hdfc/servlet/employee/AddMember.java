@@ -57,7 +57,14 @@ public class AddMember extends HttpServlet {
 //        		int personId=admin.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
 //        		id= admin.assignManager(Integer.parseInt(branchId), personId);
         	}
-			request.getSession().setAttribute("message", id);
+        	String message;
+        	if(id==0){
+        		message="<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">THIS BRANCH ALREADY HAS A MANAGER</h2>";
+        	}
+        	else{
+        		message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">!! THE MANAGER HAS BEEN SUCCESSFULLY ASSIGNED !!<br> THE ID FOR THE NEW MANAGER IS : "+id+"</h2>";
+        	}
+			request.getSession().setAttribute("message", message);
 			Branch.setEmployeeDetails(null);
         	request.getRequestDispatcher("assignManager").forward(request, response);
         }

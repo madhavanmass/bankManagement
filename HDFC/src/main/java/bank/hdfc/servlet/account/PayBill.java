@@ -20,12 +20,16 @@ public class PayBill extends HttpServlet {
 		customer.loadSavingAccount();
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 		int amount=Integer.valueOf(request.getParameter("amount"));
+		String description=request.getParameter("description");
+		String billType=request.getParameter("billType");
+		
+		String fullDescription="["+billType+"] <br> description : "+description;
 		int messageNumber=0;
 		if(customer.getCurrentAccount() !=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
-			messageNumber=customer.getCurrentAccount().debitMoney(-amount,amount,(String)request.getParameter("description"));	
+			messageNumber=customer.getCurrentAccount().debitMoney(-amount,amount,fullDescription);	
 		}
 		else if( customer.getSavingAccounts() !=null && customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
-			messageNumber=customer.getSavingAccounts().get(accountNumber).debitMoney(-amount,amount ,(String)request.getParameter("description"));
+			messageNumber=customer.getSavingAccounts().get(accountNumber).debitMoney(-amount,amount ,fullDescription);
 		}
 		String message;
 		if(messageNumber==1) {

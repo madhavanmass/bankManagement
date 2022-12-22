@@ -22,6 +22,7 @@ nav a.loan, li a.loanDetail{
 
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/loanSidebar.jsp"></jsp:include>
+<div class="content1">
 <div class="content">
  <h1>LOAN ACCOUNT</h1>
  
@@ -29,6 +30,7 @@ nav a.loan, li a.loanDetail{
  Customer customer= ((Customer)session.getAttribute("customer"));
  out.print("<table>"+customer.getLoanAccounts().get(Integer.valueOf(request.getParameter("accountNumber"))).toString()+"</table>");
  %>
+</div>
 </div>
 </body>
 </html>

@@ -11,12 +11,14 @@ nav a.issueDebitCard{
 	background-color: red;
 }
 </style>
-<script src="JAVASCRIPT/validateForm.js"></script>
+<script src="JAVASCRIPT/formatCheck.js"></script>
 </head>
 <body>
 <jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
-<h1>IUSSE DEBIT CARD</h1>
-<form name="myForm" onsubmit="return validateForm([23,1,25])" action="issueDebitCardServlet" method="post">
+<div class="content1">
+<h1>ISSUE DEBIT CARD</h1>
+
+<form name="myForm" onsubmit="return formatCheck({25:5,23:7,1:7})" action="issueDebitCardServlet" method="post">
 ENTER THE CUSTOMER ID :<input type="number" name="customerId"><br>
 ENTER THE ACCOUNT NUMBER :<input type="number" name="accountNumber"><br>
 ENTER THE M-Pin :<input type="number" name="mPin"><br>
@@ -27,5 +29,6 @@ ENTER THE M-Pin :<input type="number" name="mPin"><br>
 	session.removeAttribute("message");
 }
 %>
+</div>
 </body>
 </html>

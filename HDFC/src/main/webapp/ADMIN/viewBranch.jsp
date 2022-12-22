@@ -17,13 +17,17 @@
 nav a.viewBranch{
 	background-color: red;
 }
+form{
+ all: unset;
+}
 </style>
 </head>
 <body>
 
 <jsp:include page="/COMMON/adminNav.html"></jsp:include>
+<div class="content1">
 <h1>VIEW BRANCH</h1>
-<form action="viewBranch">
+<form class="search" action="viewBranch">
 <input type="text" name="name"><input type="submit" value="SEARCH"><br>
 </form>
 
@@ -48,6 +52,6 @@ nav a.viewBranch{
 	}
 %>
 
-
+</div>
 </body>
 </html>

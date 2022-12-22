@@ -178,9 +178,9 @@ public class Account {
 	}
 
 	// adding a new Beneficiary account
-	public int addBeneficiary(int otherAccountNumber, int transactionLimit) {
+	public int addBeneficiary(int otherAccountNumber, int transactionLimit,String accountHolderName,int bankName,String IFSCCode) {
 		if (isBeneficiary(otherAccountNumber) == 0) {
-			accountDao.addBeneficiary(accountNumber, otherAccountNumber, transactionLimit);
+			accountDao.addBeneficiary(accountNumber, otherAccountNumber, transactionLimit,accountHolderName,bankName,IFSCCode);
 			beneficiary = null;
 			return 9;
 		} else {

@@ -106,6 +106,22 @@ public class BankDefinition {
     	return null;
     }
 
+	public static String getBankName(int bankName) {
+		switch (bankName) {
+		case 1: return "HDFC";
+		case 2: return "SOUTH INDIAN BANK";
+		case 3: return "STATE BANK OF INDIA";
+		case 4: return "CANARA BANK";
+		case 5: return "BANK OF BARODA";
+		case 6: return "CENTRAL BANK OF INDIA";
+		case 7:return "INDIAN BANK";
+	    
+	    
+	   
+		}
+		return null;
+	}
+
 	
 	
     

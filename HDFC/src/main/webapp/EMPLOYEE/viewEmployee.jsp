@@ -18,13 +18,17 @@
 nav a.viewEmployee{
 	background-color: red;
 }
+form{
+ all: unset;
+}
 </style>
 <script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 <body>
 <jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<div class="content1">
 <h1>VIEW EMPLOYEE</h1>
-<form action="viewEmployee">
+<form class="search" action="viewEmployee">
 <input type="text" name="name"><input type="submit" value="SEARCH"><br>
 </form>
 
@@ -50,6 +54,6 @@ nav a.viewEmployee{
 	}
 %>
 
-
+</div>
 </body>
 </html>

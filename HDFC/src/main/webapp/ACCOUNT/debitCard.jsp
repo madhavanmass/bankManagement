@@ -10,6 +10,8 @@
 <meta charset="ISO-8859-1">
 <title>DEBIT CARD</title>
 <script src="JAVASCRIPT/hideForm.js"></script>
+<script src="JAVASCRIPT/formatCheck.js"></script>
+
 <link rel="stylesheet" href="CSS/topNavStyle.css">
 <link rel="stylesheet" href="CSS/sideBarStyle.css">
 <style>
@@ -22,7 +24,7 @@ nav a.accounts, li a.debitCard{
 <body>
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
-
+<div class="content1">
 <div class="content">
 <h1>DEBIT CARD DETAIL</h1>
 <%
@@ -52,8 +54,8 @@ if(debitCard!=null){
 %>
 <c:if test="<%=debitCard!=null%>">
 <h1>CHANGE M-PIN</h1>
-<button onclick="show()">CHANGE PASSWORD</button>
-<form name="myForm" onsubmit="return validateForm([5,6])" id="form" action="changeMPin" method="post" style="display:none;">
+<button onclick="show()">RESET MPIN</button>
+<form name="myForm" onsubmit="return formatCheck({33:5,34:7})" id="form" action="changeMPin" method="post" style="display:none;">
 ENTER YOUR OLD MPIN:<input type="number" name="oldMPin" >
 ENTER NEW MPIN:<input type="number" name="newMPin">
 <input type="hidden" value=<%=request.getParameter("accountNumber")%> name="accountNumber">
@@ -80,6 +82,7 @@ ENTER NEW MPIN:<input type="number" name="newMPin">
 <c:if test="<%=debitCard==null%>">
 <h2>YOU DONT HAVE A DEBIT CARD</h2>
 </c:if>
+</div>
 </div>
 </body>
 

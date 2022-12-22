@@ -24,7 +24,7 @@ public class CreateAccount extends HttpServlet {
         	message=BankDefinition.employeeMessage(messageInt);
         }
         else {
-        	message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">AN "+BankDefinition.accountName(accountChoice)+ " : "+messageInt+" HAS BEEN CREATE FOR THE CUSTOMER WITH ID "+customerId+" IN BRANCH ID "+employee.getBranchId()+"</h2>";
+        	message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">!!AN "+BankDefinition.accountName(accountChoice)+ " : "+messageInt+" HAS BEEN CREATE SUCCESSFULLY!!<br> FOR THE CUSTOMER ID "+customerId+" <br>IN THE BRANCH ID "+employee.getBranchId()+"</h2>";
         }
         request.getSession().setAttribute("message", message);
         request.getRequestDispatcher("createAccount").forward(request, response);

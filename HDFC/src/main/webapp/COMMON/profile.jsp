@@ -10,6 +10,8 @@
 <html>
 <head>
 <script src="JAVASCRIPT/hideForm.js"></script>
+<script src="JAVASCRIPT/formatCheck.js"></script>
+<script src="JAVASCRIPT/validateForm.js"></script>
 <meta charset="ISO-8859-1">
 <title>PROFILE</title>
 <link rel="stylesheet" href="CSS/topNavStyle.css">
@@ -32,6 +34,7 @@ nav a.profile{
 <c:if test="<%=request.getSession().getAttribute(\"admin\") != null%>">
 <jsp:include page="/COMMON/adminNav.html"></jsp:include>
 </c:if>
+<div class="content1">
 
 <h1>PROFILE</h1>
 
@@ -50,11 +53,12 @@ else{
 }
 
 %>
+
 <button onclick="show()">CHANGE PASSWORD</button>
-<form id="form" action="changePasswordServlet" method="post" style="display:none;">
+<form  name="myForm" id="form" onsubmit="return  formatCheck({28:1,29:7})" action="changePasswordServlet"  method="post"  style="display:none;">
 ENTER THE OLD-PASSWORD :<input type="text" name="oldPassword"><br>
 ENTER THE NEW-PASSWORD :<input type="text" name="newPassword"><br>
-
+<p style="font-size: 12px;" >* THE PASSWORD [8 - 15] CHARACTERS MUST ATLEAT HAVE A 1 UPPERCASE , 1 LOWERCASE ,1 NUMBER AND 1 SPECIAL CHARACTER</p>
 <input type="submit" value="CONFIRM">
 </form>
 <% if(session.getAttribute("message") !=null){
@@ -62,6 +66,7 @@ ENTER THE NEW-PASSWORD :<input type="text" name="newPassword"><br>
 	session.removeAttribute("message");
 }
 %>
+</div>
 
 </body>
 </html>

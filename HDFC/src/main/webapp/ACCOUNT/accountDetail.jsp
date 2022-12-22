@@ -22,6 +22,7 @@ nav a.accounts, li a.accountDetail{
 
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<div class="content1">
 <div class="content">
 <h1>ACCOUNT DETAILS</h1>
 <%
@@ -46,6 +47,7 @@ else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().c
 
 </form>
 </c:if>
+</div>
 </div>
 </body>
 </html>

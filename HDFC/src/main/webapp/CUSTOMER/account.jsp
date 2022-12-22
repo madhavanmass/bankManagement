@@ -19,6 +19,7 @@ nav a.accounts{
 </head>
 <body>
    <jsp:include page="/COMMON/topNav.html"></jsp:include>
+   <div class="content1">
 	<h1>SAVING ACCOUNT</h1>
 	<%
 	((Customer) session.getAttribute("customer")).loadSavingAccount();
@@ -66,5 +67,6 @@ nav a.accounts{
 
 	}
 	%>
+	</div>
 </body>
 </html>

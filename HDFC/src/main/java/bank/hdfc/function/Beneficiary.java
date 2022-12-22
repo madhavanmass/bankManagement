@@ -3,6 +3,11 @@ package bank.hdfc.function;
 import bank.hdfc.dao.BeneficiaryDao;
 
 public class Beneficiary {
+
+	private String accountHolderName;
+	private String bankName;
+	private String IFSCCode;
+
 	private int beneficiaryId;
 	private int accountNumber;
 	private int connectedAccount;
@@ -19,6 +24,30 @@ public class Beneficiary {
 		this.connectedAccount = connectedAccount;
 		this.transactionLimit = transactionLimit;
 		this.transferAmount = transferAmount;
+	}
+
+	public String getAccountHolderName() {
+		return accountHolderName;
+	}
+
+	public void setAccountHolderName(String accountHolderName) {
+		this.accountHolderName = accountHolderName;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public String getIFSCCode() {
+		return IFSCCode;
+	}
+
+	public void setIFSCCode(String iFSCCode) {
+		IFSCCode = iFSCCode;
 	}
 
 	public int getBeneficiaryId() {
@@ -80,8 +109,8 @@ public class Beneficiary {
 	public boolean changeBeneficiaryAmount(int amount) {
 		return beneficiaryDao.changeBeneficiaryAmount(amount, beneficiaryId);
 	}
-	
-	//Update Transfer amount
+
+	// Update Transfer amount
 	public boolean updateTransfer(int amount) {
 		return beneficiaryDao.beneficaryEntry(beneficiaryId, amount);
 	}

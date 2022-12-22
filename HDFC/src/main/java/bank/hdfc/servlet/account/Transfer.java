@@ -19,7 +19,13 @@ public class Transfer extends HttpServlet {
 		int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
 		int otherAccount=Integer.valueOf(request.getParameter("otherAccount"));
 		int amount=Integer.valueOf(request.getParameter("amount"));
-		String description= request.getParameter("description");
+		String userDescription= request.getParameter("description");
+		
+		String accountHolderName=request.getParameter("accountHolderName");
+		int bankName=Integer.valueOf(request.getParameter("bankName"));
+		String IFSCCode=request.getParameter("ifsccode");
+		
+		String description="Receiver : "+accountHolderName +"["+BankDefinition.getBankName(bankName)+"]<br>Remarks : "+userDescription;
 		int transferedAmount=amount;
 		int messageNumber=0;
 		String message="";
@@ -39,7 +45,7 @@ public class Transfer extends HttpServlet {
 			else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(otherAccount)) {
 				customer.getSavingAccounts().get(otherAccount).setBalance(amount + customer.getSavingAccounts().get(otherAccount).getBalance());
 			}
-			message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">THE AMOUNT "+amount+" HAS SUCCESSFULLY PAID</h2>";
+			message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">THE AMOUNT "+amount+" HAS SUCCESSFULLY TRANSFER TO "+otherAccount+"</h2>";
 		}
 		else if(messageNumber!=0){
 			message=BankDefinition.accountMessage(messageNumber);

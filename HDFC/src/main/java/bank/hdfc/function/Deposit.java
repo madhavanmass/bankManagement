@@ -114,4 +114,10 @@ public class Deposit {
 		return (int)amount;
 	
 	}
+	
+	public int getTimeDifferenceInMonths(){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+		Period difference=Period.between(LocalDate.parse(formatter.format(dateOfCreation)),LocalDate.parse(formatter.format(depositEndDate)));
+		return difference.getMonths();
+	}
 }

@@ -24,6 +24,7 @@ nav a.accounts, li a.transaction{
 
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/sidebar.jsp"></jsp:include>
+<div class="content1">
 <div class="content">
 <h1>TRANSACTION HISTORY</h1>
 <%
@@ -71,6 +72,7 @@ for(Transaction transaction:transactions.values()){
 }
 out.print("</table>");
 %>
+</div>
 </div>
 </body>
 </html>

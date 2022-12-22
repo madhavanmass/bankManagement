@@ -23,7 +23,7 @@ public class DepositMoney extends HttpServlet {
         int messageInt=employee.customerDeposit(customerId, accountNumber, amount,0,"BANK DEPOSIT");
         String message;
         if(messageInt==3) {
-        	message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">THE AMOUNT "+amount+" HAS BEEN SUCCESSFULLY DEPOSITED TO YOUR ACCOUNT "+accountNumber+"</h2>";
+        	message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">!!THE AMOUNT "+amount+" HAS BEEN SUCCESSFULLY DEPOSITED!!<br> TO ACCOUNT NUMBER"+accountNumber+"</h2>";
         }
         else {
         	message=BankDefinition.employeeMessage(messageInt);

@@ -127,8 +127,12 @@ public class AccountDao {
 			preparedStatement.setInt(1, accountNumber);
 			ResultSet resultset = preparedStatement.executeQuery();
 			while (resultset.next()) {
-				beneficiary.put(resultset.getInt(1), new Beneficiary(resultset.getInt(1), resultset.getInt(2),
-						resultset.getInt(3), resultset.getInt(4), resultset.getInt(5)));
+				Beneficiary beneficiaryDetails = new Beneficiary(resultset.getInt(1), resultset.getInt(2),
+						resultset.getInt(3), resultset.getInt(4), resultset.getInt(5));
+				beneficiaryDetails.setAccountHolderName(resultset.getString(6));
+				beneficiaryDetails.setBankName(resultset.getString(7));
+				beneficiaryDetails.setIFSCCode(resultset.getString(8));
+				beneficiary.put(resultset.getInt(1), beneficiaryDetails);
 			}
 			resultset.close();
 			preparedStatement.close();
@@ -142,7 +146,7 @@ public class AccountDao {
 
 	}
 
-	public boolean addBeneficiary(int accountNumber, int otherAccountNumber, int transactionLimit) {
+	public boolean addBeneficiary(int accountNumber, int otherAccountNumber, int transactionLimit,String accountHolderName,int bankName,String IFSCCode) {
 
 		try (Connection connection = ConnectionTool.getConnection()) {
 			PreparedStatement preparedStatement = connection
@@ -150,6 +154,9 @@ public class AccountDao {
 			preparedStatement.setInt(1, accountNumber);
 			preparedStatement.setInt(2, otherAccountNumber);
 			preparedStatement.setInt(3, transactionLimit);
+			preparedStatement.setString(4, accountHolderName);
+			preparedStatement.setInt(5, bankName);
+			preparedStatement.setString(6, IFSCCode);
 			boolean checker = preparedStatement.execute();
 			preparedStatement.close();
 			return checker;

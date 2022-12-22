@@ -22,7 +22,9 @@ public class GiveLoan extends HttpServlet {
         String message;
         if(messageInt==3) {
         	manager.giveLoan(customerId, amount, accountNumber,loanType);
-        	message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">THE AMOUNT "+amount+" HAS BEEN SUCCESSFULLY GIVE AS A LOAN TO CUSTOMER WITH ID "+customerId+"</h2>";
+        	message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">!!THE AMOUNT "+amount+" HAS BEEN SUCCESSFULLY GIVE AS LOAN!!<br> TO CUSTOMER WITH ID "+customerId+"</h2>";
+        	
+        
         }
         else {
         	message=BankDefinition.employeeMessage(messageInt);

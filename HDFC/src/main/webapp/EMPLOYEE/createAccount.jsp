@@ -15,6 +15,7 @@ nav a.createAccount{
 </head>
 <body>
 <jsp:include page="/COMMON/employeeNav.jsp"></jsp:include>
+<div class="content1">
 <% if(session.getAttribute("message") !=null){
 	out.print((String)session.getAttribute("message"));
 	session.removeAttribute("message");
@@ -31,5 +32,6 @@ CHOOSE AN ACCOUNT:
 ENTER INITIAL DEPOSIT :<input type="number" name="initialDeposit"><br>
 <input type="submit" value="CREATE ACCOUNT">
 </form>
+</div>
 </body>
 </html>

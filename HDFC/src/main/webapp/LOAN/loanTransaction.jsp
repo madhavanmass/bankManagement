@@ -23,6 +23,7 @@ nav a.loan, li a.transaction{
 
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
 <jsp:include page="/COMMON/loanSidebar.jsp"></jsp:include>
+<div class="content1">
 <div class="content">
 <%
 HashMap<Integer,Transaction> transactions= new HashMap<>();
@@ -46,6 +47,7 @@ for(Transaction transaction:transactions.values()){
 out.print("</table>");
 
 %>
+</div>
 </div>
 </body>
 </html>
