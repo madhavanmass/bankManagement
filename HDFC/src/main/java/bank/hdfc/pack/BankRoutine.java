@@ -42,6 +42,7 @@ public class BankRoutine implements Runnable  {
                 bankDao.updateDeposits();
                 bankDao.updateLoanAccounts();
                 bankDao.checkPenality();
+                bankDao.UpdateRecurringDeposit();
             }
             ObjectOutputStream writefile=new ObjectOutputStream(new FileOutputStream("BankTask.txt"));
             writefile.writeObject(dates);    

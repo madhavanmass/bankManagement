@@ -40,8 +40,8 @@ public class AddMember extends HttpServlet {
         		int personId=manager.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
         		id= manager.addEmployee(personId);
         	}
-        	request.getSession().setAttribute("message",id );
-        	Branch.setEmployeeDetails(null);
+        	request.getSession().setAttribute("message",id +"<br> WITH TEMPORARY PASSWORD : "+password );
+        	manager.getBranch().setEmployeeDetails(null);
         	request.getRequestDispatcher("addEmployee").forward(request, response);
         }
         else if(admin!=null && role!=null) {
@@ -54,26 +54,31 @@ public class AddMember extends HttpServlet {
         			int personId=admin.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
             		id= admin.assignManager(Integer.parseInt(branchId), personId);
         		}
-//        		int personId=admin.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
-//        		id= admin.assignManager(Integer.parseInt(branchId), personId);
         	}
         	String message;
         	if(id==0){
         		message="<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">THIS BRANCH ALREADY HAS A MANAGER</h2>";
         	}
         	else{
-        		message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">!! THE MANAGER HAS BEEN SUCCESSFULLY ASSIGNED !!<br> THE ID FOR THE NEW MANAGER IS : "+id+"</h2>";
+        		message="<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">!! THE MANAGER HAS BEEN SUCCESSFULLY ASSIGNED !!<br> THE ID FOR THE NEW MANAGER IS : "+id+"<br>WITH TEMPORARY PASSWORD : "+password+"</h2> ";
         	}
 			request.getSession().setAttribute("message", message);
-			Branch.setEmployeeDetails(null);
         	request.getRequestDispatcher("assignManager").forward(request, response);
         }
         else if(employee!=null){
-        	int personId=employee.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
-        	int id=employee.addCustomer(personId);
-        	Branch.setCustomerDetails(null);
-        	request.getSession().setAttribute("message", "<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\" >THE CUSTOMER HAS BEEN CREATED SUCCESSFULLY WITH ID "+id+"</h2>");
-        	request.getRequestDispatcher("createAccount").forward(request, response);
+        	int customerCheck=employee.checkPerson(aadharNumber,panNumber);
+        	if(customerCheck==0) {
+	        	int personId=employee.createPerson(customerName, dateOfBirth, aadharNumber, panNumber, phoneNumber, mailId, addressline1, addressline2, pincode, password);
+	        	int id=employee.addCustomer(personId);
+	        	employee.getBranch().setCustomerDetails(null);
+	        	request.getSession().setAttribute("message", "<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\" >THE CUSTOMER HAS BEEN CREATED SUCCESSFULLY WITH ID "+id+"<br>WITH TEMPORARY PASSWORD : "+password+"</h2>");
+	        	request.getRequestDispatcher("createAccount").forward(request, response);
+        	}
+        	else {
+        		request.getSession().setAttribute("message", "<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">THIS CUSTOMER ALREADY EXIST WITH CUSTOMER ID : "+customerCheck+"</h2>");
+	        	request.getRequestDispatcher("addCustomer").forward(request, response);
+        		
+        	}
         }
         
 	}

@@ -17,12 +17,12 @@
 <form name="myForm" onsubmit="return validateForm([26,27])" action="verify" method="post">
 ENTER YOUR ID     : <input type="number" name="userId"><br>
 ENTER PASSWORD    :<input type="password" name="password"><br>
-SELECT YOUR ROLE :
+<!-- SELECT YOUR ROLE :
 <select name="role" >
 <option value="1">EMPLOYEE</option>
 <option value="2">MANAGER</option>
 <option value="3">ADMIN</option>
-</select><br>
+</select><br> -->
 
 <input type="submit" value="LOGIN">
 </form>

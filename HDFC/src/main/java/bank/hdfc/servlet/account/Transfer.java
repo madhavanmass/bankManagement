@@ -24,15 +24,16 @@ public class Transfer extends HttpServlet {
 		String accountHolderName=request.getParameter("accountHolderName");
 		int bankName=Integer.valueOf(request.getParameter("bankName"));
 		String IFSCCode=request.getParameter("ifsccode");
-		
-		String description="Receiver : "+accountHolderName +"["+BankDefinition.getBankName(bankName)+"]<br>Remarks : "+userDescription;
+		String mode=request.getParameter("mode");
+		String description="Receiver : "+accountHolderName +"["+BankDefinition.getBankName(bankName)+"]<br> mode : "+mode+"<br>Remarks : "+userDescription;
 		int transferedAmount=amount;
 		int messageNumber=0;
 		String message="";
-		if(otherAccount==accountNumber) {
+		if(otherAccount==accountNumber ) {
 			message="<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">SAME ACCOUNT NUMBER AND TRANSFER ACCOUNT</h2>";
 		}
-		else if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
+		
+		else if( customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber) {
 			messageNumber=customer.getCurrentAccount().transfer(otherAccount,-amount, transferedAmount ,description);	
 		}
 		else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
@@ -49,6 +50,9 @@ public class Transfer extends HttpServlet {
 		}
 		else if(messageNumber!=0){
 			message=BankDefinition.accountMessage(messageNumber);
+		}
+		if(bankName!=1) {
+			message="<br><h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">THE CHOOSEN BANK TRANSFER WILL BE PROCESSED ..<br>THE MONEY WILL BE TRANSFERRED FROM YOUR ACCOUNT</h2>";
 		}
 		request.getSession().setAttribute("message", message);
 		response.sendRedirect("transfer?accountNumber="+accountNumber);

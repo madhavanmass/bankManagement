@@ -3,6 +3,7 @@ package bank.hdfc.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import bank.hdfc.function.Account;
 import bank.hdfc.pack.BankDefinition;
@@ -70,15 +71,19 @@ public class BranchDao {
 		return null;
 	}
 
-	private ConcurrentHashMap<Integer, Integer> getAccountDetails(int customerId) {
+	private ConcurrentHashMap<Integer, ArrayList<Object>> getAccountDetails(int customerId) {
 		try (Connection connection = ConnectionTool.getConnection()) {
-			ConcurrentHashMap<Integer, Integer> account = new ConcurrentHashMap<>();
+			ConcurrentHashMap<Integer, ArrayList<Object>> account = new ConcurrentHashMap<>();
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(ConnectionTool.resourceBundle.getString("getAccountDetail"));
 			preparedStatement.setInt(1, customerId);
 			ResultSet resultset = preparedStatement.executeQuery();
 			while (resultset.next()) {
-				account.put(resultset.getInt(1),resultset.getInt(2));
+				ArrayList<Object> details =new ArrayList<Object>();
+				details.add(resultset.getInt(2));//account type
+				details.add(resultset.getInt(3));//branch id
+				details.add(resultset.getString(4));// branch name
+				account.put(resultset.getInt(1),details);
 			}
 			resultset.close();
 			preparedStatement.close();

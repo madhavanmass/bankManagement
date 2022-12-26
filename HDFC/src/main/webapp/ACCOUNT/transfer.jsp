@@ -5,6 +5,8 @@
     import="java.util.HashMap"
     import="bank.hdfc.function.Beneficiary"
     %>
+     <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+   
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,46 +35,33 @@ response.setDateHeader("Expires", 0);
 <div class="content1">
 <div class="content">
 <h1>TRANSFER</h1>
-<form name="myForm" onsubmit="return formatCheck({7:7,8:7,9:7,30:7,31:7,32:2})" action="transferServlet" >
+<form name="myForm" onsubmit="return formatCheck({7:7,8:7,9:7,30:7,31:7})" action="transferServlet" >
+
 <%
+String connectedAccountNumber=request.getParameter("connectedAccount");
+String accountHolderName=request.getParameter("accountHolderName");
+String ifscCode=request.getParameter("ifsccode");
+String bankName=request.getParameter("bankName");
 
-HashMap<Integer,Beneficiary> beneficiarys= new HashMap<>();
-Customer customer=((Customer)session.getAttribute("customer"));
-customer.loadCurrentAccounts();
-customer.loadSavingAccount();
-int accountNumber=Integer.valueOf(request.getParameter("accountNumber"));
-if(customer.getCurrentAccount()!=null && customer.getCurrentAccount().getAccountNumber()==accountNumber){
-	customer.getCurrentAccount().loadBenificary();
-	beneficiarys=customer.getCurrentAccount().getBeneficiary();
-}
-else if(customer.getSavingAccounts().size()!=0 && customer.getSavingAccounts().containsKey(accountNumber)){
-	customer.getSavingAccounts().get(accountNumber).loadBenificary();
-	beneficiarys= customer.getSavingAccounts().get(accountNumber).getBeneficiary();
-}
 %>
-
-
-<%-- SELECT IF BENEFICIARY : 
-<select  name="beneficiary" >
-    <optgroup label="NOT BENEFICIARY">
-        <option value=0 >NON BENEFICIARY</option>
-    </optgroup>
-    <optgroup label="BENEFICIARY">
-    <%
-	if(beneficiarys.size()!=0){
-		for(Beneficiary beneficiary:beneficiarys.values()){
-			out.print( "<option value="+beneficiary.getBeneficiaryId()+"> "+beneficiary.getAccountHolderName()+"["+beneficiary.getBankName() +"] </option>" );
-		}
-	}
-	%>
-    </optgroup>
-</select> --%>
-
 ENTER THE ACCOUNT HOLDER NAME [AS IF IN BANK CARD] :
-<input type="text" name="accountHolderName">
+<c:if test="<%=accountHolderName==null%>">
+<input type="text" name="accountHolderName" >
+</c:if>
+<c:if test="<%=accountHolderName!=null%>">
+<input type="text" value=<%=accountHolderName%> name="accountHolderName" readonly>
+</c:if>
+
 SELECT THE BANK : 
+
+<c:if test="<%=bankName != null%>">
+<input type="hidden" name="bankName" value=<%=BankDefinition.getBankId(bankName)%>>
+<input type="text" value=<%=bankName%>  readonly>
+</c:if>
+
+<c:if test="<%=bankName == null %>">
 <select name="bankName">
-    <optgroup label="SAME BANK">
+    <optgroup label="SAME BANK"> 
         <option value=1 >HDFC</option>
     </optgroup>
     <optgroup label="OTHER BANK">
@@ -84,20 +73,32 @@ SELECT THE BANK :
         <option value=7>INDIAN BANK</option>
     </optgroup>
 </select>
+</c:if>
+
 ENTER THE ACCOUNT NUMBER :
+
+<c:if test="<%=connectedAccountNumber==null%>">
 <input name="otherAccount" type ="number">
+</c:if>
+<c:if test="<%=connectedAccountNumber!=null%>">
+<input value=<%=connectedAccountNumber%> name="otherAccount" type ="number" readonly>
+</c:if>
 
 
 
 
 ENTER THE IFSC CODE :
-<input type="text" name="ifsccode"><br>
-ENTER THE MOBILE  NUMBER : 
-<input type="number" name="phoneNumber"><br>
+<c:if test="<%=ifscCode==null%>">
+<input type="text" name="ifsccode">
+</c:if>
+<c:if test="<%=ifscCode!=null%>">
+<input type="text" value=<%=ifscCode%> name="ifsccode" readonly>
+</c:if>
+
 ENTER THE AMOUNT :<input type="number" name="amount"><br>
 
 ENTER THE MODE : 
-<select>
+<select name="mode">
 <option>IMPS (immediate)</option>
 <option>NEFT (within 1 hour)</option>
 <option>UPI (immediate)</option>

@@ -31,10 +31,10 @@ public class Manager extends Employee {
 	public int giveLoan(int customerId, int amount, int accountNumber, int loanType) {
 		getBranch().loadCustomers();
 		int resultInt = 0;
-		if (Branch.getCustomerDetails().containsKey(customerId)) {
-			if (Branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
+		if (getBranch().getCustomerDetails().containsKey(customerId)) {
+			if (getBranch().getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
 				managerDao.giveLoan(customerId, accountNumber, amount, getBranchId(), loanType);
-				Branch.setCustomerDetails(null);
+				getBranch().setCustomerDetails(null);
 				resultInt = 1;
 			} else {
 				resultInt = 2;

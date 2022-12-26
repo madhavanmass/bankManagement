@@ -545,8 +545,7 @@
 		<url-pattern>/addEmployee</url-pattern>
 		<url-pattern>/createAccount</url-pattern>
 		<url-pattern>/depositMoney</url-pattern>
-		<url-pattern>/viewEmployee</url-pattern>
-		<url-pattern>/viewCustomer</url-pattern>
+		
 		<url-pattern>/issueDebitCard</url-pattern>
 	</filter-mapping>
 	

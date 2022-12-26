@@ -63,16 +63,16 @@ public class Employee extends Person {
 	public int createAccount(int customerId, int accountChoice, int initialDeposit) {
 		branch.loadCustomers();
 		int resultInt = 3;
-		if (!Branch.getCustomerDetails().containsKey(customerId)) {
+		if (!branch.getCustomerDetails().containsKey(customerId)) {
 			resultInt = 1;
 		} else {
-			if (accountChoice == 2 && (!Branch.getCustomerDetails().get(customerId).getAccounts().containsValue(2))) {
+			if (accountChoice == 2 && (!branch.getCustomerDetails().get(customerId).getAccounts().containsValue(2))) {
 				resultInt= employeeDao.createCurrentAccount(customerId, accountChoice, initialDeposit, branchId);
-				Branch.setCustomerDetails(null);
+				branch.setCustomerDetails(null);
 			} else if (accountChoice == 1) {
 				resultInt= employeeDao.createSavingAccount(customerId, accountChoice, initialDeposit,
 						BankDefinition.savingAccountInterest(initialDeposit), branchId);
-				Branch.setCustomerDetails(null);
+				branch.setCustomerDetails(null);
 			}
 			else {
 				resultInt=4;
@@ -83,13 +83,13 @@ public class Employee extends Person {
 
 	// function to deposit user given money
 	public int customerDeposit(int customerId, int accountNumber, int amount,int transferAmount,String description) {
-		Branch.setCustomerDetails(null);
+		branch.setCustomerDetails(null);
 		branch.loadCustomers();
 		int resultInt = 3;
-		if (!Branch.getCustomerDetails().containsKey(customerId)) {
+		if (!branch.getCustomerDetails().containsKey(customerId)) {
 			resultInt = 1;
 		} else {
-			if (Branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
+			if (branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
 				
 				branch.doDeposit(accountNumber,0,amount,transferAmount,2,description);
 			}
@@ -104,10 +104,10 @@ public class Employee extends Person {
 	public int issueDebitCard(int customerId, int accountNumber, int mPin) {
 		branch.loadCustomers();
 		int resultInt = 3;
-		if (!Branch.getCustomerDetails().containsKey(customerId)) {
+		if (!branch.getCustomerDetails().containsKey(customerId)) {
 			resultInt = 1;
 		} else {
-			if (Branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
+			if (branch.getCustomerDetails().get(customerId).getAccounts().containsKey(accountNumber)) {
 				boolean cardCheck = employeeDao.issueDebitCard(accountNumber, mPin);
 				if(!cardCheck) {
 					resultInt=4;
@@ -131,6 +131,11 @@ public class Employee extends Person {
 		}
 		return details;
 				
+	}
+
+	public int checkPerson(String aadharNumber, String panNumber) {
+		return employeeDao.checkPerson(aadharNumber,panNumber);
+		
 	}
 
 }

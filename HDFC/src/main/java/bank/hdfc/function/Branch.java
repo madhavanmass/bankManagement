@@ -18,8 +18,8 @@ public class Branch {
 	private String addressLine2;
 	private String pinCode;
 	
-	private static ConcurrentHashMap<Integer, CustomerDetail> customerDetails = null;
-	private static ConcurrentHashMap<Integer, EmployeeDetail> employeeDetails = null;
+	private ConcurrentHashMap<Integer, CustomerDetail> customerDetails = null;
+	private ConcurrentHashMap<Integer, EmployeeDetail> employeeDetails = null;
 
 	public Branch(int branchId, String branchName, String ifscCode, String manager, String addressLine1,
 			String addressLine2, String pinCode) {
@@ -34,17 +34,17 @@ public class Branch {
 	}
 	
 	
-	public static ConcurrentHashMap<Integer, CustomerDetail> getCustomerDetails() {
+	public ConcurrentHashMap<Integer, CustomerDetail> getCustomerDetails() {
 		return customerDetails;
 	}
-	public static void setCustomerDetails(ConcurrentHashMap<Integer, CustomerDetail> customerDetails) {
-		Branch.customerDetails = customerDetails;
+	public void setCustomerDetails(ConcurrentHashMap<Integer, CustomerDetail> customerDetails) {
+		this.customerDetails = customerDetails;
 	}
-	public static ConcurrentHashMap<Integer, EmployeeDetail> getEmployeeDetails() {
-		return employeeDetails;
+	public ConcurrentHashMap<Integer, EmployeeDetail> getEmployeeDetails() {
+		 return employeeDetails;
 	}
-	public static void setEmployeeDetails(ConcurrentHashMap<Integer, EmployeeDetail> employeeDetails) {
-		Branch.employeeDetails = employeeDetails;
+	public void setEmployeeDetails(ConcurrentHashMap<Integer, EmployeeDetail> employeeDetails) {
+		this.employeeDetails = employeeDetails;
 	}
 	public int getBranchId() {
 		return branchId;

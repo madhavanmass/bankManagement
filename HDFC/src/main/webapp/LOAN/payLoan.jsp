@@ -18,6 +18,7 @@ nav a.loan, li a.payLoan{
 	background-color: red;
 }
 </style>
+<script src="JAVASCRIPT/validateForm.js"></script>
 </head>
 
 <body>
@@ -27,7 +28,7 @@ nav a.loan, li a.payLoan{
 <div class="content1">
 <div class="content">
  <h1>PAY LOAN</h1>
- <form action="payLoanServlet">
+ <form name="myForm" onsubmit="return validateForm([7])" action="payLoanServlet">
  ENTER THE AMOUNT YOU WANT TO PAY: <input type="number" name="amount">
  ENTER THE ACCOUNT YOU WANT TO PAY: 
  <select name="accountChoose">

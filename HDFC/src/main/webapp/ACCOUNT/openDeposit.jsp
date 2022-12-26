@@ -31,12 +31,12 @@ SELECT THE TYPE:
 </select><br>
 SELECT THE DEPOSIT POLICY :
 <select name="depositPolicy">
-<option value="1">MONTHS[1]   INTERSET[0.01]</option>
-<option value="2">MONTHS[2]   INTERSET[0.025]</option>
-<option value="3">MONTHS[3]   INTERSET[0.04]</option>
-<option value="4">MONTHS[6]   INTERSET[0.1]</option>
-<option value="5">YEAR[1]   INTERSET[0.3]</option>
-<option value="6">YEARS[5]   INTERSET[1.7]</option>
+<option value="1">MONTHS[1] --  INTEREST[0.01]</option>
+<option value="2">MONTHS[2]  -- INTEREST[0.025]</option>
+<option value="3">MONTHS[3]  -- INTEREST[0.04]</option>
+<option value="4">MONTHS[6]  -- INTEREST[0.1]</option>
+<option value="5">YEAR[1]  -- INTEREST[0.3]</option>
+<option value="6">YEARS[5]  -- INTEREST[1.7]</option>
 </select><br>
 <input type="hidden" name="accountNumber" value=<%=request.getParameter("accountNumber") %>>
 <input type="submit" value="OPEN DEPOSIT">

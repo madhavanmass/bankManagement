@@ -37,8 +37,8 @@ function formatCheck(dict) {
 
 			case 5:
 
-				if (!x.match(/^\d{4}}$/)) {
-					alert('PLEASE MATCH ALL THE ' + element[i] + ' SPECIFICATION');
+				if (!x.match(/^\d{4}$/)) {
+					alert('PLEASE MATCH ALL THE ' + element[i]+ ' SPECIFICATION');
 					return false;
 				}
 				break;
@@ -56,6 +56,12 @@ function formatCheck(dict) {
 					return false;
 				}
 				break;
+			case 8:
+				if (x <5000) {
+					alert('PLEASE PUT A INITIAL DEPOSIT OF 5000 AND ABOVE' );
+					return false;
+				}
+				break;	
 				
 		}
 

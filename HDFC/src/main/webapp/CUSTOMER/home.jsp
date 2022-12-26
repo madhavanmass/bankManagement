@@ -12,7 +12,10 @@ nav a.home{
 <meta charset="ISO-8859-1">
 <title>HOME</title>
 </head>
-<body>
+<body style="background-image: url('IMAGE/background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;">
 
 <jsp:include page="/COMMON/topNav.html"></jsp:include>
 

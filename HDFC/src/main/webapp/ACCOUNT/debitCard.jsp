@@ -58,6 +58,8 @@ if(debitCard!=null){
 <form name="myForm" onsubmit="return formatCheck({33:5,34:7})" id="form" action="changeMPin" method="post" style="display:none;">
 ENTER YOUR OLD MPIN:<input type="number" name="oldMPin" >
 ENTER NEW MPIN:<input type="number" name="newMPin">
+<p style="font-size: 12px;" >* THE MPIN MUST ONLY HAVE 4 DIGIT</p>
+
 <input type="hidden" value=<%=request.getParameter("accountNumber")%> name="accountNumber">
 <input type="submit" value="CONFIRM">
 </form>

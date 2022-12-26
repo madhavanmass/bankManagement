@@ -44,20 +44,23 @@ if(beneficiarys.size()==0 || beneficiarys==null){
 }
 else{
 	out.print(
-			"<table><tr><th>BENEFICIARY NAME</th><th>BENEFICIARY BANK</th><th>ACCOUNT NUMBER</th><th>TRANSFERED AMOUNT</th><th>TRANSACTION LIMIT</th><th>UPDATE</th><th>DELETE</th></tr> ");
+			"<table><tr><th>BENEFICIARY NAME</th><th>BENEFICIARY BANK</th><th>ACCOUNT NUMBER</th><th>TRANSFERED AMOUNT</th><th>TRANSACTION LIMIT</th><th>UPDATE</th><th>DELETE</th><th>TRANSFER</th></tr> ");
 	for(Beneficiary beneficiary:beneficiarys.values()){
 		out.print("<tr>" 
+				
 				+"<form name=\"myForm\" onsubmit=\"return validateForm([3,4])\" action=\"updateBeneficiary\">"
-				+ "<td><input type=\"text\" value="+beneficiary.getAccountHolderName()+" readonly></td>"
-				+ "<td><input type=\"text\" value=\""+beneficiary.getBankName()+"\" readonly></td>"
+				+ "<td><input type=\"text\" name=\"accountHolderName\" value="+beneficiary.getAccountHolderName()+" readonly></td>"
+				+ "<td><input type=\"text\" name=\"bankName\" value=\""+beneficiary.getBankName()+"\" readonly></td>"
 				+ "<td><input type=\"number\" name=\"connectedAccount\" value="+beneficiary.getConnectedAccount()+ " readonly></td>"
 				+ "<td><input type=\"number\" value="+beneficiary.getTransferAmount()+ " readonly></td>"
 				+ "<td ><input class=\"limit\" type=\"number\" name=\"transactionLimit\" value="+beneficiary.getTransactionLimit()+"></td>"
 				+ "<input type=\"hidden\" name=\"beneficiaryId\" value="+beneficiary.getBeneficiaryId()+">"
 				+"<input type=\"hidden\" value="+request.getParameter("accountNumber")+" name=\"accountNumber\">"
+				+"<input type=\"hidden\" value="+beneficiary.getIFSCCode()+" name=\"ifsccode\">"
 				+ "<input type=\"hidden\" name=\"beneficiaryId\" value="+beneficiary.getBeneficiaryId()+">"
 				+ "<td><input type=\"submit\" value=\"UPDATE\"></td>"
 				+ "<td><input  type=\"submit\" formaction=\"deleteBeneficiary\" value=\"DELETE\"></td>"
+				+ "<td><input  type=\"submit\" formaction=\"transfer\" value=\"TRANSFER\"></td>"
 				+"</form>"
 				+"</tr>");
 	}
@@ -66,7 +69,8 @@ else{
 %>
 
 <h1>ADD BENEFICIARY</h1>
-<form name="myForm" onsubmit="return validateForm([3,4])" action="addBeneficiary">
+
+<form name="myForm" onsubmit="return formatCheck({3:7,4:7,30:7,31:7})" action="addBeneficiary">
 ENTER THE ACCOUNT HOLDER NAME :<input type="text" name="accountHolderName"><br>
 SELECT THE BANK : 
 <select name="bankName">

@@ -72,4 +72,19 @@ public class BankDao {
 		
 	}
 
+	public void UpdateRecurringDeposit() {
+		
+		try (Connection connection = ConnectionTool.getConnection()) {
+			Statement statement = connection.createStatement();
+			statement.addBatch(ConnectionTool.resourceBundle.getString("RecurringDeposit1"));
+			statement.addBatch(ConnectionTool.resourceBundle.getString("RecurringDeposit2"));
+			statement.addBatch(ConnectionTool.resourceBundle.getString("RecurringDeposit3"));
+			statement.addBatch(ConnectionTool.resourceBundle.getString("RecurringDeposit4"));
+			statement.executeBatch();
+			statement.close();
+		} catch (Exception e) {
+			System.out.println("error in penality");
+		}
+	}
+
 }

@@ -87,7 +87,7 @@ public class BankDefinition {
     	switch (messageInt) {
 		case 1: return "<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\">DEBITED SUCCESSFULLY</h2>";
 		case 2: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">BENEFICIARY LIMIT REACHED</h2>";
-		case 3: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">THE OTHER BANK TRANSFER WILL BE DONE</h2>";
+		case 3: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">THE PAYMENT WILL BE PROCESSED FOR YOUR CHOOSEN ACCOUNT</h2>";
 		case 4: return "<h2 style=\"background-color: rgb(176 51 51 / 37%);color: red;\">INSUFFICIENT BALANCE IN YOUR ACCOUNT</h2>";
 		case 5: return "<h2 style=\"background-color: rgb(176 170 51 / 37%);color: #ff9200;\">TRANSACTION LIMIT HAS BEEN REACHED</h2>";
 		}
@@ -116,13 +116,36 @@ public class BankDefinition {
 		case 6: return "CENTRAL BANK OF INDIA";
 		case 7:return "INDIAN BANK";
 	    
-	    
 	   
 		}
 		return null;
 	}
-
 	
+	public static int getBankId(String bankName) {
+		if(bankName.equals("HDFC")) {
+			return 1;
+		}
+		else if(bankName.equals("SOUTH INDIAN BANK")) {
+			return 2;
+		}
+		else if(bankName.equals("STATE BANK OF INDIA")) {
+			return 3;
+		}
+		else if(bankName.equals("CANARA BANK")) {
+			return 4;
+		}
+		else if(bankName.equals("BANK OF BARODA")) {
+			return 5;
+		}
+		else if(bankName.equals("CENTRAL BANK OF INDIA")) {
+			return 6;
+		}
+		else  {
+			return 7;
+		}
+		
+		
+	}
 	
     
 }

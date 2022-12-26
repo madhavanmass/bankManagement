@@ -22,6 +22,7 @@ nav a.issueDebitCard{
 ENTER THE CUSTOMER ID :<input type="number" name="customerId"><br>
 ENTER THE ACCOUNT NUMBER :<input type="number" name="accountNumber"><br>
 ENTER THE M-Pin :<input type="number" name="mPin"><br>
+<p style="font-size: 12px;" >* THE MPIN MUST ONLY HAVE 4 DIGIT</p>
 <input type="submit" value="ISSUE DEBIT CARD"> 
 </form>
 <% if(session.getAttribute("message") !=null){

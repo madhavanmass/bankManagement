@@ -25,7 +25,7 @@ ENTER PINCODE :<input type="number" name="pincode"><br>
 <input type="submit" value="CREATE BRANCH">
 </form>
 <% if(session.getAttribute("message") !=null){
-	out.print("<h2 style=\"background-color: rgb(67 176 51 / 37%);color: green;\" >!! A NEW BRANCH HAS BEEN ADDED SUCCESSFULLY !! <br> THE ID FOR NEW BRANCH IS : "+session.getAttribute("message")+" </h2>");
+	out.print((String)session.getAttribute("message"));
 	session.removeAttribute("message");
 }
 %>

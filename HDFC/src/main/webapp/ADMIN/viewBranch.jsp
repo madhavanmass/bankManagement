@@ -43,11 +43,24 @@ form{
 		name=request.getParameter("name");
 	}
 	for(Branch branchDetail:branches.values()){
+		branchDetail.loadCustomers();
+		branchDetail.loadEmployee();
 		pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
-	    matcher = pattern.matcher(branchDetail.getAddressLine1()+branchDetail.getAddressLine2()+branchDetail.getPinCode());
+		StringBuffer str=new StringBuffer(branchDetail.getAddressLine1());
+		str.append(":");
+		str.append(branchDetail.getAddressLine2());
+		str.append(":");
+		str.append(branchDetail.getPinCode());
+		str.append(":");
+		str.append(branchDetail.getBranchName());
+		str.append(":");
+		str.append(branchDetail.getIfscCode());
+		matcher = pattern.matcher(str.toString());
 	    boolean matchFound = matcher.find();
 	    if(matchFound) {
-	      out.println("<table>"+branchDetail.toString()+"</table>");
+	      out.println("<table>"+branchDetail.toString()+
+	    		  "<tr><td style=\"width:50%\" > NUMBER OF EMPLOYEE </td><td>"+branchDetail.getEmployeeDetails().size()+ "</td></tr>"+
+	    		  "</table>");
 	    }
 	}
 %>
