@@ -144,17 +144,22 @@ public class Branch {
 		new AccountDao().transactionEntry(accountNumber,otherAccount , description, amount,action, 4 );
 		return checker;
 	}
+	
+	public int checkPerson(String aadharNumber, String panNumber,int option) {
+		return branchDao.checkPerson(aadharNumber,panNumber,option);
+		
+	}
 
 	public void loadEmployee() {
-		if (employeeDetails == null) {
+		//if (employeeDetails == null) {
 			employeeDetails = branchDao.getEmployees(branchId);
-		}
+		//}
 	}
 
 	public void loadCustomers() {
-		if (customerDetails == null) {
+		//if (customerDetails == null) {
 			customerDetails = branchDao.getCustomerDetails();
-		}
+		//}
 	}
 
 	public CustomerDetail getCustomerDetail(int customerId) {

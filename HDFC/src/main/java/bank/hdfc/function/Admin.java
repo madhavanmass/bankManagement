@@ -55,4 +55,12 @@ public class Admin extends Person {
 		return adminDao.addBranch(branchName, addressLine1, addressLine2, pinCode);
 
 	}
+	
+	public Branch getABranch() {
+		loadBranch();
+		for(Branch branch:branchDetails.values()) {
+			return branch;
+		}
+		return null;
+	}
 }

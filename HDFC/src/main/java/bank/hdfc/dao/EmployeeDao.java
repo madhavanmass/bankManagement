@@ -119,34 +119,6 @@ public class EmployeeDao {
 		return accountNumber;
 	}
 
-	public int checkPerson(String aadharNumber, String panNumber) {
-		try (Connection connection = ConnectionTool.getConnection()) {
-			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("checkPerson"));
-			preparedStatement.setString(1, aadharNumber);
-			preparedStatement.setString(2, panNumber);
-			
-			ResultSet resultSet= preparedStatement.executeQuery();
-			
-			if(resultSet.next()) {
-				int customerId=resultSet.getInt(1);
-				preparedStatement.close();
-				resultSet.close();
-				return customerId;
-			}
-			else {
-				preparedStatement.close();
-				resultSet.close();
-				return 0;
-			}
-
-		} catch (Exception e) {
-			System.out.println("ERROR IN creating current Account");
-			e.printStackTrace();
-		}
-		
-		return 0;
-	}
-
-
+	
 
 }

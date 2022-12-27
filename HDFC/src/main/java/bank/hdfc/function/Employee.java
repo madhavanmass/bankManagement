@@ -1,5 +1,8 @@
 package bank.hdfc.function;
 
+import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
+
 import bank.hdfc.dao.AccountDao;
 import bank.hdfc.dao.EmployeeDao;
 import bank.hdfc.pack.BankDefinition;
@@ -58,15 +61,27 @@ public class Employee extends Person {
 	public int addCustomer(int personId) {
 		return employeeDao.addCustomer(personId);
 	}
+	
+	//check if 
+	public boolean checkAccount(ConcurrentHashMap<Integer, ArrayList<Object>> concurrentHashMap) {
+		for(ArrayList<Object> arr :concurrentHashMap.values()) {
+			if(((Integer)arr.get(0)) == 2) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	// creating account for the user
 	public int createAccount(int customerId, int accountChoice, int initialDeposit) {
 		branch.loadCustomers();
 		int resultInt = 3;
+		branch.loadCustomers();
+		
 		if (!branch.getCustomerDetails().containsKey(customerId)) {
 			resultInt = 1;
 		} else {
-			if (accountChoice == 2 && (!branch.getCustomerDetails().get(customerId).getAccounts().containsValue(2))) {
+			if (accountChoice == 2 && checkAccount(branch.getCustomerDetails().get(customerId).getAccounts()) ){//branch.getCustomerDetails().get(customerId).getAccounts().containsValue(2))) {
 				resultInt= employeeDao.createCurrentAccount(customerId, accountChoice, initialDeposit, branchId);
 				branch.setCustomerDetails(null);
 			} else if (accountChoice == 1) {
@@ -133,9 +148,6 @@ public class Employee extends Person {
 				
 	}
 
-	public int checkPerson(String aadharNumber, String panNumber) {
-		return employeeDao.checkPerson(aadharNumber,panNumber);
-		
-	}
+
 
 }

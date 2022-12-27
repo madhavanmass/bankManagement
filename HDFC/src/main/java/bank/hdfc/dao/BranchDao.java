@@ -38,7 +38,7 @@ public class BranchDao {
 			preparedStatement.setInt(1, branchId);
 			ResultSet resultset = preparedStatement.executeQuery();
 			while (resultset.next()) {
-				employee.put(resultset.getInt(1),new EmployeeDetail(resultset.getInt(1), resultset.getString(2), resultset.getString(3), resultset.getString(4),BankDefinition.roleName(resultset.getInt(5)) , branchId));
+				employee.put(resultset.getInt(1),new EmployeeDetail(resultset.getInt(5)==1?resultset.getInt(1):resultset.getInt(6), resultset.getString(2), resultset.getString(3), resultset.getString(4),BankDefinition.roleName(resultset.getInt(5)) , branchId));
 			}
 			resultset.close();
 			preparedStatement.close();
@@ -115,6 +115,51 @@ public class BranchDao {
 		}
 		return null;
 	}
+	
+	public int checkPerson(String aadharNumber, String panNumber,int option) {
+		try (Connection connection = ConnectionTool.getConnection()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(ConnectionTool.resourceBundle.getString("checkPerson"));
+			preparedStatement.setString(1, aadharNumber);
+			preparedStatement.setString(2, panNumber);
+			
+			ResultSet resultSet= preparedStatement.executeQuery();
+			int userId=0;
+			while(resultSet.next()) {
+				
+				switch (option) {
+				case 1:
+					userId=resultSet.getInt(1);
+					break;
+				case 2:
+					userId=resultSet.getInt(2);
+					break;
+				case 3:
+					userId=resultSet.getInt(3);
+					break;
+				}
+				
+			}
+			
+			if(userId!=0) {
+				preparedStatement.close();
+				resultSet.close();
+				return userId;
+			}
+			else {
+				preparedStatement.close();
+				resultSet.close();
+				return 0;
+			}
+
+		} catch (Exception e) {
+			System.out.println("ERROR IN CHECKING EXISTANCE");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+
 	
 }
 
